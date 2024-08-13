@@ -9,11 +9,13 @@ public class Custom_Rigid_Body : MonoBehaviour
 
     float Timer;
     float Gravity;
+    float Falling_Time;
     // Start is called before the first frame update
     void Start()
     {
         Timer = 0f;
         Gravity = 0f;
+        Falling_Time = 0f;
         if (Is_Gravity)
         {
             Mass = Mass > 0f ? Mass : 0f;
@@ -25,7 +27,7 @@ public class Custom_Rigid_Body : MonoBehaviour
     void Update()
     {
         Timer += Time.deltaTime;
-        if(Timer > 0.16f)
+        if(Timer > 0.001f)
         {
             CustomUPdate();
             Timer = 0f;
@@ -34,10 +36,11 @@ public class Custom_Rigid_Body : MonoBehaviour
     //position set
     void CustomUPdate()
     {
-        if (Is_Gravity)
-        {
-            Debug.Log(Timer);
-            transform.Translate(Vector3.down * Timer * Mass * Gravity);//임시
-        }
+
+        //Debug.Log(Gravity_force);
+        float G = Mathf.Log(Mass+0.1f, Falling_Time);
+        transform.Translate(Vector3.down * G);//임시
+        Debug.Log(G);
+        Falling_Time++;
     }
 }
