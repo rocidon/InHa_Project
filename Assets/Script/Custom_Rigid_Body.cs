@@ -8,27 +8,36 @@ public class Custom_Rigid_Body : MonoBehaviour
     public float Mass;
 
     float Timer;
+    float Gravity;
     // Start is called before the first frame update
     void Start()
     {
         Timer = 0f;
+        Gravity = 0f;
         if (Is_Gravity)
         {
             Mass = Mass > 0f ? Mass : 0f;
+            Gravity = 9.8f;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Timer += Time.deltaTime; ;
-        if(Timer > 0.01f)
+        Timer += Time.deltaTime;
+        if(Timer > 0.16f)
         {
-            if (Is_Gravity)
-            {
-                transform.Translate(Vector3.down * Time.deltaTime * Mass);//임시
-            }
+            CustomUPdate();
             Timer = 0f;
+        }
+    }
+    //position set
+    void CustomUPdate()
+    {
+        if (Is_Gravity)
+        {
+            Debug.Log(Timer);
+            transform.Translate(Vector3.down * Timer * Mass * Gravity);//임시
         }
     }
 }
