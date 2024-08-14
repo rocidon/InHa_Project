@@ -13,8 +13,9 @@ public class NewBehaviourScript : MonoBehaviour
     static float Speed = 10f;
     public float JumpPower = 20f;     // 점프 높이 변수 선언
     bool IsJumping;     // 점프 유무 변수 선언
-
-    float gravityScale = 50f;
+    float gravityScale = 50f;       // 중력 작용
+    public GameObject Bullet;
+    public Transform FirePos;
     
    /* float zInput = 0;*/
     void Start()
@@ -57,7 +58,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         //}
 
-        if (Input.GetKeyDown(KeyCode.Space) && !IsJumping)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !IsJumping)
         {
             Rigid.AddForce(transform.up * JumpPower, ForceMode.Impulse);
             IsJumping = true;
