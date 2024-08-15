@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Item : ScriptableObject
+public class WeaponData : ScriptableObject
 {
     public Sprite itemImage;
     public string itemName;

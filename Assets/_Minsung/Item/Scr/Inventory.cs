@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Item> items;
+    public List<WeaponData> items;
 
     [SerializeField]
     private Transform slotParent;
@@ -18,8 +18,6 @@ public class Inventory : MonoBehaviour
         slots = slotParent.GetComponentsInChildren<Slot>();
     }
 #endif
-
-
 
     void Awake()
     {
@@ -39,7 +37,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem(Item _item)
+    public void AddItem(WeaponData _item)
     {
         if (items.Count < slots.Length)
         {
@@ -48,7 +46,8 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            print("가득참.");
+            Debug.Log("Inventory full.");
         }
     }
 }
+
