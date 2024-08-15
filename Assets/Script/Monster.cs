@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    protected float _Health;
+    protected float _Atk;
+    protected float _Def;
+    protected FSM _fsm;
+    
+    protected bool IsDeath()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
-
-public class FSM
-{
-    public FSM(BaseState initState)
-    {
-
+        if(_Health <= 0.0f)
+        {
+            return true;
+        }
+        return false;
     }
 }
 
