@@ -27,8 +27,8 @@ public class Enemy_Behavior : MonoBehaviour
     void RayHit()
     {
         Vector3 ChkPos = transform.forward+transform.position;
-        Debug.DrawRay(ChkPos, Vector3.down * 2, Color.green, 0.01f);
-        if(Physics.Raycast(ChkPos, Vector3.down*2, out hit, 2))
+        Debug.DrawRay(ChkPos, Vector3.down*0.5f, Color.green, 0.01f);
+        if(Physics.Raycast(ChkPos, Vector3.down, out hit, 0.5f))
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
@@ -56,10 +56,12 @@ public class Enemy_Behavior : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("HIt Coll");
+        Debug.Log(transform.position);
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Is_Falling = false;
-            Debug.Log(Is_Falling);
+            Debug.Log("inCollision");
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -67,7 +69,7 @@ public class Enemy_Behavior : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Is_Falling = true;
-            Debug.Log(Is_Falling);
+            Debug.Log("OuCollision");
         }
     }
 }
