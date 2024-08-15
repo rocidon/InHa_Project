@@ -13,7 +13,7 @@ public class Enemy_Behavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5.0f;
+        speed = speed >= 1.0f ? speed : 5.0f;
         Is_Falling = true;
         DefaultDamage = 1.0f;
     }

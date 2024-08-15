@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c989e300b94744f8af2253bb696435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 1
   DefaultDamage: 0
 --- !u!1001 &1949395867
 PrefabInstance:
