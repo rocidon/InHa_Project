@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class BaseState
 {
-    protected Monster _monster;
+    private Monster _monster;
 
     protected BaseState(Monster monster)
     {
