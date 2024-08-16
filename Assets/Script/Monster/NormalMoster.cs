@@ -5,6 +5,7 @@ using UnityEngine;
 //https://danpung2.tistory.com/58
 public class NormalMoster : Monster
 {
+    RaycastHit hit;
     enum State
     {
         Idle,
@@ -97,6 +98,25 @@ public class NormalMoster : Monster
                 break;
         }
     }
+
+    public void RayHit()
+    {
+        Vector3 ChkPos = transform.forward + transform.position;
+        Debug.DrawRay(ChkPos, Vector3.down * 0.5f, Color.green, 0.01f);
+        if(!Physics.Raycast(ChkPos, Vector3.down, out hit, 0.5f))
+        {
+            Turn();
+        }
+    }
+
+    void Turn()
+    {
+        Vector3 BackVec = transform.forward * -1;
+        if(BackVec != Vector3.zero)
+        {
+            transform.forward = BackVec;
+        }
+    }
     
 }
 
@@ -136,6 +156,7 @@ public class MoveState : BaseState
     public override void onStateUpdate()
     {
         _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        _normalMob.RayHit();
         //throw new System.NotImplementedException();
     }
 
