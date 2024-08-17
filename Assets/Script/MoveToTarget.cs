@@ -12,13 +12,13 @@ public class MoveToTarget : MonoBehaviour
         if (other.gameObject.tag == "FloorOnPosition" && Input.GetKey(KeyCode.X))
         {
             StartCoroutine(Hide());
-            Debug.Log("숨기 가능합니다.");
+            Debug.Log("숨었습니다.");
         }
 
         if (other.gameObject.tag == "HidingPosition" && Input.GetKey(KeyCode.C))
         {
             StartCoroutine(ReturnToFloor());
-            Debug.Log("Floor로 돌아올 수 있습니다.");
+            Debug.Log("Floor로 돌아왔습니다.");
         }
 
     }
@@ -26,8 +26,6 @@ public class MoveToTarget : MonoBehaviour
     void Update()
     {
 
-   
- 
     }
 
     IEnumerator Hide()
@@ -35,7 +33,7 @@ public class MoveToTarget : MonoBehaviour
         while (HidingPosition.transform.position != transform.position)
         {
             yield return null;
-
+            Debug.Log("숨기");
             transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.05f);
         }
     }

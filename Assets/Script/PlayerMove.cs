@@ -17,8 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
     float gravityScale = 50f;       // 중력 작용
     public GameObject Bullet;
     public Transform FirePos;
-    
-   /* float zInput = 0;*/
+
     void Start()
     {
         Rigid = GetComponent<Rigidbody>();
@@ -56,9 +55,26 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.CompareTag("Floor"))
         {
             IsJumping = false;
         }
     }
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("HidingFloor"))
+        {
+            transform.position = new Vector3(5f, transform.position.y, transform.position.z);
+            JumpPower = 0f;
+            Debug.Log("HidingPosition입니다.");
+            Rigid.velocity = Vector3.zero;
+            Speed = 0f;
+        }
+        else if(!collision.gameObject.CompareTag("HidingFloor"))
+        {
+            Speed = 10f;
+            JumpPower = 20f;
+        }
+    }
 }
+
