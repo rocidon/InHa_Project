@@ -7,8 +7,7 @@ public class Monster : MonoBehaviour
     protected float _Health;
     protected float _Atk;
     protected float _Def;
-    protected FSM _fsm;
-    
+    protected FSM _fsm;    
     private enum MonsterState
     {
         Idle,
@@ -23,19 +22,19 @@ public class Monster : MonoBehaviour
     {
         _state = MonsterState.Idle;
     }
-    private void Update()
-    {
-        switch (_state) { 
-            case MonsterState.Idle:
-                break;
-            case MonsterState.Move:
-                break;
-            case MonsterState.Attack:
-                break;
-            case MonsterState.Death:
-                break;
-        }
-    }
+    //private void Update()
+    //{
+    //    switch (_state) { 
+    //        case MonsterState.Idle:
+    //            break;
+    //        case MonsterState.Move:
+    //            break;
+    //        case MonsterState.Attack:
+    //            break;
+    //        case MonsterState.Death:
+    //            break;
+    //    }
+    //}
     protected bool IsDeath()
     {
         if(_Health <= 0.0f)
