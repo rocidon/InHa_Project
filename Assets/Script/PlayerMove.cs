@@ -12,6 +12,7 @@ public class NewBehaviourScript : MonoBehaviour
     
     static float Speed = 10f;
     public float JumpPower = 20f;     // 점프 높이 변수 선언
+    public float MovePower = 20f;     // 움직임 변수 선언
     bool IsJumping;     // 점프 유무 변수 선언
     float gravityScale = 50f;       // 중력 작용
     public GameObject Bullet;
@@ -42,23 +43,8 @@ public class NewBehaviourScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
         }
 
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
 
-
-        //    transform.Translate(new Vector3(Speed, 0, 0));
-
-        //}
-
-
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-
-        //    transform.Translate(new Vector3(-Speed, 0, 0));
-
-        //}
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !IsJumping)
+        if (Input.GetKeyDown(KeyCode.Z) && !IsJumping)
         {
             Rigid.AddForce(transform.up * JumpPower, ForceMode.Impulse);
             IsJumping = true;

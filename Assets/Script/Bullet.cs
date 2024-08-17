@@ -13,8 +13,8 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         Rigid = GetComponent<Rigidbody>();
-
-        Rigid.AddForce(transform.forward * force);
+        Destroy(gameObject, 3f);
+       /* Rigid.AddForce(transform.forward * force);*/
     }
 
     void Update()
