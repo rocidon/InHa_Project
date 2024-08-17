@@ -35,4 +35,14 @@ public class ButtonScr : MonoBehaviour
         Debug.Log("End");
     }
 
+    public void OnClickEndLoadScene()
+    {
+        SceneManager.LoadScene("_MinsungTest1");
+    }
+
+    public void OnClickEndLoadScene2()
+    {
+        SceneManager.LoadScene("_MinsungTest");
+
+    }
 }

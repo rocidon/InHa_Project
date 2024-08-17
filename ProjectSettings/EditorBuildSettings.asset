@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/_MainMenuScene.unity
     guid: 2bb32def876feed49b08608ce5c263a7
   - enabled: 1
+    path: Assets/Scenes/_MinsungTest1.unity
+    guid: a9cdbffa9f1d22e4090dacb1c3237789
+  - enabled: 1
     path: Assets/Scenes/_MinsungTest.unity
     guid: 0cd99f728779b854fbb78a1237fad724
   - enabled: 1
