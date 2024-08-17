@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e5949ec97e0d849baf689ca2027f7a, type: 3}
   m_Name: CurrencyData
   m_EditorClassIdentifier: 
-  boneAmount: 100
-  goldAmount: 100
+  boneAmount: 500
+  goldAmount: 300
+  testboneAmount: 0
+  testgoldAmount: 100
