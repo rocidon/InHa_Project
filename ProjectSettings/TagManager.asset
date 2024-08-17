@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - FloorOnPosition
+  - HidingPosition
   layers:
   - Default
   - TransparentFX

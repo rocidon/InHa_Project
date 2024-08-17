@@ -7,33 +7,45 @@ public class MoveToTarget : MonoBehaviour
     public GameObject HidingPosition;
     public GameObject FloorOnPosition;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)      // 숨을 수 있을 때 감지
     {
         if (other.gameObject.tag == "FloorOnPosition" && Input.GetKey(KeyCode.X))
         {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.05f);
+            StartCoroutine(Hide());
             Debug.Log("숨기 가능합니다.");
         }
+
+        if (other.gameObject.tag == "HidingPosition" && Input.GetKey(KeyCode.C))
+        {
+            StartCoroutine(ReturnToFloor());
+            Debug.Log("Floor로 돌아올 수 있습니다.");
+        }
+
     }
-  /*  private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "FloorOnPosition" && Input.GetKey(KeyCode.X))
-        {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.05f);
-            Debug.Log("숨기 가능합니다.");
-        }
-    }*/
+
     void Update()
     {
 
-        /*if (transform.gameObject.tag == "FloorOnPosition")
-        {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.05f);
-        }*/
-/*        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, FloorOnPosition.transform.position, 0.05f);
-        }*/
+   
+ 
+    }
 
+    IEnumerator Hide()
+    {
+        while (HidingPosition.transform.position != transform.position)
+        {
+            yield return null;
+
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.05f);
+        }
+    }
+    IEnumerator ReturnToFloor()
+    {
+        while (FloorOnPosition.transform.position != transform.position)
+        {
+            yield return null;
+
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, FloorOnPosition.transform.position, 0.05f);
+        }
     }
 }
