@@ -2,72 +2,107 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
+
 //https://danpung2.tistory.com/58
-public class NormalMoster : Monster
+public class NormalMonster : Monster
 {
-    enum State
+    RaycastHit hit;
+    public enum State
     {
         Idle,
         Move,
+        See,
         Attack,
         Death
     }
-    State _currentState;
-    public float speed;
-    //FSM _fsm;
+    public State _currentState;
+    public float AtkRange;
+    float oSpeed;
+    float _Timer;
+    Field_of_View fov;
+    MonsterAttack Atk;
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+        Atk = GetComponentInChildren<MonsterAttack>();
+        _Timer = 0f;
+        fov = GetComponent<Field_of_View>();
         _Health = 200.0f;
         _Atk = 10.0f;
         _Def = 1.0f;
         _currentState = State.Idle;
         _fsm = new FSM(new IdleState(this));
         speed = speed >= 1.0f ? speed : 5.0f;
+        oSpeed = speed;
+        AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
+
+        Atk.SetDamage(_Atk);
+        Atk.SetAttackTime(0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //변경 필요
+        //ChangeAnimation(true);
+        //Debug.Log(animator.GetParameter((int)_currentState).name);
+        //Debug.Log(fov.AtkPlayer);
+        //Debug.Log(_currentState); 
         switch (_currentState)
-        {
+        {            
             case State.Idle:
-                if (true)//see player
+                if (fov.FindPlayer == false)
                 {
-                    if(_Health > 0)//canatkplayer
-                    {
-                        ChangeState(State.Attack);
-                    }
-                    else
+                    if(_Timer > 1.0f)
                     {
                         ChangeState(State.Move);
+                        _Timer = 1.0f;
                     }
+                    _Timer += Time.deltaTime;
+                }
+                else
+                {
+                    ChangeState(State.See);
+                    _Timer = 0f;
                 }
                 break;
             case State.Move:
-                if(_Health> 0)//see player
+                speed = 2.0f;
+                if (fov.FindPlayer)
                 {
-                    if(_Health >0)//atk player
-                    {
-                        ChangeState(State.Attack);
-                    }
+                    ChangeState(State.See);
+                    _Timer = 0f;
                 }
                 else
                 {
-                    ChangeState(State.Idle);
+                    if(_Timer > 3.0f)
+                    {
+                        ChangeState(State.Idle);
+                        _Timer = 0;
+                    }
+                    _Timer += Time.deltaTime;
                 }
                 break;
             case State.Attack:
-                if(_Health > 0)//see player
+
+                if (fov.AtkPlayer== false)
                 {
-                    if(_Health>0)//!atk player
+                    ChangeState(State.See);
+                }
+                break;
+            case State.See:                
+                speed = oSpeed;
+                if (fov.FindPlayer)
+                {
+                    if (fov.AtkPlayer)
                     {
-                        ChangeState(State.Move);
-                    }
+                        ChangeState(State.Attack);
+                    }               
                 }
                 else
                 {
-                    ChangeState(State.Idle);
+                    ChangeState (State.Idle);
                 }
                 break;
             case State.Death:
@@ -83,8 +118,11 @@ public class NormalMoster : Monster
 
     void ChangeState(State nextstate)
     {
+        if (_currentState == nextstate) return;
+        ChangeAnimation(false);
         _currentState = nextstate;
-        switch(_currentState)
+        ChangeAnimation(true);
+        switch (_currentState)
         {
             case State.Idle:
                 _fsm.ChangeState(new IdleState(this));
@@ -95,16 +133,56 @@ public class NormalMoster : Monster
             case State.Attack:
                 _fsm.ChangeState(new AttackState(this));
                 break;
+            case State.See:
+                _fsm.ChangeState(new SeeState(this));
+                break;
         }
     }
-    
+
+    void RayHit()
+    {
+        Vector3 ChkPos = transform.forward + transform.position;
+        Debug.DrawRay(ChkPos, Vector3.down * 0.5f, Color.green, 0.01f);
+        if(!Physics.Raycast(ChkPos, Vector3.down, out hit, 0.5f))
+        {
+            Turn();
+        }
+    }
+
+    void Turn()
+    {
+        Vector3 BackVec = transform.forward * -1;
+        if(BackVec != Vector3.zero)
+        {
+            transform.forward = BackVec;
+        }
+    }
+    public override void Movement() { 
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        RayHit();
+        //base.Movement();
+    }
+
+    public override void ChangeAnimation(bool value)
+    {
+        int index = (int)_currentState;
+        string idxName = animator.GetParameter(index).name;
+        //bool oval = animator.GetBool(idxName);
+        //Debug.Log("Current State : " + index);
+        animator.SetBool(idxName, value);
+    }
+
+    public override void Attack()
+    {
+        Atk.IsAtk = true;
+    }    
 }
 
 //각 행동 State에 대해 정의해야함
 public class IdleState : BaseState
 {
-    private NormalMoster _normalMob;
-    public IdleState(NormalMoster monster) : base(monster) {
+    private Monster _normalMob;
+    public IdleState(NormalMonster monster) : base(monster) {
         _normalMob = monster;
     }
 
@@ -124,11 +202,60 @@ public class IdleState : BaseState
 }
 public class MoveState : BaseState
 {
-    private NormalMoster _normalMob;
-    public MoveState(NormalMoster monster) : base(monster) {
+    //private NormalMonster _normalMob;
+    private Monster _normalMob;
+    public MoveState(Monster monster) : base(monster) {
         _normalMob = monster;
     }
     
+    public override void onStateEnter()
+    {
+        //throw new System.NotImplementedException();
+    }
+    public override void onStateUpdate()
+    {
+        _normalMob.Movement();
+        //throw new System.NotImplementedException();
+    }
+
+    public override void onStateExit()
+    {
+
+        //throw new System.NotImplementedException();
+    }
+}
+public class AttackState : BaseState
+{
+    private Monster _normalMob;
+    public AttackState(Monster monster) : base(monster)
+    {
+        _normalMob = monster;
+    }
+
+    public override void onStateEnter()
+    {
+        //throw new System.NotImplementedException();
+    }
+    public override void onStateUpdate()
+    {
+        //Debug.Log("Attack!");
+        _normalMob.Attack();
+        //throw new System.NotImplementedException();
+    }
+
+    public override void onStateExit()
+    {
+        //throw new System.NotImplementedException();
+    }
+}
+
+public class SeeState : BaseState
+{
+    private Monster _normalMob;
+    public SeeState(Monster monster) : base(monster)
+    {
+        _normalMob = monster;
+    }
     public override void onStateEnter()
     {
         //throw new System.NotImplementedException();
@@ -144,10 +271,11 @@ public class MoveState : BaseState
         //throw new System.NotImplementedException();
     }
 }
-public class AttackState : BaseState
+
+public class DeathState : BaseState
 {
-    private NormalMoster _normalMob;
-    public AttackState(NormalMoster monster) : base(monster)
+    private NormalMonster _normalMob;
+    public DeathState(NormalMonster monster) : base(monster)
     {
         _normalMob = monster;
     }
@@ -158,6 +286,7 @@ public class AttackState : BaseState
     }
     public override void onStateUpdate()
     {
+        _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
         //throw new System.NotImplementedException();
     }
 

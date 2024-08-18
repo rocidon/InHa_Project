@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d071b0e3d1c213a4597cc69c03cca1f8
+guid: f8d6a2b74f9595b4498264ab92833e78
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mutant Punch
+      name: Run
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 33
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

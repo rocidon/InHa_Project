@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d071b0e3d1c213a4597cc69c03cca1f8
+guid: 97df3d9892923614a86138f90cf27d0b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mutant Punch
+      name: Crouched Walking
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 33
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -880,7 +880,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: e74bb83266304e544afd42159df23de6, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b9f0c8800e193bc4ea551bc5eb26c591, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
