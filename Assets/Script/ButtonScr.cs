@@ -42,7 +42,7 @@ public class ButtonScr : MonoBehaviour
 
     public void OnClickEndLoadScene2()
     {
-        SceneManager.LoadScene("_MinsungTest");
+        SceneManager.LoadScene("_MinsungTest2");
 
     }
 }

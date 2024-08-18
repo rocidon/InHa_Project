@@ -7,10 +7,9 @@ using UnityEngine;
 
 public class CurrencyData : ScriptableObject
 {
-    public int boneAmount;
+    public int silverAmount;
     public int goldAmount;
 
-
-    public int testboneAmount;
-    public int testgoldAmount;
+    public int curSilverAmount;
+    public int curGoldAmount;
 }

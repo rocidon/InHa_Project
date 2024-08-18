@@ -9,11 +9,11 @@ public class TestAdjustment : MonoBehaviour
 
     public void OnClickAdjustment()
     {
-        test.boneAmount += test.testboneAmount;
-        test.goldAmount += test.testgoldAmount;
+        test.silverAmount += test.curSilverAmount;
+        test.goldAmount += test.curGoldAmount;
 
-        test.testboneAmount = 0;
-        test.testgoldAmount = 0;
+        test.curSilverAmount = 0;
+        test.curGoldAmount = 0;
     }
 
 }

@@ -22,7 +22,7 @@ public class testboneAmountTextOutput : MonoBehaviour
     {
         if (text != null && test != null)
         {
-            text.text = test.testboneAmount.ToString();
+            text.text = test.curSilverAmount.ToString();
         }
         else
         {

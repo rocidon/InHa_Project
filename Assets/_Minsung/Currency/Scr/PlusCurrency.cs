@@ -10,12 +10,12 @@ public class PlusCurrency : MonoBehaviour
     {
 
         //오브젝트 충돌시,
-        currencyData.testgoldAmount += 100;
+        currencyData.curGoldAmount += 100;
         Debug.Log("+100 Gold");
     }
     public void OnClickPlusBone()
     {
-        currencyData.testboneAmount += 100;
+        currencyData.curSilverAmount += 100;
         Debug.Log("+100 Bone");
     }
 }

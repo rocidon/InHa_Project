@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialPsyScene.unity
     guid: 2ba12510a91b23e409a2c8958ed8fa9c
+  - enabled: 1
+    path: Assets/Scenes/_MinsungTest2.unity
+    guid: 03108ec7da65374479867d5f041d8611
   m_configObjects: {}

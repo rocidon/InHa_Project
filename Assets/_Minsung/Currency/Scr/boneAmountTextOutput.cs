@@ -21,7 +21,7 @@ public class boneAmountTextOutput : MonoBehaviour
     {
         if (text != null && boneData != null)
         {
-            text.text = boneData.boneAmount.ToString();
+            text.text = boneData.silverAmount.ToString();
         }
         else
         {
