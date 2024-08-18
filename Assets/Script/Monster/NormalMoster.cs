@@ -15,12 +15,14 @@ public class NormalMonster : Monster
         Move,
         See,
         Attack,
+        Hited,
         Death
     }
     public State _currentState;
     public float AtkRange;
     float oSpeed;
     float _Timer;
+    bool CantMove;
     Field_of_View fov;
     MonsterAttack Atk;
     void Start()
@@ -37,7 +39,7 @@ public class NormalMonster : Monster
         speed = speed >= 1.0f ? speed : 5.0f;
         oSpeed = speed;
         AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
-
+        CantMove = false;
         Atk.SetDamage(_Atk);
         Atk.SetAttackTime(0.5f);
     }
@@ -105,6 +107,20 @@ public class NormalMonster : Monster
                     ChangeState (State.Idle);
                 }
                 break;
+            case State.Hited:
+                if (CantMove)
+                {
+                    if (IsDeath())
+                    {
+                        ChangeState(State.Death);
+                    }
+                    else
+                    {
+                        ChangeState(State.Idle);
+                        CantMove = false;
+                    }
+                }
+                break;
             case State.Death:
                 if (IsDeath())
                 {
@@ -119,9 +135,11 @@ public class NormalMonster : Monster
     void ChangeState(State nextstate)
     {
         if (_currentState == nextstate) return;
+
         ChangeAnimation(false);
         _currentState = nextstate;
         ChangeAnimation(true);
+
         switch (_currentState)
         {
             case State.Idle:
@@ -136,9 +154,11 @@ public class NormalMonster : Monster
             case State.See:
                 _fsm.ChangeState(new SeeState(this));
                 break;
+            case State.Hited:
+                _fsm.ChangeState(new HittedState(this));
+                break;
         }
     }
-
     void RayHit()
     {
         Vector3 ChkPos = transform.forward + transform.position;
@@ -169,13 +189,40 @@ public class NormalMonster : Monster
         string idxName = animator.GetParameter(index).name;
         //bool oval = animator.GetBool(idxName);
         //Debug.Log("Current State : " + index);
-        animator.SetBool(idxName, value);
+        if(_currentState == State.Hited)
+        {
+            animator.SetTrigger(idxName);
+        }
+        else
+        {
+            animator.SetBool(idxName, value);
+        }
+
     }
 
     public override void Attack()
     {
         Atk.IsAtk = true;
-    }    
+    }
+    public override void TakeDamage(float damage)
+    {
+        _Health -= damage;
+        Debug.Log(_Health);
+        StartCoroutine(OnDamage());
+    }
+
+    public override IEnumerator OnDamage()
+    {
+        Debug.Log("!!");
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * -4, ForceMode.Impulse);
+        //rb.MovePosition(transform.forward * -2);
+        ChangeState(State.Hited);
+        animator.SetBool(0, true);
+        yield return new WaitForSeconds(2.0f);
+        
+        CantMove = true;
+    }
 }
 
 //각 행동 State에 대해 정의해야함
@@ -287,6 +334,30 @@ public class DeathState : BaseState
     public override void onStateUpdate()
     {
         _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        //throw new System.NotImplementedException();
+    }
+
+    public override void onStateExit()
+    {
+        //throw new System.NotImplementedException();
+    }
+}
+
+public class HittedState : BaseState
+{
+    private NormalMonster _normalMob;
+    public HittedState(NormalMonster monster) : base(monster)
+    {
+        _normalMob = monster;
+    }
+    public override void onStateEnter()
+    {
+        _normalMob.OnDamage();
+        //throw new System.NotImplementedException();
+    }
+    public override void onStateUpdate()
+    {
+        //_normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
         //throw new System.NotImplementedException();
     }
 

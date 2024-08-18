@@ -67,10 +67,16 @@ public class Monster : MonoBehaviour
     {
         Debug.Log("I'm Parent Class AttackEnd");
     }
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
-        _Health -= damage;
-        Debug.Log(_Health);
+        //_Health -= damage;
+        //Debug.Log(_Health);
+        //StartCoroutine(OnDamage());
+    }
+
+    public virtual IEnumerator OnDamage()
+    {
+        yield return new WaitForSeconds(0.2f);
     }
 }
 
