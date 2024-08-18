@@ -4,28 +4,31 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+
 //https://danpung2.tistory.com/58
 public class NormalMonster : Monster
 {
     RaycastHit hit;
-    enum State
+    public enum State
     {
         Idle,
         Move,
-        Attack,
         See,
+        Attack,
         Death
     }
-    State _currentState;
-    public float speed;
-    float oSpeed;
+    public State _currentState;
     public float AtkRange;
+    float oSpeed;
+    float _Timer;
     Field_of_View fov;
-    //FSM _fsm;
+    MonsterAttack Atk;
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+        Atk = GetComponentInChildren<MonsterAttack>();
+        _Timer = 0f;
         fov = GetComponent<Field_of_View>();
-        //Debug.Log(fov.a);
         _Health = 200.0f;
         _Atk = 10.0f;
         _Def = 1.0f;
@@ -34,35 +37,51 @@ public class NormalMonster : Monster
         speed = speed >= 1.0f ? speed : 5.0f;
         oSpeed = speed;
         AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
+
+        Atk.SetDamage(_Atk);
+        Atk.SetAttackTime(0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(fov.AtkPlayer);
-        Debug.Log(_currentState); 
+        //ChangeAnimation(true);
+        //Debug.Log(animator.GetParameter((int)_currentState).name);
+        //Debug.Log(fov.AtkPlayer);
+        //Debug.Log(_currentState); 
         switch (_currentState)
-        {
-            
+        {            
             case State.Idle:
                 if (fov.FindPlayer == false)
                 {
-                    ChangeState(State.Move);                   
+                    if(_Timer > 1.0f)
+                    {
+                        ChangeState(State.Move);
+                        _Timer = 1.0f;
+                    }
+                    _Timer += Time.deltaTime;
                 }
                 else
                 {
                     ChangeState(State.See);
+                    _Timer = 0f;
                 }
                 break;
             case State.Move:
-                speed = oSpeed;
+                speed = 2.0f;
                 if (fov.FindPlayer)
                 {
                     ChangeState(State.See);
+                    _Timer = 0f;
                 }
                 else
                 {
-                    ChangeState(State.Idle);
+                    if(_Timer > 3.0f)
+                    {
+                        ChangeState(State.Idle);
+                        _Timer = 0;
+                    }
+                    _Timer += Time.deltaTime;
                 }
                 break;
             case State.Attack:
@@ -72,8 +91,8 @@ public class NormalMonster : Monster
                     ChangeState(State.See);
                 }
                 break;
-            case State.See:
-                speed = 0.5f;
+            case State.See:                
+                speed = oSpeed;
                 if (fov.FindPlayer)
                 {
                     if (fov.AtkPlayer)
@@ -99,8 +118,11 @@ public class NormalMonster : Monster
 
     void ChangeState(State nextstate)
     {
+        if (_currentState == nextstate) return;
+        ChangeAnimation(false);
         _currentState = nextstate;
-        switch(_currentState)
+        ChangeAnimation(true);
+        switch (_currentState)
         {
             case State.Idle:
                 _fsm.ChangeState(new IdleState(this));
@@ -117,7 +139,7 @@ public class NormalMonster : Monster
         }
     }
 
-    public void RayHit()
+    void RayHit()
     {
         Vector3 ChkPos = transform.forward + transform.position;
         Debug.DrawRay(ChkPos, Vector3.down * 0.5f, Color.green, 0.01f);
@@ -135,19 +157,31 @@ public class NormalMonster : Monster
             transform.forward = BackVec;
         }
     }
-    bool DetectedPLayer()
-    {
-        Vector3 CurrentPos = transform.position;
-
-        return true;
+    public override void Movement() { 
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        RayHit();
+        //base.Movement();
     }
-    
+
+    public override void ChangeAnimation(bool value)
+    {
+        int index = (int)_currentState;
+        string idxName = animator.GetParameter(index).name;
+        //bool oval = animator.GetBool(idxName);
+        //Debug.Log("Current State : " + index);
+        animator.SetBool(idxName, value);
+    }
+
+    public override void Attack()
+    {
+        Atk.IsAtk = true;
+    }    
 }
 
 //각 행동 State에 대해 정의해야함
 public class IdleState : BaseState
 {
-    private NormalMonster _normalMob;
+    private Monster _normalMob;
     public IdleState(NormalMonster monster) : base(monster) {
         _normalMob = monster;
     }
@@ -168,8 +202,9 @@ public class IdleState : BaseState
 }
 public class MoveState : BaseState
 {
-    private NormalMonster _normalMob;
-    public MoveState(NormalMonster monster) : base(monster) {
+    //private NormalMonster _normalMob;
+    private Monster _normalMob;
+    public MoveState(Monster monster) : base(monster) {
         _normalMob = monster;
     }
     
@@ -179,20 +214,20 @@ public class MoveState : BaseState
     }
     public override void onStateUpdate()
     {
-        _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
-        _normalMob.RayHit();
+        _normalMob.Movement();
         //throw new System.NotImplementedException();
     }
 
     public override void onStateExit()
     {
+
         //throw new System.NotImplementedException();
     }
 }
 public class AttackState : BaseState
 {
-    private NormalMonster _normalMob;
-    public AttackState(NormalMonster monster) : base(monster)
+    private Monster _normalMob;
+    public AttackState(Monster monster) : base(monster)
     {
         _normalMob = monster;
     }
@@ -204,6 +239,7 @@ public class AttackState : BaseState
     public override void onStateUpdate()
     {
         //Debug.Log("Attack!");
+        _normalMob.Attack();
         //throw new System.NotImplementedException();
     }
 
@@ -215,11 +251,35 @@ public class AttackState : BaseState
 
 public class SeeState : BaseState
 {
-    private NormalMonster _normalMob;
-    public SeeState(NormalMonster monster) : base(monster)
+    private Monster _normalMob;
+    public SeeState(Monster monster) : base(monster)
     {
         _normalMob = monster;
     }
+    public override void onStateEnter()
+    {
+        //throw new System.NotImplementedException();
+    }
+    public override void onStateUpdate()
+    {
+        _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        //throw new System.NotImplementedException();
+    }
+
+    public override void onStateExit()
+    {
+        //throw new System.NotImplementedException();
+    }
+}
+
+public class DeathState : BaseState
+{
+    private NormalMonster _normalMob;
+    public DeathState(NormalMonster monster) : base(monster)
+    {
+        _normalMob = monster;
+    }
+
     public override void onStateEnter()
     {
         //throw new System.NotImplementedException();

@@ -15,25 +15,27 @@ public class Field_of_View : MonoBehaviour
     [SerializeField] float AtkRadius = 1f;
     [SerializeField] LayerMask TargetMask;
     [SerializeField] LayerMask ObstacleMask;
-    public int a;
     public bool FindPlayer;
     public bool AtkPlayer;
+    public float height = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
+        height = height >= 1.0f ? height : 1.0f;
         FindPlayer = false;
         AtkPlayer = false;
         SeeRadius = SeeRadius > 3.0f ? SeeRadius : 3.0f;
-        AtkRadius = SeeRadius - 1.5f >=  1.0f ? SeeRadius-1.5f : 1.5f;
+        AtkRadius = SeeRadius - 2.0f >=  1.0f ? SeeRadius-2.0f : 1.0f;
     }
 
     private void OnDrawGizmos()
     {
-        Vector3 myPos = transform.position + (Vector3.up * 1.5f);
-        float lookingAngle = transform.localEulerAngles.y - 90;
+        Vector3 myPos = transform.position + (Vector3.up * height);
+        float lookingAngle = transform.localEulerAngles.y - 90.0f;
 
         Vector3 RightDir = AngleToDir(lookingAngle + ViewAngle * 0.5f);
         Vector3 LeftDir = AngleToDir(lookingAngle - ViewAngle * 0.5f);
+        //Vector3 LeftDir = AngleToDir(lookingAngle - 160.0f * 0.5f);
         Vector3 lookDir = AngleToDir(lookingAngle);
  
 
@@ -78,7 +80,7 @@ public class Field_of_View : MonoBehaviour
             {                
                 if (DebugMode) Debug.DrawLine(Mypositon, targetPos, Color.red);
                 FindPlayer = true;
-                if (AtkRadius >= distance)
+                if (distance <= AtkRadius && (transform.forward != targetDir))
                 {
                     AtkPlayer = true;
                 }
