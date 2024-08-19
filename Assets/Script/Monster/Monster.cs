@@ -20,11 +20,6 @@ public class Monster : MonoBehaviour
     }
     //후에 기능별로 virtual 타입의 함수로 기능들을 분리해둘것
     //private MonsterState _state;
-
-    private void Start()
-    {
-        //animator = GetComponentInChildren<Animator>();
-    }
     //private void Update()
     //{
     //    switch (_state) { 
