@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class CurrencyData : ScriptableObject
 {
+    public Sprite silverImage;
+    public Sprite goldImage;
+
     public int silverAmount;
     public int goldAmount;
 

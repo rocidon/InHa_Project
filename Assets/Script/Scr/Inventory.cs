@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory Instance { get; private set; }
 
     [SerializeField]
     private GameObject panel;
@@ -26,15 +25,6 @@ public class Inventory : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);  //*************
-        }
-        else
-        {
-            Destroy(gameObject); 
-        }
         FreshSlot();
     }
 
@@ -84,8 +74,6 @@ public class Inventory : MonoBehaviour
         {
             bool isActive = panel.activeSelf;
             panel.SetActive(!isActive);
-            Debug.Log("Success InvenToggle");
-
         }
         else
         {

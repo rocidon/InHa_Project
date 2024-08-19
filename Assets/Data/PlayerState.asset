@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6502e148ab55316418c0d262e0fcbab5, type: 3}
-  m_Name: Price
+  m_Script: {fileID: 11500000, guid: 7f61dcdea836e7948a90be081c2c5b6b, type: 3}
+  m_Name: PlayerState
   m_EditorClassIdentifier: 
-  goldIcon: {fileID: 21300000, guid: 561e60d93e8506449bfb0ac77839ec11, type: 3}
-  silverIcon: {fileID: 21300000, guid: 71888d4d75784a64f9e9af60346708d7, type: 3}
-  goldPrice: 500
-  silverPrice: 700
+  playerName: 
+  attack: 0
+  health: 0

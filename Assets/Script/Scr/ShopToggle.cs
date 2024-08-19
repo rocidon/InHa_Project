@@ -8,7 +8,7 @@ public class ShopToggle : MonoBehaviour
     private GameObject panel;
     private void Start()
     {
-            panel.SetActive(false);
+        panel.SetActive(false);
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class ShopToggle : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 //if(hit.collider != null && hit.collider.gameObject.tag =="Sphere")
-                //{
+           
                     Debug.Log("ÅÍÄ¡µÈ °´Ã¼: " + hit.collider.gameObject.name);
 
                     Toggle();

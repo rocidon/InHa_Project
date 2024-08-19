@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //정산 즉, 클리어시.
-public class TestAdjustment : MonoBehaviour
+public class ClearAdjustment : MonoBehaviour
 {
     public CurrencyData test;
 

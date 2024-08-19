@@ -7,6 +7,7 @@ public class WeaponData : ScriptableObject
 {
     public Sprite itemImage;
     public string itemName;
+
     public float attackPower;
     public float durability;
 }

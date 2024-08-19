@@ -6,11 +6,10 @@ using UnityEngine.UI;
 using TMPro; 
 
 
-public class testgoldAmountTextOutput : MonoBehaviour
+public class SilverAmountTextOutput : MonoBehaviour
 {
     public TextMeshProUGUI text;
-
-    public CurrencyData test;
+    public CurrencyData silverData;
 
 
     void Update()
@@ -20,13 +19,13 @@ public class testgoldAmountTextOutput : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (text != null && test != null)
+        if (text != null && silverData != null)
         {
-            text.text = test.curGoldAmount.ToString();
+            text.text = silverData.silverAmount.ToString();
         }
         else
         {
-            Debug.Log("Not \"text\" or \"testData\"");
+            Debug.Log("Not \"text\" or \"boneData\"");
 
         }
     }

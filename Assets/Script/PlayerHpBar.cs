@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class PlayerHpBar : MonoBehaviour
 {
     [SerializeField]
-    private Slider playerHp; // HP 슬라이더
+    private Slider playerHp;
 
-    private float maxHp = 100; // 최대 HP
-    private float curHp; // 현재 HP
+    private float maxHp = 100;
+    private float curHp; //
 
     void Start()
     {
-        curHp = maxHp; // 현재 HP를 최대 HP로 초기화  
-        playerHp.maxValue = maxHp; // 슬라이더의 최대 값을 설정
-        playerHp.value = curHp; // 슬라이더의 초기 값을 설정
+        curHp = maxHp; // 
+        playerHp.maxValue = maxHp; //
+        playerHp.value = curHp; // 
     }
 
     void Update()
     {
-        HandleHp(); // Update에서 HP 슬라이더 업데이트
+        HandleHp(); // Update?�서 HP ?�라?�더 ?�데?�트
     }
 
     private void HandleHp()
@@ -30,7 +30,7 @@ public class PlayerHpBar : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.gameObject.name + "와(과) 충돌 발생");    //오브젝트와 충돌시 로그 출력
+        //Debug.Log(collision.gameObject.name + "?�(�? 충돌 발생");    //?�브?�트?� 충돌??로그 출력
 
         if (collision.gameObject.CompareTag("Enemy"))
         {

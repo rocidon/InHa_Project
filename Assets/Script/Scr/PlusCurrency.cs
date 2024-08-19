@@ -8,8 +8,6 @@ public class PlusCurrency : MonoBehaviour
     public CurrencyData currencyData;
     public void OnClickPlusGold()
     {
-
-        //오브젝트 충돌시,
         currencyData.curGoldAmount += 100;
         Debug.Log("+100 Gold");
     }
