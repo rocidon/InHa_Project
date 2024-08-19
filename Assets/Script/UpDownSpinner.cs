@@ -14,7 +14,7 @@ public class UpDownSpinner : MonoBehaviour
     public bool turnSwitch;
     public float moveSpeed;
 
-    public float rotateSpeed;
+    
     
     void Awake()
     {
@@ -48,10 +48,7 @@ public class UpDownSpinner : MonoBehaviour
         }
     }
 
-    void rotate()
-    {
-        transform.Rotate(Vector3.right * rotateSpeed * Time.deltaTime);
-    }
+
 
     void Update()
     {
@@ -59,10 +56,7 @@ public class UpDownSpinner : MonoBehaviour
         {
             upDown();
         }
-        if (gameObject.name == "RT_Floor")
-        {
-            rotate();
-        }
+        
     }
 
 }
