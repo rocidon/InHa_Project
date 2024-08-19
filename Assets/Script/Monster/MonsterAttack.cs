@@ -16,15 +16,6 @@ public class MonsterAttack : MonoBehaviour
 
     private void Update()
     {
-        if (IsAtk)
-        {
-            _Timer += Time.deltaTime;
-            if(_Timer >= _AttackTime )
-            {
-                IsAtk = false;
-                _Timer = 0;
-            }
-        }
     }
     public void SetDamage(float damage)
     {
@@ -45,11 +36,16 @@ public class MonsterAttack : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (IsAtk)
         {
-            Debug.Log("HIt");
-            //PlayerClass player_value_name = other.gameObject.GetComponent<PlayerClass>();
-            //Damaged player at this Damage
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("HIt");
+                Debug.Log(_AttackTime);
+                //PlayerClass player_value_name = other.gameObject.GetComponent<PlayerClass>();
+                //Damaged player at this Damage
+                IsAtk = false;
+            }
         }
     }
 }

@@ -87,7 +87,6 @@ public class NormalMonster : Monster
                 }
                 break;
             case State.Attack:
-
                 if (fov.AtkPlayer== false)
                 {
                     ChangeState(State.See);
@@ -216,7 +215,7 @@ public class NormalMonster : Monster
     public override void Attack()
     {
         Atk.IsAtk = true;
-        Atk.SetAttackTime(0.25f);
+        Atk.SetAttackTime(0.1f);
     }
     public override void TakeDamage(float damage)
     {
