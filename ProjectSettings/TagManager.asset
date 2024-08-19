@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
+  - FxTemporaire
+  - Obstacle
+  - Round
   layers:
   - Default
   - TransparentFX

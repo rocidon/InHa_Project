@@ -210,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FieldPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 597954393629179301, guid: 073dc5a5ff600a149969cbe72dceee74, type: 3}
+      propertyPath: m_TagString
+      value: Round
+      objectReference: {fileID: 0}
     - target: {fileID: 777144393592737907, guid: 073dc5a5ff600a149969cbe72dceee74, type: 3}
       propertyPath: m_LocalScale.x
       value: 23.923464
