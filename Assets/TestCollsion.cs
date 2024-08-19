@@ -21,7 +21,7 @@ public class TestCollsion : MonoBehaviour
             NormalMonster nor = other.gameObject.GetComponent<NormalMonster>();
             nor.TakeDamage(10);
         }
-        Debug.Log("on Enter");
+        //Debug.Log("on Enter");
     }
     private void OnDrawGizmos()
     {

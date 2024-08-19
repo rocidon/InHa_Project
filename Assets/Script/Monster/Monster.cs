@@ -73,6 +73,10 @@ public class Monster : MonoBehaviour
         //Debug.Log(_Health);
         //StartCoroutine(OnDamage());
     }
+    public virtual void Dying()
+    {
+        Destroy(gameObject);
+    }
 
     public virtual IEnumerator OnDamage()
     {
