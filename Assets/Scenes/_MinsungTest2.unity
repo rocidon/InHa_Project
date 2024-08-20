@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 140636949}
-  currencyData: {fileID: 0}
+  currencyData: {fileID: 11400000, guid: c4a76de789e77cf4fbe1d4fef56f0cb4, type: 2}
 --- !u!1 &141304433
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHp: {fileID: 1611062887}
+  Text: {fileID: 0}
+  maxHp: 100
 --- !u!1 &249301461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,7 +2593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1688042931}
-  currencyData: {fileID: 0}
+  currencyData: {fileID: 11400000, guid: c4a76de789e77cf4fbe1d4fef56f0cb4, type: 2}
 --- !u!1 &1700932125
 GameObject:
   m_ObjectHideFlags: 0

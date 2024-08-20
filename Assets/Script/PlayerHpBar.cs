@@ -9,34 +9,33 @@ public class PlayerHpBar : MonoBehaviour
     private Slider playerHp;
 
     private float maxHp = 100;
-    private float curHp; //
+    private float curHp; 
 
     void Start()
     {
-        curHp = maxHp; // 
-        playerHp.maxValue = maxHp; //
-        playerHp.value = curHp; // 
+        curHp = maxHp; 
+        playerHp.maxValue = maxHp; 
+        playerHp.value = curHp; 
     }
 
     void Update()
     {
-        HandleHp(); // Update?êÏÑú HP ?¨Îùº?¥Îçî ?ÖÎç∞?¥Ìä∏
+        UpdateHP();
     }
 
-    private void HandleHp()
+
+    private void UpdateHP()
     {
-        playerHp.value = Mathf.Lerp(playerHp.value, curHp, Time.deltaTime * 10);
+        playerHp.value = curHp;
     }
-
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.gameObject.name + "?Ä(Í≥? Ï∂©Îèå Î∞úÏÉù");    //?§Î∏å?ùÌä∏?Ä Ï∂©Îèå??Î°úÍ∑∏ Ï∂úÎ†•
+        //Debug.Log("collision");
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             curHp -= 10;
             curHp = Mathf.Max(curHp, 0);
-            HandleHp();
         }
     }
 }
