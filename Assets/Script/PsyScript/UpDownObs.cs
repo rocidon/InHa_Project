@@ -30,16 +30,19 @@ public class UpDownObs : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("충돌");
+
         // 위아래 움직이는 장애물 장애물 충돌 시 밀리는 코드
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.tag == "Player")
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
+            collision.gameObject.GetComponent<PlayerMove>().blade++;
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 // 충돌 방향 벡터를 계산
                 Vector3 collisionDirection = transform.position - collision.transform.position;
                 // 충돌 반응을 위해 힘을 적용
-                rb.AddForce(collisionDirection.normalized * 1000f);
+                rb.AddForce(collisionDirection.normalized * -300f);
             }
 
 
@@ -48,10 +51,5 @@ public class UpDownObs : MonoBehaviour
         }
 
     }
-
-}
-
-
-
-
 // PingPong 주어진 거리 범위 내에서 계속해서 반복하는 값을 제공
+}
