@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SceneChangeTest1_Psy.unity
-    guid: fc43ab0917e34d54994d5d0b048356d8
+    path: Assets/Scenes/LobbyScene_Psy.unity
+    guid: 0f2c01e076ce7bf41859286087451622
   - enabled: 1
-    path: Assets/Scenes/SceneChangeTest2_Psy.unity
-    guid: 5ee5985e7ae87044bae822b7a6813bb3
+    path: Assets/Scenes/TutorialScene_Psy.unity
+    guid: 2ba12510a91b23e409a2c8958ed8fa9c
   m_configObjects: {}

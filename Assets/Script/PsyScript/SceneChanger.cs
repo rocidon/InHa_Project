@@ -7,6 +7,6 @@ public class SceneChanger : MonoBehaviour
 {
     public void Change()
     {
-        SceneManager.LoadScene("SceneChangeTest2_Psy");
+        SceneManager.LoadScene("TutorialScene_Psy");
     }
 }
