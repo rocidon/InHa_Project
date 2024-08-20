@@ -291,7 +291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 36d3ed146bcb8844b86e662be9138595, type: 2}
+  - {fileID: 2100000, guid: bf095dc71335a7545a37209b8e9a1320, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -471,7 +471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpPower: 20
-  MovePower: 20
   Bullet: {fileID: 0}
   FirePos: {fileID: 0}
 --- !u!114 &499290998
@@ -880,7 +879,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 36d3ed146bcb8844b86e662be9138595, type: 2}
+  - {fileID: 2100000, guid: bf095dc71335a7545a37209b8e9a1320, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
