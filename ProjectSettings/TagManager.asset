@@ -8,6 +8,11 @@ TagManager:
   - FloorOnPosition
   - HidingPosition
   - HidingFloor
+  - Monster
+  - FxTemporaire
+  - Obstacle
+  - Round
+  - Coin
   layers:
   - Default
   - TransparentFX

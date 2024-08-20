@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     private Rigidbody rb;
     private Vector3 direction = Vector3.zero;
     private bool IsJumping;
     public float jumpForce = 5f;
     public float speed = 3f;
+    public int coin;
+    public int spike;
+    public int blade;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         IsJumping = false;
+        coin = 0;
+        spike = 0;
+        blade = 0;
     }
 
 
@@ -21,6 +27,9 @@ public class Spike : MonoBehaviour
     {
         Move();
         Jump();
+        Debug.Log(coin);
+        Debug.Log(spike);
+        Debug.Log(blade);
     }
     // 플레이어 이동
     private void Move()
@@ -59,26 +68,9 @@ public class Spike : MonoBehaviour
         }
     }
 
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-        // 스파이크 장애물 충돌 시 밀리는 코드
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                // 충돌 방향 벡터를 계산
-                Vector3 collisionDirection = transform.position - collision.transform.position;
-                // 충돌 반응을 위해 힘을 적용
-                rb.AddForce(collisionDirection.normalized * 300f);
-            }
-
-
-            Debug.Log("충돌 시작!");
-
-        }
-
         // 점프를 위한 코드(지면에 있을때만 점프 가능)
         if (collision.gameObject.CompareTag("Round"))
         {
@@ -86,5 +78,6 @@ public class Spike : MonoBehaviour
         }
 
     }
+
 
 }
