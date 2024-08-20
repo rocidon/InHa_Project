@@ -4,15 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Monster
+  - Floor
+  - FloorOnPosition
+  - HidingPosition
+  - HidingFloor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Player
+  - 
   - 
   - 
   - 
