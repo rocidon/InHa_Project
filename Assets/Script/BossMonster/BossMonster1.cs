@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class BossMonster1 : BossBehaviorTree
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        _Health = 1000f;
+        _Atk = 100f;
+        _Def = 20f;
+        SetRootNode();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log("This is BossMonster1");
+        PlayTree();
+        //if (RootNode is null) return;
+        //RootNode.Evaluate();
     }
 }
+
+

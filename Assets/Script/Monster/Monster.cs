@@ -20,19 +20,7 @@ public class Monster : MonoBehaviour
     }
     //후에 기능별로 virtual 타입의 함수로 기능들을 분리해둘것
     //private MonsterState _state;
-    //private void Update()
-    //{
-    //    switch (_state) { 
-    //        case MonsterState.Idle:
-    //            break;
-    //        case MonsterState.Move:
-    //            break;
-    //        case MonsterState.Attack:
-    //            break;
-    //        case MonsterState.Death:
-    //            break;
-    //    }
-    //}
+
     public bool IsDeath()
     {
         if(_Health <= 0.0f)

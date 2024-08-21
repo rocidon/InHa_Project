@@ -8,11 +8,16 @@ TagManager:
   - FloorOnPosition
   - HidingPosition
   - HidingFloor
+  - Round
+  - Monster
+  - FxTemporaire
+  - Obstacle
+  - Obstcales
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

@@ -5,18 +5,21 @@ using UnityEngine;
 //Tree 원형
 //트리의 경우 Root를 가진 채 유니티에서 Update에서 각 노드를 평가해주면 된다.
 //출처 : https://husk321.tistory.com/412
-public abstract class BehaviorTree : MonoBehaviour
+public abstract class BehaviorTree : Monster
 {
-    Node RootNode;
+    protected float TreeTimer;
+    protected Node RootNode;
     protected abstract Node SetupBehaviorTree();
-    protected void Start()
+    protected void SetRootNode()
     {
+        Debug.Log("Tree Parent Run");
         RootNode = SetupBehaviorTree();
     }
-
-    protected void Update()
+    protected void PlayTree()
     {
+        TreeTimer += Time.deltaTime;
         if (RootNode is null) return;
         RootNode.Evaluate();
+        //Debug.Log("Timer : " + TreeTimer);
     }
 }
