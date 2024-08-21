@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     public int coin;
     public int spike;
     public int blade;
+    public int itembox;
+    public int potal;
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class PlayerMove : MonoBehaviour
         coin = 0;
         spike = 0;
         blade = 0;
+        itembox = 0;
+        potal = 0;
     }
 
 
@@ -30,6 +34,9 @@ public class PlayerMove : MonoBehaviour
         Debug.Log(coin);
         Debug.Log(spike);
         Debug.Log(blade);
+        Debug.Log(itembox);
+        Debug.Log(potal);
+
     }
     // 플레이어 이동
     private void Move()

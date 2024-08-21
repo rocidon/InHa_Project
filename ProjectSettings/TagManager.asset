@@ -6,6 +6,16 @@ TagManager:
   tags:
   - Enemy
   - Backgrount
+  - Round
+  - Coin
+  - Obstacle
+  - Monster
+  - HidingPosition
+  - FloorOnPosition
+  - Floor
+  - HidingFloor
+  - Item
+  - Potal
   layers:
   - Default
   - TransparentFX
