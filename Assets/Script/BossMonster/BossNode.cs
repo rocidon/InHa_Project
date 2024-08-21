@@ -13,7 +13,7 @@ public class TestNode : Node
     }
     public override NodeState Evaluate()
     {
-        //Debug.Log("This is TestNode Running");
+        Debug.Log("This is TestNode Running");
         return state = NodeState.Running;
     }
 }
@@ -27,6 +27,10 @@ public class ChkHeath : Node
     public ChkHeath(Monster monster)
     {
         this.monster = monster;
+    }
+    public ChkHeath(Transform transform)
+    {
+        monster = transform.GetComponent<Monster>();
     }
     public override NodeState Evaluate()
     {
@@ -98,7 +102,7 @@ public class Dying : Node
     public Dying() { }
     public override NodeState Evaluate()
     {
-
+        
         return state = NodeState.Success;
     }
 }

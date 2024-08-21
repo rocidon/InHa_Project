@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class BossBehaviorTree : BehaviorTree
 {
+    protected Transform Player;
+    protected Transform Boss;
     //private void Awake()
     //{
     //    _Health = 1000f;
@@ -21,12 +23,12 @@ public class BossBehaviorTree : BehaviorTree
         {
             new SequenceNode(new List<Node>
             {
-                new ChkHeath(this),
+                new ChkHeath(Boss),
                 new SelectorNode(new List<Node>
                 {
                     new SequenceNode(new List<Node>
                     {
-                        new ChkHeath(this),
+                        new ChkHeath(Boss),
                         new InstantKilAttack1(),
                         new InstantKilAttack2()
                     }),

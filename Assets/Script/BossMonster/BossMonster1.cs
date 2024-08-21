@@ -10,12 +10,13 @@ public class BossMonster1 : BossBehaviorTree
         _Atk = 100f;
         _Def = 20f;
         SetRootNode();
+        Boss = transform;
     }
 
     void Update()
     {
         PlayTree();
-        _Health -= 10;
+        //_Health -= 10;
     }
 }
 
