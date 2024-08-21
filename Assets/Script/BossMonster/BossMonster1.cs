@@ -14,10 +14,8 @@ public class BossMonster1 : BossBehaviorTree
 
     void Update()
     {
-        //Debug.Log("This is BossMonster1");
         PlayTree();
-        //if (RootNode is null) return;
-        //RootNode.Evaluate();
+        _Health -= 10;
     }
 }
 

@@ -7,18 +7,19 @@ using UnityEngine;
 //√‚√≥ : https://husk321.tistory.com/412
 public abstract class BehaviorTree : Monster
 {
-    protected float TreeTimer;
     protected Node RootNode;
     protected abstract Node SetupBehaviorTree();
     protected void SetRootNode()
     {
         Debug.Log("Tree Parent Run");
         RootNode = SetupBehaviorTree();
+        Debug.Log("Set Tree");
     }
     protected void PlayTree()
     {
-        TreeTimer += Time.deltaTime;
         if (RootNode is null) return;
+        Node.NodeTimer += Time.deltaTime;
+        //RootNode.NodeTimer += Time.deltaTime;
         RootNode.Evaluate();
         //Debug.Log("Timer : " + TreeTimer);
     }

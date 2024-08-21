@@ -14,10 +14,12 @@ public abstract class Node
     protected NodeState state;
     public Node parentNode;
     protected List<Node> childrenNode = new List<Node>();
-
+    public static float NodeTimer;
+    //public float NodeTimer;
     public Node()
     {
         parentNode = null;
+        NodeTimer = 0f;
     }
     public Node(List<Node> children)
     {
@@ -31,7 +33,6 @@ public abstract class Node
         childrenNode.Add(child);
         child.parentNode = this;
     }
-
     public abstract NodeState Evaluate();
 }
 

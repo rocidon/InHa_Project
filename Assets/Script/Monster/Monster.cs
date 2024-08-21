@@ -20,7 +20,11 @@ public class Monster : MonoBehaviour
     }
     //후에 기능별로 virtual 타입의 함수로 기능들을 분리해둘것
     //private MonsterState _state;
-
+    public string GetName()
+    {
+        string thisname = gameObject.name;
+        return thisname;
+    }
     public bool IsDeath()
     {
         if(_Health <= 0.0f)
