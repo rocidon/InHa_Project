@@ -20,6 +20,6 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         /*Rigid.AddForce(transform.forward * force);*/
-        transform.Translate(new Vector3(0.05f, 0, 0));      // 총알이 이동하는 방향(x축)과 속도
+        transform.Translate(new Vector3(0, 0.05f, 0));      // 총알이 이동하는 방향(x축)과 속도
     }
 }

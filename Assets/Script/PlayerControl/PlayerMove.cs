@@ -34,11 +34,11 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (xInput > 0)     // x축이 양수인 방향으로 움직일 때
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));     // 그 방향을 바라보고(방향이 바뀌지 않음)
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));     // 그 방향을 바라보고(방향이 바뀌지 않음)
         }
         else if (xInput < 0)    // x축이 음수인 방향으로 움직일 때
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));       // 움직인 방향으로 Player가 회전한다.(y축으로 180도)
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));       // 움직인 방향으로 Player가 회전한다.(y축으로 180도)
         }
 
         if (Input.GetKeyDown(KeyCode.Z) && !IsJumping)          // 지면 위에 있고 Z키를 누르면
