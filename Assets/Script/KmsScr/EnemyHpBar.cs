@@ -5,37 +5,37 @@ using UnityEngine.UI;
 
 public class EnemyHpBar : MonoBehaviour
 {
-    // Slider UI 컴포넌트 할당
+    // Slider UI 컴포?�트 ?�당
     [SerializeField] private Slider enemyHp;
 
-    // enemy 최대 및 초기 체력 설정
+    // enemy 최�? �?초기 체력 ?�정
     public float maxHp = 100;  
     private float curHp;
 
-    // UI 요소
+    // UI ?�소
     private RectTransform hpBarTransform;
 
-    // 메인 카메라 참조
+    // 메인 카메??참조
     private Camera mainCamera;
 
-    // 체력바 false로 초기화
+    // 체력�?false�?초기??
    private bool isActive = false;
 
     void Start()
     {
         curHp = maxHp;
 
-        // Slider 최댓값과 초기값
+        // Slider 최댓값과 초기�?
         enemyHp.maxValue = maxHp;
         enemyHp.value = curHp;
 
-        // 체력바 RectTransform 저장
+        // 체력�?RectTransform ?�??
         hpBarTransform = enemyHp.GetComponent<RectTransform>();
 
-        // 메인 카메라 저장
+        // 메인 카메???�??
         mainCamera = Camera.main;
 
-        // 체력바 활성화 여부
+        // 체력�??�성???��?
         enemyHp.gameObject.SetActive(isActive);
 
     }
@@ -45,7 +45,7 @@ public class EnemyHpBar : MonoBehaviour
         UpdateHP();          
         UpdateUIPosition();
 
-        //체력이 0이하 일때, 체력바 비활성화
+        //체력??0?�하 ?�때, 체력�?비활?�화
         if (curHp <= 0)
         {
             enemyHp.gameObject.SetActive(false);
@@ -61,26 +61,26 @@ public class EnemyHpBar : MonoBehaviour
 
     private void UpdateUIPosition()
     {
-        //적의 현재 위치에서 y축으로 1만큼 이동
+        //?�의 ?�재 ?�치?�서 y축으�?1만큼 ?�동
         Vector3 screenPosition 
             = mainCamera.WorldToScreenPoint(transform.position + new Vector3(0, 1f, 0));
 
-        //화면 좌표에 맞게 체력바 위치 업데이트
+        //?�면 좌표??맞게 체력�??�치 ?�데?�트
         hpBarTransform.position = screenPosition;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         
-        //충돌한 오브젝트 태그가 "Player"일때
+        //충돌???�브?�트 ?�그가 "Player"?�때
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 체력바 활성화
+            // 체력�??�성??
             enemyHp.gameObject.SetActive(isActive = true);
 
             curHp -= 10;
 
-            //0이하로 떨어지지 않도록 설정
+            //0?�하�??�어지지 ?�도�??�정
             curHp = Mathf.Max(curHp, 0);
 
             UpdateHP();
