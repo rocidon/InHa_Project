@@ -15,7 +15,6 @@ public abstract class Node
     public Node parentNode;
     protected List<Node> childrenNode = new List<Node>();
     public static float NodeTimer;
-    protected Animator Anim;
     //public float NodeTimer;
     public Node()
     {

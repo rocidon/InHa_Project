@@ -5,6 +5,9 @@ using UnityEngine;
 
 
 //Boss1에 대한 행동 패턴들
+//https://leekangw.github.io/posts/91/
+//Evalute : realize Behavior Space
+
 public class TestNode : Node
 {
     public TestNode()
@@ -70,11 +73,22 @@ public class ChkTimer : Node
 }
 public class NormalAttack : Node
 {
-    public NormalAttack() { }
+    Animator Anim;
+    public NormalAttack() {
+        
+    }
+    public NormalAttack(Transform transform)
+    {
+        Anim = transform.GetComponent<Animator>();
+    }
+    public NormalAttack(Monster monster) {
+        Anim = monster.animator;
+    }
 
     public override NodeState Evaluate()
     {
-
+        //Write Animator Parmeter value setting
+        Anim.SetBool("IsNormalAttack", true);
         return state = NodeState.Running;
     }
 }
@@ -99,37 +113,81 @@ public class InstantKilAttack2 : Node
 
 public class Dying : Node
 {
+    Animator Anim;
+    Transform t;
     public Dying() { }
+    public Dying(Transform transform) {
+        Anim = transform.GetComponent <Animator>();
+        t = transform;
+    }
     public override NodeState Evaluate()
     {
-        
-        return state = NodeState.Success;
+        if(NodeTimer > 3.0f) {
+            NodeTimer = 0;
+            //SetAnimator Dying value
+            //Play Dying Event
+            return state = NodeState.Success;
+        }
+        return state = NodeState.Running;
     }
 }
 
 public class InCloseRange : Node
 {
-
-    public InCloseRange() { }
+    //Target and This parmeter 
+    float Range;
+    Transform Target;
+    Transform Center;
+    public InCloseRange() {
+        Range = 10.0f;
+        Target = null;
+    }
+    public InCloseRange(Transform Taget, Transform SELF,float range)
+    {
+        Range = range;
+        this.Target = Taget;
+        Center = SELF;
+    }
     public override NodeState Evaluate()
     {
-        throw new NotImplementedException();
+        Vector3 v= Target.position - Center.position;
+        float distance = Vector3.Magnitude(v);
+        if(distance <= Range)
+        {
+            return state = NodeState.Success;
+        }
+        return state = NodeState.Failure;
     }
 }
 
 public class NormalAttackCount : Node
 {
-    public NormalAttackCount() { }
+    BossMonster1 boss;
+    int ChkCount;
+    public NormalAttackCount() {
+        ChkCount = 0;
+    }
+    public NormalAttackCount(BossMonster1 boss, int ChkCount) {
+        this.boss = boss;
+        this.ChkCount = ChkCount;
+    }
     public override NodeState Evaluate()
     {
-        throw new NotImplementedException();
+        if(boss.NormalAttackCount > ChkCount)
+        {
+            return state = NodeState.Success;
+        }
+        return state = NodeState.Failure;
     }
 }
 public class JumpAttackPattern : Node
 {
-    public JumpAttackPattern() { }
+    public JumpAttackPattern() {
+    //Get Monster Class
+    }
     public override NodeState Evaluate()
     {
+        //Realize JumpAttackPattern
         throw new NotImplementedException();
     }
 }
@@ -138,14 +196,17 @@ public class AnyAttackCount : Node
     public AnyAttackCount() { }
     public override NodeState Evaluate()
     {
+        //AnyAttackCount = Normal Attack Count + jump + projectile
         throw new NotImplementedException();
     }
 }
 public class InLongRange : Node
 {
+    float ChkDistance;
     public InLongRange() { }
     public override NodeState Evaluate()
     {
+        //if(Range > ChkDistance) true;
         throw new NotImplementedException();
     }
 }
@@ -154,6 +215,7 @@ public class ProjectileAttackPattern : Node
     public ProjectileAttackPattern() { }
     public override NodeState Evaluate()
     {
+        return state = NodeState.Running;
         throw new NotImplementedException();
     }
 }
@@ -162,6 +224,7 @@ public class SpecialAttackPattern1 : Node
     public SpecialAttackPattern1() { }
     public override NodeState Evaluate()
     {
+
         throw new NotImplementedException();
     }
 }
@@ -186,6 +249,7 @@ public class ChasePlayer : Node
     public ChasePlayer() { }
     public override NodeState Evaluate()
     {
+        //use lerp?
         throw new NotImplementedException();
     }
 }

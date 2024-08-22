@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossMonster1 : BossBehaviorTree
 {
+    public int NormalAttackCount;
     void Start()
     {
         _Health = 1000f;
@@ -11,6 +12,7 @@ public class BossMonster1 : BossBehaviorTree
         _Def = 20f;
         SetRootNode();
         Boss = transform;
+        NormalAttackCount = 0;
     }
 
     void Update()
