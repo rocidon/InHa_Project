@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd0d48e7d463be849bd1fa2149942015, type: 3}
-  m_Name: Axe
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 21300000, guid: d56ef7cfe84c9a448bf14eb5b92bd017, type: 3}
-  itemName: Axe
-  attackPower: 0
-  durability: 0
+  itemImage: {fileID: 21300000, guid: edfc57d8c801eb1409cdd951c375180e, type: 3}
+  itemName: sword
+  attackPower: 2222
+  durability: 100

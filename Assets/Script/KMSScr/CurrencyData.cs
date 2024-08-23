@@ -15,4 +15,16 @@ public class CurrencyData : ScriptableObject
 
     public int curSilverAmount;
     public int curGoldAmount;
+
+    private void OnEnable()
+    {
+        Initialize();
+    }
+    private void Initialize()
+    {
+        silverAmount = 0;
+        goldAmount = 0;
+        curSilverAmount = 0;
+        curGoldAmount = 0;
+    }
 }

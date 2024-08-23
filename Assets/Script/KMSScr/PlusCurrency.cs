@@ -14,6 +14,6 @@ public class PlusCurrency : MonoBehaviour
     public void OnClickPlusBone()
     {
         currencyData.curSilverAmount += 100;
-        Debug.Log("+100 Bone");
+        Debug.Log("+100 Silver");
     }
 }
