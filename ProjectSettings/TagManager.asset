@@ -16,6 +16,7 @@ TagManager:
   - HidingFloor
   - Item
   - Potal
+  - HideArea
   layers:
   - Default
   - TransparentFX
