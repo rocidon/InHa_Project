@@ -102,7 +102,10 @@ public class BossBehaviorTree : BehaviorTree
         */
         Node Root = new SelectorNode(new List<Node>
         {
-            new ChasePlayer(Player.transform, Boss.transform)
+
+           new InCloseRange(Player.transform, Boss.transform, 5),
+           new ChasePlayer(Player.transform, Boss.transform)
+
         });
         return Root;
     }

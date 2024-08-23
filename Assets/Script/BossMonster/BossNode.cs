@@ -152,6 +152,7 @@ public class InCloseRange : Node
     {
         Vector3 v= Target.position - Center.position;
         float distance = Vector3.Magnitude(v);
+        Debug.Log(distance);
         if(distance <= Range)
         {
             return state = NodeState.Success;
@@ -189,7 +190,7 @@ public class JumpAttackPattern : Node
     {
         //Realize JumpAttackPattern
         throw new NotImplementedException();
-    }
+    } 
 }
 public class AnyAttackCount : Node
 {
@@ -267,7 +268,7 @@ public class ChasePlayer : Node
 
         //set Animation Parameter value
 
-        return state = NodeState.Success;
+        return state = NodeState.Running;
 ;
     }
 }
