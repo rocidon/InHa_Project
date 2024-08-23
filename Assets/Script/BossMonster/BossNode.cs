@@ -246,10 +246,28 @@ public class SpecialAttackPattern2 : Node
 }
 public class ChasePlayer : Node
 {
+    Transform Target;
+    Transform Center;
+    Animator Anim;
     public ChasePlayer() { }
+    public ChasePlayer(Transform Target, Transform Center) {
+        this.Target = Target;
+        this.Center = Center;
+        Anim = this.Center.GetComponent<Animator>();
+    }
     public override NodeState Evaluate()
     {
-        //use lerp?
-        throw new NotImplementedException();
+        Debug.Log("Move");
+        Vector3 fv = new Vector3(Target.position.x - Center.position.x,0,0);
+        fv.Normalize();
+        Debug.Log(fv);
+        Center.forward = fv;
+        Center.transform.Translate(Vector3.forward * Time.deltaTime * 2);
+        //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime);
+
+        //set Animation Parameter value
+
+        return state = NodeState.Success;
+;
     }
 }

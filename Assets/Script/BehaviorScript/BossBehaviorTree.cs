@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class BossBehaviorTree : BehaviorTree
 {
-    protected Transform Player;
-    protected Transform Boss;
+    public GameObject Player;
+    protected Monster Boss;
     //private void Awake()
     //{
     //    _Health = 1000f;
@@ -19,7 +19,7 @@ public class BossBehaviorTree : BehaviorTree
     //이곳에서 행동 트리 설정
     protected override Node SetupBehaviorTree()
     {
-        Node Root = new SelectorNode(new List<Node>
+        /*Node Root = new SelectorNode(new List<Node>
         {
             new SequenceNode(new List<Node>
             {
@@ -98,6 +98,11 @@ public class BossBehaviorTree : BehaviorTree
             }),
             //add Chase Player Node here
             new ChasePlayer()
+        });
+        */
+        Node Root = new SelectorNode(new List<Node>
+        {
+            new ChasePlayer(Player.transform, Boss.transform)
         });
         return Root;
     }

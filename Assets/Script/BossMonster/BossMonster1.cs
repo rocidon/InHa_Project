@@ -7,11 +7,14 @@ public class BossMonster1 : BossBehaviorTree
     public int NormalAttackCount;
     void Start()
     {
+        //Debug.Log("Start BossMonster1");
         _Health = 1000f;
         _Atk = 100f;
         _Def = 20f;
+        Player = GameObject.FindWithTag("Player");
+        Boss = this;
+
         SetRootNode();
-        Boss = transform;
         NormalAttackCount = 0;
     }
 
