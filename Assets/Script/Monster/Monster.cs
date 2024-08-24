@@ -33,7 +33,6 @@ public class Monster : MonoBehaviour
         }
         return false;
     }
-
     public virtual void Movement()
     {
         Debug.Log("I'm parnet Class Movement!");

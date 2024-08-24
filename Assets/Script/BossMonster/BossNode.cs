@@ -17,7 +17,7 @@ public class TestNode : Node
     public override NodeState Evaluate()
     {
         Debug.Log("This is TestNode Running");
-        return state = NodeState.Running;
+        return state = NodeState.Success;
     }
 }
 public class ChkHeath : Node
@@ -92,21 +92,52 @@ public class NormalAttack : Node
         return state = NodeState.Running;
     }
 }
+
+public class IsPlayInstantKill : Node
+{
+    BossMonster1 boss;
+    bool IsPlay;
+    public IsPlayInstantKill() { }
+    public IsPlayInstantKill(BossMonster1 boss) {
+        this.boss = boss;
+        IsPlay = this.boss.GetInstantKillCount();
+    }
+    public override NodeState Evaluate()
+    {
+        if (IsPlay)
+        {
+            return state = NodeState.Failure;
+        }
+        return state = NodeState.Running;
+    }
+}
 public class InstantKilAttack1 : Node
 {
+    GameObject FootHold;
     public InstantKilAttack1() { }
 
     public override NodeState Evaluate()
     {
+        //
+        return state = NodeState.Running;
         throw new NotImplementedException();
     }
 }
 
 public class InstantKilAttack2 : Node
 {
+    BossMonster1 boss;
+    int ChkCount;
     public InstantKilAttack2() { }
+    public InstantKilAttack2(BossMonster1 monster) {
+        boss = monster;
+        ChkCount = boss.GetInstantKillCount();
+    }
     public override NodeState Evaluate()
     {
+        if (ChkCount > 0) { 
+            
+        }
         throw new NotImplementedException();
     }
 }
@@ -152,7 +183,7 @@ public class InCloseRange : Node
     {
         Vector3 v= Target.position - Center.position;
         float distance = Vector3.Magnitude(v);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         if(distance <= Range)
         {
             return state = NodeState.Success;
