@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StageScene1_Psy.unity
     guid: d0bef699c35976e428dacdb686233616
+  - enabled: 1
+    path: Assets/Scenes/StageScene2_Psy.unity
+    guid: 665e42f8d6c0c4c48b9957b6f5bbd8c5
+  - enabled: 1
+    path: Assets/Scenes/StageScene3_Psy.unity
+    guid: 8c62324c8725c544eaae51452410ec7d
   m_configObjects: {}
