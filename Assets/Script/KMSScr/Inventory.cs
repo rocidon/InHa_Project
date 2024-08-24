@@ -84,13 +84,25 @@ public class Inventory : MonoBehaviour
 
     private void UpdateAttackPowerText()
     {
+        float curAttack = 0f;
+        float curDurability = 0f;
+
+
         if (attackPowerText != null && items.Count > 0)
         {
-            attackPowerText.text = "Attack    " + items[0].attackPower.ToString();
-            durabilityText.text = "Durability    " + items[0].durability.ToString();
+            float itemrAttack = (float)items[0].attackPower;
+            float itemDurability = (float)items[0].durability;
 
+            curAttack += itemrAttack;
+            curDurability += itemDurability;
+        }
+        else
+        {
+            // ----
         }
 
+        attackPowerText.text = "Attack    " + curAttack;
+        durabilityText.text = "Durability    " + curDurability;
     }
 }
 

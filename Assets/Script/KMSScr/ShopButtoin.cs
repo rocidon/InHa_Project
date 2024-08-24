@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Progress;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class ShopButton : MonoBehaviour
 {
@@ -10,10 +12,10 @@ public class ShopButton : MonoBehaviour
     [SerializeField] private WeaponData weaponData;
     [SerializeField] private TextMeshProUGUI weaponName;
     [SerializeField] private Image weaponImage;
-    [SerializeField] private CurrencyData currencyData;
-
+    
     public int silverPrice;
     public int goldPrice;
+    [SerializeField] private CurrencyData currencyData;
 
     [SerializeField] private TextMeshProUGUI silverPriceText;
     [SerializeField] private TextMeshProUGUI goldPriceText;
