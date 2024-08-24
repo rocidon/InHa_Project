@@ -12,14 +12,14 @@ public class MoveToTarget : MonoBehaviour
     {
      
 ;
-        if (other.gameObject.CompareTag("FloorOnPosition") && Input.GetKey(KeyCode.X))
+        if (other.gameObject.CompareTag("FloorOnPosition") && Input.GetKey(KeyCode.UpArrow))
         {
             StartCoroutine(Hide());
             Debug.Log("숨었습니다.");
         
         }
 
-        if (other.gameObject.CompareTag("HidingPosition") && Input.GetKey(KeyCode.C))
+        if (other.gameObject.CompareTag("HidingPosition") && Input.GetKey(KeyCode.DownArrow))
         {
             StartCoroutine(ReturnToFloor());
             Debug.Log("Floor로 돌아왔습니다.");
@@ -40,7 +40,7 @@ public class MoveToTarget : MonoBehaviour
         {
             yield return null;
             Debug.Log("숨기");
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.1f);
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, HidingPosition.transform.position, 0.05f);
         }
     }
     IEnumerator ReturnToFloor()
@@ -50,7 +50,7 @@ public class MoveToTarget : MonoBehaviour
         {
             yield return null;
             Debug.Log("Floor로 돌아옴");
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, FloorOnPosition.transform.position, 0.1f);
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, FloorOnPosition.transform.position, 0.05f);
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+    [SerializeField] Animator anime;
     public GameObject Bullet;
     public Transform FirePos;
     void Update()

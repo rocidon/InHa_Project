@@ -9,6 +9,7 @@ TagManager:
   - HidingPosition
   - HidingFloor
   - RogueHooded
+  - Enemy
   layers:
   - Default
   - TransparentFX

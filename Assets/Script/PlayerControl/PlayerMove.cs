@@ -6,28 +6,44 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
-
     Rigidbody Rigid;
     
     static float Speed = 10f;       // Player 이동 속도
     public float JumpPower = 20f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
-    float gravityScale = 50f;       // 중력 변수
+    float GravityScale = 50f;       // 중력 변수
+    float MaxHP = 100f;
+    float CurrentHP;
+    float PlayerAttackDamage = 5f;
+    float EnemyAttackDamage = 20f;
     public GameObject Bullet;       // Player에 있는 Bullet 
     public Transform FirePos;       // Player에 있는 FirePos.
+    public Animator anim;
+    bool IsPlayerDead = false;
 
     void Start()
     {
+        CurrentHP = MaxHP;
         Rigid = GetComponent<Rigidbody>();
         IsJumping = false;      // 점프 유무 변수 초기화
+        IsPlayerDead = false;
     }
 
     void Update()
     {
         float xInput = Input.GetAxis("Horizontal");         // GetAxis("Horizontal")로 Player 방향 움직임
-        float xSpeed = xInput * Speed * Time.deltaTime;             // Player가 움직이는 방향(xInput)으로 Speed를 곱해서 속도(xSpeed)를 정의한다.
+        float xSpeed = xInput * Speed * Time.deltaTime; // Player가 움직이는 방향(xInput)으로 Speed를 곱해서 속도(xSpeed)를 정의한다.
+
+        if (xInput == 0f)
+        {
+            anim.SetBool("Walk", false);
+        }
+        else
+        {
+            anim.SetBool("Walk", true);
+        }
 
         Vector3 newVelocity = new Vector3(xSpeed, 0f, 0f);      // 위의 xSpeed를 새로운 Vector3, newVelocity로 정의한다.
         transform.position += newVelocity;      // transform.position에 newVelocity를 더해 Player가 움직일 수 있도록 한다.
@@ -35,6 +51,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (xInput > 0)     // x축이 양수인 방향으로 움직일 때
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));     // 그 방향을 바라보고(방향이 바뀌지 않음)
+            
         }
         else if (xInput < 0)    // x축이 음수인 방향으로 움직일 때
         {
@@ -45,11 +62,18 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Rigid.AddForce(transform.up * JumpPower, ForceMode.Impulse);        // transform.up 방향으로 JumpPower만큼 점프한다.
             IsJumping = true;       // Player가 점프한다.
+            anim.SetTrigger("Jump");
         }
+
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            anim.SetTrigger("Attack");
+        }
+
     }
     private void FixedUpdate()
     {
-        Rigid.AddForce(Vector3.down * gravityScale);
+        Rigid.AddForce(Vector3.down * GravityScale);
         // 점프 후 내려올 때 자연스럽게 내려오게 하기 위해 중력(gravityScale)을 곱해준다.
     }
     void OnCollisionEnter(Collision collision)      // Collision Enter 판정
@@ -65,7 +89,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             JumpPower = 0f;     // HidingFloor에서는 점프 불가
             Debug.Log("HidingPosition입니다.");
-            Rigid.velocity = Vector3.zero;      // HidingFloor에서는 velocity가 zero
+            /*Rigid.velocity = Vector3.zero; */     // HidingFloor에서는 velocity가 zero
             Speed = 0f;     // Player의 Speed가 0이 된다.
             
         }
@@ -74,6 +98,30 @@ public class NewBehaviourScript : MonoBehaviour
             Speed = 10f;        // Speed 원상복구
             JumpPower = 20f;            // JumpPower 원상복구
         }
+
+
+        if (collision.gameObject.CompareTag("Enemy") && !IsPlayerDead)
+        {
+           
+            CurrentHP -= EnemyAttackDamage;
+            if(CurrentHP <= 0)
+            {
+
+                IsPlayerDead=true;
+                anim.SetTrigger("Die");         // 애니메이션 한 번만
+                anim.SetTrigger("Dead");
+                Speed = 0f;
+                JumpPower = 0f;
+                Debug.Log("죽었습니다.");
+            }
+            else
+            {
+                anim.SetTrigger("GetHit");
+                Debug.Log("공격받았습니다.");
+            }
+        }
     }
+
+  
 }
 
