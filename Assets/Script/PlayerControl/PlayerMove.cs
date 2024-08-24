@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     public float JumpPower = 20f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
-    float MaxHP = 100f;
+    float MaxHP = 1000f;
     float CurrentHP;
     float PlayerAttackDamage = 5f;
     float EnemyAttackDamage = 20f;
@@ -104,14 +104,17 @@ public class PlayerMove : MonoBehaviour
         {
            
             CurrentHP -= EnemyAttackDamage;
+        
             if(CurrentHP <= 0)
             {
-
-                IsPlayerDead=true;
+                IsPlayerDead =true;
                 anim.SetTrigger("Die");         // 애니메이션 한 번만
                 anim.SetTrigger("Dead");
-                Speed = 0f;
-                JumpPower = 0f;
+                if (IsPlayerDead)
+                {
+                    Speed = 0f;
+                    JumpPower = 0f;
+                }
                 Debug.Log("죽었습니다.");
             }
             else
