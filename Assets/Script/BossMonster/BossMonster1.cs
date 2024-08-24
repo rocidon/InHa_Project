@@ -20,7 +20,7 @@ public class BossMonster1 : BossBehaviorTree
         NormalAttackCount = 0;
         isPlayKillPattern1 = false;
         isPlayKillPattern2 = false;
-
+        _Boss = this;
 
         //Value setting Before this Line
         SetRootNode();
@@ -31,6 +31,9 @@ public class BossMonster1 : BossBehaviorTree
         PlayTree();
         //_Health -= 10;
     }
+    public void SetPlayKillPattern1(bool val) { isPlayKillPattern1 = val; }
+    public void SetPlayKillPattern2(bool val) { isPlayKillPattern2 = val; }
+    public void SetPlayKillCount(bool val) { InstantKillPattern = val; }
     public bool GetInstantKillCount()
     {
         return InstantKillPattern;

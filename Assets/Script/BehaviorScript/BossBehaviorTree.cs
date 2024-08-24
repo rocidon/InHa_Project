@@ -10,6 +10,7 @@ public class BossBehaviorTree : BehaviorTree
 {
     public GameObject Player;
     protected Monster Boss;
+    protected BossMonster1 _Boss;
     //private void Awake()
     //{
     //    _Health = 1000f;
@@ -106,8 +107,9 @@ public class BossBehaviorTree : BehaviorTree
             //Running상태면 같이 실행된다고 생각하면 될거 같다.
            new InCloseRange(Player.transform, Boss.transform, 5),
            new SequenceNode(new List<Node> {
-                new TestNode(),
-                new ChasePlayer(Player.transform, Boss.transform)
+                new IsPlayInstantKill(_Boss),
+                new InstantKilAttack1(_Boss),
+                new InstantKilAttack2(_Boss)
 
            })
         });

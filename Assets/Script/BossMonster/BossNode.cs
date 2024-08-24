@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,14 +11,29 @@ using UnityEngine;
 
 public class TestNode : Node
 {
+    BossMonster1 boss;
     public TestNode()
     {
         //Debug.Log("This is TestNode");
     }
+    public TestNode(BossMonster1 boss)
+    {
+        this.boss = boss;
+    }
     public override NodeState Evaluate()
     {
-        Debug.Log("This is TestNode Running");
-        return state = NodeState.Success;
+        if (boss.IsPlayKillPattern1())
+        {
+            Debug.Log("Pattern 1 Played");
+            return state = NodeState.Running;
+        }
+        else
+        {
+            Debug.Log("Pattern 1 Play");
+            boss.SetPlayKillPattern1(true);
+        }
+        //Debug.Log("This is TestNode Running");
+        return state = NodeState.Running;
     }
 }
 public class ChkHeath : Node
@@ -104,22 +120,46 @@ public class IsPlayInstantKill : Node
     }
     public override NodeState Evaluate()
     {
-        if (IsPlay)
+        if (boss.GetInstantKillCount())
         {
+            Debug.Log("Played All Pattern");
             return state = NodeState.Failure;
         }
-        return state = NodeState.Running;
+        Debug.Log("Pattern Start");
+        boss.SetPlayKillCount(true);
+        return state = NodeState.Success;
+        //패턴 자체는 코루틴으로 돌아가야할 것 같다.
     }
 }
 public class InstantKilAttack1 : Node
 {
     GameObject FootHold;
+    BossMonster1 Boss;
+    bool ChkPlayed;
     public InstantKilAttack1() { }
+    public InstantKilAttack1(BossMonster1 boss) {
+        Boss = boss;
+        ChkPlayed = Boss.IsPlayKillPattern1();
+    }
 
     public override NodeState Evaluate()
     {
-        //
-        return state = NodeState.Running;
+        if (Boss.IsPlayKillPattern1())
+        {
+            Debug.Log("Played Kill Pattern 1");
+            return state = NodeState.Failure;
+        }
+        else
+        {
+            Boss.SetPlayKillPattern1(true);
+            Debug.Log("Play Kill Pattern 1");
+            
+            //Boss.transform.Translate(Vector3.forward * 2 * Time.deltaTime);
+
+
+            return state = NodeState.Running;
+        }
+        
         throw new NotImplementedException();
     }
 }
@@ -127,18 +167,29 @@ public class InstantKilAttack1 : Node
 public class InstantKilAttack2 : Node
 {
     BossMonster1 boss;
-    int ChkCount;
+    bool ChkPlay;
     public InstantKilAttack2() { }
     public InstantKilAttack2(BossMonster1 monster) {
         boss = monster;
-        ChkCount = boss.GetInstantKillCount();
+        ChkPlay = boss.IsPlayKillPattern2();
     }
     public override NodeState Evaluate()
     {
-        if (ChkCount > 0) { 
-            
+        if (boss.IsPlayKillPattern2()) {
+            Debug.Log("Played kill Pattern 2");
+            return state = NodeState.Failure;
         }
-        throw new NotImplementedException();
+        else
+        {
+            if (boss.IsPlayKillPattern1())
+            {
+                boss.SetPlayKillPattern2(true);
+                boss.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
+                Debug.Log("Play Kill Pattern 2");
+                return state = NodeState.Running;
+            }
+            return state = NodeState.Failure;
+        }
     }
 }
 
@@ -188,6 +239,7 @@ public class InCloseRange : Node
         {
             return state = NodeState.Success;
         }
+
         return state = NodeState.Failure;
     }
 }
@@ -281,7 +333,15 @@ public class ChasePlayer : Node
     Transform Target;
     Transform Center;
     Animator Anim;
+    BossMonster1 boss;
+
     public ChasePlayer() { }
+    public ChasePlayer(Transform Target, BossMonster1 boss) {
+        this.boss = boss;
+        this.Target = Target;
+        Center = boss.transform;
+        Anim = boss.GetComponent<Animator>();
+    }
     public ChasePlayer(Transform Target, Transform Center) {
         this.Target = Target;
         this.Center = Center;
@@ -296,7 +356,14 @@ public class ChasePlayer : Node
         Center.forward = fv;
         Center.transform.Translate(Vector3.forward * Time.deltaTime * 2);
         //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime);
-
+        if (boss.IsPlayKillPattern1())
+        {
+            Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
+        }
+        else
+        {
+            Debug.Log("No Play Pattern 1 This is Pattern 2");
+        }
         //set Animation Parameter value
 
         return state = NodeState.Running;
