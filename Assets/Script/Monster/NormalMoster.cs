@@ -22,7 +22,6 @@ public class NormalMonster : Monster
     public float AtkRange;
     float oSpeed;
     float _Timer;
-    bool CantMove;
     Field_of_View fov;
     MonsterAttack Atk;
     void Start()
@@ -41,16 +40,11 @@ public class NormalMonster : Monster
         AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
 
         Atk.SetDamage(_Atk);
-        Atk.SetAttackTime(0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ChangeAnimation(true);
-        //Debug.Log(animator.GetParameter((int)_currentState).name);
-        //Debug.Log(fov.AtkPlayer);
-        //Debug.Log(_currentState); 
         switch (_currentState)
         {            
             case State.Idle:
@@ -87,7 +81,6 @@ public class NormalMonster : Monster
                 }
                 break;
             case State.Attack:
-
                 if (fov.AtkPlayer== false)
                 {
                     ChangeState(State.See);
@@ -216,7 +209,6 @@ public class NormalMonster : Monster
     public override void Attack()
     {
         Atk.IsAtk = true;
-        Atk.SetAttackTime(0.25f);
     }
     public override void TakeDamage(float damage)
     {
@@ -225,7 +217,6 @@ public class NormalMonster : Monster
         _OnDamage();
         //StartCoroutine(OnDamage());
         //수정필요
-        
     }
     void _OnDamage()
     {

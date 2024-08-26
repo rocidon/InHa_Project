@@ -4,16 +4,28 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy
   - Backgrount
+=======
+  - Floor
+  - FloorOnPosition
+  - HidingPosition
+  - HidingFloor
+  - Round
+  - Monster
+  - FxTemporaire
+  - Obstacle
+  - Obstcales
+>>>>>>> DukSang
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Obstacle
   - 
   - 
   - 
