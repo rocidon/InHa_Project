@@ -464,18 +464,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2102446588}
     m_Modifications:
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_Name
-      value: BladeSpinnerPrefab (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 6483016466757332294, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.68
@@ -519,6 +507,22 @@ PrefabInstance:
     - target: {fileID: 8598999353914210748, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: moveDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_Name
+      value: BladeSpinnerPrefab (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.480194
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2088,18 +2092,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2102446588}
     m_Modifications:
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_Name
-      value: BladeSpinnerPrefab (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 6483016466757332294, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12
@@ -2143,6 +2135,22 @@ PrefabInstance:
     - target: {fileID: 8598999353914210748, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: moveDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_Name
+      value: BladeSpinnerPrefab (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.480194
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2894,18 +2902,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2102446588}
     m_Modifications:
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_Name
-      value: BladeSpinnerPrefab (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 6483016466757332294, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6400003
@@ -2949,6 +2945,22 @@ PrefabInstance:
     - target: {fileID: 8598999353914210748, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: moveDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_Name
+      value: BladeSpinnerPrefab (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.481561
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.480194
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4126,18 +4138,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2102446588}
     m_Modifications:
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
-      propertyPath: m_Name
-      value: BladeSpinnerPrefab (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 6483016466757332294, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.46
@@ -4181,6 +4181,22 @@ PrefabInstance:
     - target: {fileID: 8598999353914210748, guid: db7d2e8489fb1af4a9daf37a38e42792, type: 3}
       propertyPath: moveDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873747163648330372, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_Name
+      value: BladeSpinnerPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483016466757332294, guid: 0ba4cd78bae66e94186bb0b53c9263a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.480194
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
