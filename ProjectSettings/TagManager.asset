@@ -12,12 +12,17 @@ TagManager:
   - FloorOnPosition
   - HidingPosition
   - HidingFloor
+<<<<<<< HEAD
   - Round
   - Monster
   - FxTemporaire
   - Obstacle
   - Obstcales
 >>>>>>> DukSang
+=======
+  - RogueHooded
+  - Enemy
+>>>>>>> Jaehoon
   layers:
   - Default
   - TransparentFX
