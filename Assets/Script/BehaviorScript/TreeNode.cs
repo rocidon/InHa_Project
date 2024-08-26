@@ -9,7 +9,7 @@ public enum NodeState
     Failure
 }
 
-public abstract class Node
+public abstract class Node 
 {
     protected NodeState state;
     public Node parentNode;

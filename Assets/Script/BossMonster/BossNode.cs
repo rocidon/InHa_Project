@@ -133,9 +133,12 @@ public class IsPlayInstantKill : Node
 }
 public class InstantKilAttack1 : Node
 {
+    MonoBehaviour mono;
+    //Test Use coRoutine about Walking 10sec 
     GameObject FootHold;
     BossMonster1 Boss;
     bool ChkPlayed;
+    int count = 0;
     public InstantKilAttack1() { }
     public InstantKilAttack1(BossMonster1 boss) {
         Boss = boss;
@@ -153,19 +156,28 @@ public class InstantKilAttack1 : Node
         {
             Boss.SetPlayKillPattern1(true);
             Debug.Log("Play Kill Pattern 1");
-            
+
             //Boss.transform.Translate(Vector3.forward * 2 * Time.deltaTime);
+            Boss.StartCoroutine(Pattern());
+            return state;
+        }        
 
-
-            return state = NodeState.Running;
-        }
-        
         throw new NotImplementedException();
+    }
+    public IEnumerator Pattern()
+    {
+        Debug.Log("count : "+count);
+        count++;
+
+        yield return new WaitUntil(() => count > 20);
+        count = 0;
+        state = NodeState.Success;
     }
 }
 
 public class InstantKilAttack2 : Node
 {
+    //after 10sec, Play Jump 
     BossMonster1 boss;
     bool ChkPlay;
     public InstantKilAttack2() { }
