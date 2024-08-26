@@ -10,4 +10,6 @@ public class WeaponData : ScriptableObject
 
     public float attackPower;
     public float durability;
+
+    //public int type;
 }

@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-
-    [SerializeField]
-    private GameObject panel;
-
     public List<WeaponData> items;
+    [SerializeField] private GameObject panel;
 
-    [SerializeField]
-    private Transform slotParent;
-    [SerializeField]
-    private Slot[] slots;
+    [SerializeField]private Transform slotParent;
+    [SerializeField] private InventorySlot[] slots;
 
-    
+    [SerializeField] private TextMeshProUGUI attackPowerText;
+    [SerializeField] private TextMeshProUGUI durabilityText;
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        slots = slotParent.GetComponentsInChildren<Slot>();
+        slots = slotParent.GetComponentsInChildren<InventorySlot>();
     }
 #endif
 
@@ -39,14 +37,16 @@ public class Inventory : MonoBehaviour
         {
             slots[i].item = null;
         }
-    }
 
+        UpdateAttackPowerText();
+
+    }
+    
     public void AddItem(WeaponData _item)
     {
         if (items.Count < slots.Length)
         {
             items.Add(_item);
-            FreshSlot();
         }
         else
         {
@@ -60,9 +60,10 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        FreshSlot();
+        if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Success KeyCode \'I\'");
+            Debug.Log("pressed the \'I\'");
             Toggle();
         }
 
@@ -79,6 +80,29 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Error InvenToggle.scr");
         }
+    }
+
+    private void UpdateAttackPowerText()
+    {
+        float curAttack = 0f;
+        float curDurability = 0f;
+
+
+        if (attackPowerText != null && items.Count > 0)
+        {
+            float itemrAttack = (float)items[0].attackPower;
+            float itemDurability = (float)items[0].durability;
+
+            curAttack += itemrAttack;
+            curDurability += itemDurability;
+        }
+        else
+        {
+            // ----
+        }
+
+        attackPowerText.text = "Attack    " + curAttack;
+        durabilityText.text = "Durability    " + curDurability;
     }
 }
 

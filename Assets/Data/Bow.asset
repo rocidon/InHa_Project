@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd0d48e7d463be849bd1fa2149942015, type: 3}
-  m_Name: Knife
+  m_Name: Bow
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 21300000, guid: edfc57d8c801eb1409cdd951c375180e, type: 3}
-  itemName: Knife
-  attackPower: 0
-  durability: 0
+  itemImage: {fileID: 21300000, guid: 382c349210acdb848a5b083250aa792c, type: 3}
+  itemName: Bow
+  attackPower: 111
+  durability: 100

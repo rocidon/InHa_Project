@@ -1,26 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;      //씬 관련 기능 사용
 public class ButtonScr : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnClickNewGame()
     {
-        Debug.Log("NewGame");
-        SceneManager.LoadScene("_MinsungTest");
+        // "NewGame"Log 출력
+        Debug.Log("NewGame");                 
+        // 함수 실행시 "_MinsungTest"이라는 이름의 씬 전환
+        SceneManager.LoadScene("IntroScene"); 
     }
     public void OnClickRoadGame()
     {
@@ -35,14 +22,15 @@ public class ButtonScr : MonoBehaviour
         Debug.Log("End");
     }
 
-    public void OnClickEndLoadScene()
+    public void SceneTest1()
     {
-        SceneManager.LoadScene("_MinsungTest1");
+        Debug.Log("NewGame");
+        SceneManager.LoadScene("_MinsungTest2");
     }
 
-    public void OnClickEndLoadScene2()
+    public void SceneTest2()
     {
-        SceneManager.LoadScene("_MinsungTest2");
-
+        Debug.Log("NewGame");
+        SceneManager.LoadScene("_MinsungTest1");
     }
 }
