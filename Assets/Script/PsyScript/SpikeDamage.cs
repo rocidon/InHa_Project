@@ -9,7 +9,7 @@ public class SpikeDamage : MonoBehaviour
         // 스파이크 장애물 충돌 시 밀리는 코드
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerMove>().spike++;
+            //collision.gameObject.GetComponent<PlayerMove>().spike++;
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             if (rb != null)
             {

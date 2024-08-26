@@ -9,7 +9,7 @@ public class ItemBoxEat : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<PlayerMove>().itembox++;
+                //collision.gameObject.GetComponent<PlayerMove>().itembox++;
                 Destroy(this.gameObject);
             }
         }

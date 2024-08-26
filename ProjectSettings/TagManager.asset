@@ -3,48 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< HEAD
-  - Enemy
-  - Backgrount
-<<<<<<< HEAD
-=======
-  - Floor
-  - FloorOnPosition
-  - HidingPosition
-  - HidingFloor
-<<<<<<< HEAD
-  - Round
-  - Monster
-  - FxTemporaire
-  - Obstacle
-  - Obstcales
->>>>>>> DukSang
-=======
-  - RogueHooded
-  - Enemy
->>>>>>> Jaehoon
-=======
-  - Round
-  - Coin
-  - Obstacle
-  - Monster
-  - HidingPosition
-  - FloorOnPosition
-  - Floor
-  - HidingFloor
-  - Item
-  - Potal
-  - HideArea
->>>>>>> ParkSinYoung
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Obstacle
+  - 
   - 
   - 
   - 
