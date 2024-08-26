@@ -7,6 +7,7 @@ TagManager:
 <<<<<<< HEAD
   - Enemy
   - Backgrount
+<<<<<<< HEAD
 =======
   - Floor
   - FloorOnPosition
@@ -23,6 +24,19 @@ TagManager:
   - RogueHooded
   - Enemy
 >>>>>>> Jaehoon
+=======
+  - Round
+  - Coin
+  - Obstacle
+  - Monster
+  - HidingPosition
+  - FloorOnPosition
+  - Floor
+  - HidingFloor
+  - Item
+  - Potal
+  - HideArea
+>>>>>>> ParkSinYoung
   layers:
   - Default
   - TransparentFX
