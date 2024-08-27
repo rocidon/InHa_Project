@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossMonster1 : BossBehaviorTree
 {
     public int NormalAttackCount;
+    public int BossCount;
+
     bool InstantKillPattern;
     bool isPlayKillPattern1;
     bool isPlayKillPattern2;
@@ -21,6 +23,7 @@ public class BossMonster1 : BossBehaviorTree
         isPlayKillPattern1 = false;
         isPlayKillPattern2 = false;
         _Boss = this;
+        BossCount = 0;
 
         //Value setting Before this Line
         SetRootNode();

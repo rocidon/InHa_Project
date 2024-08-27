@@ -126,9 +126,7 @@ public class IsPlayInstantKill : Node
             return state = NodeState.Failure;
         }
         Debug.Log("Pattern Start");
-        boss.SetPlayKillCount(true);
         return state = NodeState.Success;
-        //패턴 자체는 코루틴으로 돌아가야할 것 같다.
     }
 }
 public class InstantKilAttack1 : Node
@@ -139,10 +137,13 @@ public class InstantKilAttack1 : Node
     BossMonster1 Boss;
     bool ChkPlayed;
     int count = 0;
+    float InnerTimer;
     public InstantKilAttack1() { }
     public InstantKilAttack1(BossMonster1 boss) {
         Boss = boss;
         ChkPlayed = Boss.IsPlayKillPattern1();
+        state = NodeState.Failure;
+        InnerTimer = 0.0f;
     }
 
     public override NodeState Evaluate()
@@ -150,27 +151,25 @@ public class InstantKilAttack1 : Node
         if (Boss.IsPlayKillPattern1())
         {
             Debug.Log("Played Kill Pattern 1");
-            return state = NodeState.Failure;
+            state = NodeState.Success;
         }
         else
         {
-            Boss.SetPlayKillPattern1(true);
-            Debug.Log("Play Kill Pattern 1");
-
-            //Boss.transform.Translate(Vector3.forward * 2 * Time.deltaTime);
-            Boss.StartCoroutine(Pattern());
-            return state;
-        }        
-
+            Debug.Log("Playing Kill Pattern 1");
+            
+            return state = NodeState.Failure;
+        }
+        return state = NodeState.Failure;
         throw new NotImplementedException();
     }
     public IEnumerator Pattern()
     {
-        Debug.Log("count : "+count);
-        count++;
-
-        yield return new WaitUntil(() => count > 20);
-        count = 0;
+        yield return new WaitForSeconds(1.0f);
+        Boss.BossCount++;
+        Debug.Log(Boss.BossCount);
+        yield return new WaitUntil(()=> Boss.BossCount >= 1);
+        Boss.BossCount = 0;
+        Debug.Log("set 0");
         state = NodeState.Success;
     }
 }
@@ -193,12 +192,15 @@ public class InstantKilAttack2 : Node
         }
         else
         {
-            if (boss.IsPlayKillPattern1())
+            Debug.Log("Play 2 : "+boss.BossCount);
+            if (boss.BossCount >= 1)
             {
                 boss.SetPlayKillPattern2(true);
-                boss.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
+                //boss.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20.0f);
                 Debug.Log("Play Kill Pattern 2");
-                return state = NodeState.Running;
+
+                boss.SetPlayKillCount(true);
+                return state = NodeState.Success;
             }
             return state = NodeState.Failure;
         }
