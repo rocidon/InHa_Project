@@ -846,6 +846,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   Player: {fileID: 0}
   NormalAttackCount: 0
+  BossCount: 0
 --- !u!54 &2031212106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1066,6 +1067,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   Player: {fileID: 0}
   NormalAttackCount: 0
+  BossCount: 0
 --- !u!1001 &648347967329790547
 PrefabInstance:
   m_ObjectHideFlags: 0
