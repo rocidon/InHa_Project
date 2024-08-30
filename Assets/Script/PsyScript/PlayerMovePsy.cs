@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMovePsy : MonoBehaviour
 {
     private Rigidbody rb;
     private Vector3 direction = Vector3.zero;

@@ -35,7 +35,7 @@ public class UpDownObs : MonoBehaviour
         // 위아래 움직이는 장애물 장애물 충돌 시 밀리는 코드
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerMove>().blade++;
+            collision.gameObject.GetComponent<PlayerMovePsy>().blade++;
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
