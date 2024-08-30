@@ -331,6 +331,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1969196789296797507, guid: 20fcd15dc07ceeb4eb8e340f960c684e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969196789296797507, guid: 20fcd15dc07ceeb4eb8e340f960c684e, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 5386850076852502748, guid: 20fcd15dc07ceeb4eb8e340f960c684e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -975,6 +983,7 @@ GameObject:
   - component: {fileID: 2047955179}
   - component: {fileID: 2047955178}
   - component: {fileID: 2047955181}
+  - component: {fileID: 2047955182}
   m_Layer: 0
   m_Name: TestBoss
   m_TagString: Untagged
@@ -1068,6 +1077,19 @@ MonoBehaviour:
   Player: {fileID: 0}
   NormalAttackCount: 0
   BossCount: 0
+--- !u!114 &2047955182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047955177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1113fc6c82921a4e81c7335b0a1e1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stone: {fileID: 0}
 --- !u!1001 &648347967329790547
 PrefabInstance:
   m_ObjectHideFlags: 0

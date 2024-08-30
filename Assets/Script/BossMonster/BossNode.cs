@@ -22,17 +22,7 @@ public class TestNode : Node
     }
     public override NodeState Evaluate()
     {
-        if (boss.IsPlayKillPattern1())
-        {
-            Debug.Log("Pattern 1 Played");
-            return state = NodeState.Running;
-        }
-        else
-        {
-            Debug.Log("Pattern 1 Play");
-            boss.SetPlayKillPattern1(true);
-        }
-        //Debug.Log("This is TestNode Running");
+        Debug.Log("This is TestNode Running");
         return state = NodeState.Running;
     }
 }
@@ -151,20 +141,19 @@ public class InstantKilAttack1 : Node
         if (Boss.IsPlayKillPattern1())
         {
             Debug.Log("Played Kill Pattern 1");
-            state = NodeState.Success;
+            return state = NodeState.Running;
         }
         else
         {
-            Debug.Log(ChkPlayed);
             if (ChkPlayed)
             {
                 Debug.Log("Playing Kill Pattern 1");
+                //enable gamecompoenet
                 Boss.StartCoroutine(Pattern());
             }
             return state= NodeState.Running;
         }
-        return state = NodeState.Failure;
-        throw new NotImplementedException();
+        
     }
     public IEnumerator Pattern()
     {
@@ -188,23 +177,25 @@ public class InstantKilAttack2 : Node
     }
     public override NodeState Evaluate()
     {
+        Debug.Log("Play 1 : " + boss.IsPlayKillPattern1());
+        Debug.Log("Play 2 : " + boss.IsPlayKillPattern2());
         if (boss.IsPlayKillPattern2()) {
             Debug.Log("Played kill Pattern 2");
-            return state = NodeState.Failure;
+            return state = NodeState.Success;
         }
         else
         {
-            Debug.Log("Play 2 : "+boss.BossCount);
+
             if (boss.IsPlayKillPattern1())
             {
                 boss.SetPlayKillPattern2(true);
                 //boss.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20.0f);
                 Debug.Log("Play Kill Pattern 2");
-
+                
                 boss.SetPlayKillCount(true);
-                return state = NodeState.Success;
+                return state = NodeState.Running;
             }
-            return state = NodeState.Failure;
+            return state = NodeState.Running;
         }
     }
 }
