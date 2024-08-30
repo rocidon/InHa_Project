@@ -159,9 +159,12 @@ public class InstantKilAttack1 : Node
     {
         ChkPlayed = false;
         Debug.Log("after coroutine complete");
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(5.0f); //animation end
+        Boss.GetComponent<FallingStone>().enabled = true;
+        Debug.Log("Create Stone");
+        yield return new WaitForSeconds(3.0f);
         Boss.SetPlayKillPattern1(true);
-        Debug.Log("set ");
+        Debug.Log("End Pattern 1");
     }
 }
 
@@ -177,8 +180,6 @@ public class InstantKilAttack2 : Node
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Play 1 : " + boss.IsPlayKillPattern1());
-        Debug.Log("Play 2 : " + boss.IsPlayKillPattern2());
         if (boss.IsPlayKillPattern2()) {
             Debug.Log("Played kill Pattern 2");
             return state = NodeState.Success;
