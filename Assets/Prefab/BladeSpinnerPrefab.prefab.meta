@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AnimatorTree.meta
+guid: 0ba4cd78bae66e94186bb0b53c9263a3
+folderAsset: yes
+DefaultImporter:
+========
 guid: db7d2e8489fb1af4a9daf37a38e42792
 PrefabImporter:
+>>>>>>>> ParkSinYoung:Assets/Prefab/BladeSpinnerPrefab.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

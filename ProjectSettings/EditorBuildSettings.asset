@@ -4,23 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/TutorialScene_Psy.unity
-    guid: 2ba12510a91b23e409a2c8958ed8fa9c
-  - enabled: 1
-    path: Assets/Scenes/StageScene1_Psy.unity
-    guid: d0bef699c35976e428dacdb686233616
-  - enabled: 1
-    path: Assets/Scenes/StageScene2_Psy.unity
-    guid: 665e42f8d6c0c4c48b9957b6f5bbd8c5
-  - enabled: 1
-    path: Assets/Scenes/StageScene3_Psy.unity
-    guid: 8c62324c8725c544eaae51452410ec7d
-  - enabled: 1
-    path: Assets/Scenes/StoreScene_Psy.unity
-    guid: 70475134ec8210a4383a05cdd3c0d65c
-  - enabled: 1
-    path: Assets/Scenes/BossScene_Psy.unity
-    guid: 3a8eb983013c4304cb31bea2f7d47f2a
+  m_Scenes: []
   m_configObjects: {}

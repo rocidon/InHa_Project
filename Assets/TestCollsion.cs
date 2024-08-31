@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestCollsion : MonoBehaviour
 {
     Vector3 size = new(1, 1, 1);
+    public float Damage;
     private void Update()
     {
         Collider[] col = Physics.OverlapBox(transform.position, size);
@@ -19,7 +20,7 @@ public class TestCollsion : MonoBehaviour
         if (other.gameObject.CompareTag("Monster"))
         {
             NormalMonster nor = other.gameObject.GetComponent<NormalMonster>();
-            nor.TakeDamage(10);
+            nor.TakeDamage(Damage);
         }
         //Debug.Log("on Enter");
     }

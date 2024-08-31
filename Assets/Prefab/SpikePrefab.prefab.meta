@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab/RogueHooded.prefab.meta
+guid: 4a9b950fc6121644e8f21de284c98c1b
+========
 guid: 3d0ddf5fa40055f4bb9f6f214b3aae98
+>>>>>>>> ParkSinYoung:Assets/Prefab/SpikePrefab.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

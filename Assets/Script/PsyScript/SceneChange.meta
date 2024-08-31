@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab/TestPrefab.meta
+guid: cf7f04b0931dfb34ba28d661b9e608ba
+========
 guid: cabbdb5927dde1949a8d116cae59f160
+>>>>>>>> ParkSinYoung:Assets/Script/PsyScript/SceneChange.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

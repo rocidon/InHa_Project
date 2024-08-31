@@ -4,19 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Backgrount
-  - Round
-  - Coin
   - Obstacle
-  - Monster
-  - HidingPosition
-  - FloorOnPosition
-  - Floor
-  - HidingFloor
-  - Item
-  - Potal
-  - HideArea
+  - Round
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -25,7 +15,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Ground
   - 
   - 
   - 

@@ -1,22 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class ItemBoxEat : MonoBehaviour
 {
-    
         // æ∆¿Ã≈€ ∏‘±‚
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        private void OnTriggerEnter(Collider collision)
         {
-            
-            collision.gameObject.GetComponent<PlayerMovePsy>().itembox++;
-            Destroy(this.gameObject);
+            if (collision.gameObject.tag == "Player")
+            {
+                //collision.gameObject.GetComponent<PlayerMove>().itembox++;
+                Destroy(this.gameObject);
+            }
         }
-        
-    }
     
 
 }
