@@ -36,8 +36,6 @@ public class BossSpecialGernerate : MonoBehaviour
     }
     IEnumerator Pattern(Vector3 StartPosition)
     {
- 
-
         GameObject ob1 = Instantiate(WarningRangePrefeb);
         GameObject ob2 = Instantiate(WarningRangePrefeb);
         SetObject(ob1);
@@ -49,7 +47,7 @@ public class BossSpecialGernerate : MonoBehaviour
         ob1.transform.position = OBjPos1;
         ob2.transform.position = OBjPos2;
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
 
         ob1.GetComponent<MeshRenderer>().enabled = false;
         ob2.GetComponent<MeshRenderer>().enabled = false;

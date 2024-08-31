@@ -13,24 +13,27 @@ public class BossMonster1 : BossBehaviorTree
     void Start()
     {
         //Debug.Log("Start BossMonster1");
-        _Health = 1000f;
+        //_Health = 1000f;
+        _MaxHealth = 1000f;
         _Atk = 100f;
         _Def = 20f;
         Player = GameObject.FindWithTag("Player");
         Boss = this;
+        IsDying = false;
         InstantKillPattern = false;
         NormalAttackCount = 0;
         isPlayKillPattern1 = false;
         isPlayKillPattern2 = false;
         _Boss = this;
         BossCount = 0;
-
+        _Health = _MaxHealth;
         //Value setting Before this Line
         SetRootNode();
     }
 
     void Update()
     {
+        //if()
         PlayTree();
         //_Health -= 10;
     }
@@ -44,6 +47,11 @@ public class BossMonster1 : BossBehaviorTree
     public bool IsPlayKillPattern1()
     {
         return isPlayKillPattern1;
+    }
+    public override void Dying()
+    {
+        
+        base.Dying();
     }
     public bool IsPlayKillPattern2() { 
         return isPlayKillPattern2;
