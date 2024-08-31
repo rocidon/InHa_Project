@@ -111,8 +111,9 @@ public class BossBehaviorTree : BehaviorTree
                 new InstantKilAttack1(_Boss),
                 new InstantKilAttack2(_Boss)
 
-           })
-        });
+           }),
+           new TestNode()
+        }); 
         return Root;
     }
 }
