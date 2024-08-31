@@ -6,9 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 1.0f;
     public float jump = 100.0f;
+
+    public float maxHp = 100.0f;
+    public float curHp;
     private Rigidbody rb;
     void Start()
     {
+        curHp = maxHp;
         rb = GetComponent<Rigidbody>();
     }
     void Update()

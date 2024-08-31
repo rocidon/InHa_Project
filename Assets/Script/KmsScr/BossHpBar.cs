@@ -3,22 +3,22 @@ using UnityEngine.UI;
 
 public class BossHpBar : MonoBehaviour
 {
-    // Slider UI ì»´í¬?ŒíŠ¸ ? ë‹¹
+    // Slider UI ¼³Á¤
     [SerializeField] private Slider bossHp;
 
-    // enemy ìµœë? ë°?ì´ˆê¸° ì²´ë ¥ ?¤ì •
+    // boss ÃÖ´ë ¹× ÃÊ±â Ã¼·Â ¼³Á¤
     public float maxHp = 100;  
     private float curHp;
 
 
-    // ì²´ë ¥ë°?falseë¡?ì´ˆê¸°??
-   private bool isActive = false;
+    // HP¹Ù Ã³À½ »óÅÂ.
+    private bool isActive = false;
 
     void Start()
     {
         curHp = maxHp;
 
-        // Slider ìµœëŒ“ê°’ê³¼ ì´ˆê¸°ê°?
+        // Slider¿¡ HP ¼³Á¤
         bossHp.maxValue = maxHp;
         bossHp.value = curHp;
 
@@ -30,7 +30,7 @@ public class BossHpBar : MonoBehaviour
     {
         UpdateHP();          
 
-        //ì²´ë ¥??0?´í•˜ ?¼ë•Œ, ì²´ë ¥ë°?ë¹„í™œ?±í™”
+        
         if (curHp <= 0)
         {
             //bossHp.gameObject.SetActive(false);
@@ -49,15 +49,15 @@ public class BossHpBar : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        //ì¶©ëŒ???¤ë¸Œ?íŠ¸ ?œê·¸ê°€ "Player"?¼ë•Œ
+        // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®ÀÇ ÅÂ±×°¡ Player ÀÏ´ë
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ì²´ë ¥ë°??œì„±??
+            // Ã¼·Â¹Ù È°¼ºÈ­
             bossHp.gameObject.SetActive(isActive = true);
 
             curHp -= 10;
 
-            //0?´í•˜ë¡??¨ì–´ì§€ì§€ ?Šë„ë¡??¤ì •
+            //0 ÀÌÇÏ·Î ¶³¾îÁöÁö ¾Êµµ·Ï.
             curHp = Mathf.Max(curHp, 0);
 
             UpdateHP();

@@ -15,14 +15,20 @@ public class Test : MonoBehaviour
         float a = speed * Time.deltaTime;
         transform.Translate(0, speed * Time.deltaTime, 0);
 
-        if ( transform.position.y >= 3000)
+        if (transform.position.y >= 3000)
         {
-            SceneManager.LoadScene("TutorialScene_Psy");
             Debug.Log("ASDFSADSDF");
         }
-        else 
+        else
         {
             Debug.Log(transform.position.y);
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("TutorialScene_Psy");
+        }
     }
+
 }

@@ -5,37 +5,63 @@ using UnityEngine.UI;
 
 public class EnemyHpBar : MonoBehaviour
 {
-    // Slider UI ì»´í¬?ŒíŠ¸ ? ë‹¹
+
+
+    // Slider UI ÄÄÆ÷³ÍÆ® ÇÒ´ç
     [SerializeField] private Slider enemyHp;
 
-    // enemy ìµœë? ë°?ì´ˆê¸° ì²´ë ¥ ?¤ì •
+    // enemy ÃÖ´ë ¹× ÃÊ±â Ã¼·Â ¼³Á¤
     public float maxHp = 100;  
     private float curHp;
 
-    // UI ?”ì†Œ
+
+
+    //¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ
+    //¼³Á¤µÈ EnemyÀÇ HP¸¦ ¹Ş¾Æ¿Ã¶§´Â ´Ù½Ã ÇØ¾ßÇÒ¼öµµ.
+    //HP°¡ ¼³Á¤µÈ ½ºÅ©¸³Æ®°¡ ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ µå·¡±×.
+
+    // [SerializeField] private (¸ó½ºÅÍ HP°¡ µé¾î°¡ ÀÖ´Â..) (º¯¼ö¸í);
+    // public float maxHp = 100;  
+    // private float curHp;
+    //¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ
+
+
+
+    // UI ¿ä¼Ò
     private RectTransform hpBarTransform;
 
-    // ë©”ì¸ ì¹´ë©”??ì°¸ì¡°
+    // ¸ŞÀÎ Ä«¸Ş¶ó ÂüÁ¶
     private Camera mainCamera;
 
-    // ì²´ë ¥ë°?falseë¡?ì´ˆê¸°??
+    // Ã¼·Â¹Ù false·Î ÃÊ±âÈ­
    private bool isActive = false;
 
     void Start()
     {
         curHp = maxHp;
 
-        // Slider ìµœëŒ“ê°’ê³¼ ì´ˆê¸°ê°?
+        // Slider ÃÖ´ñ°ª°ú ÃÊ±â°ª
         enemyHp.maxValue = maxHp;
         enemyHp.value = curHp;
 
-        // ì²´ë ¥ë°?RectTransform ?€??
+
+        //¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ
+        //maxHp = ¤·¤·¤·.maxHp;
+        //curHp = ¤·¤·¤·.CurrentHP;
+
+        //curHp = maxHp;
+        //¤·¤·¤·.maxValue = maxHp;
+        //¤·¤·¤·.value = curHp;
+        //¾Æ·¡ Ä«¸Ş¶ó ¼³Á¤µµ ÇØ¾ßÇÔ
+        //¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ
+
+        // Ã¼·Â¹Ù RectTransform ÀúÀå
         hpBarTransform = enemyHp.GetComponent<RectTransform>();
 
-        // ë©”ì¸ ì¹´ë©”???€??
+        // ¸ŞÀÎ Ä«¸Ş¶ó ÀúÀå
         mainCamera = Camera.main;
 
-        // ì²´ë ¥ë°??œì„±???¬ë?
+        // Ã¼·Â¹Ù È°¼ºÈ­ ¿©ºÎ
         enemyHp.gameObject.SetActive(isActive);
 
     }
@@ -45,7 +71,7 @@ public class EnemyHpBar : MonoBehaviour
         UpdateHP();          
         UpdateUIPosition();
 
-        //ì²´ë ¥??0?´í•˜ ?¼ë•Œ, ì²´ë ¥ë°?ë¹„í™œ?±í™”
+        // Ã¼·ÂÀÌ 0ÀÌÇÏ ÀÏ¶§, Ã¼·Â¹Ù ºñÈ°¼ºÈ­
         if (curHp <= 0)
         {
             enemyHp.gameObject.SetActive(false);
@@ -61,29 +87,34 @@ public class EnemyHpBar : MonoBehaviour
 
     private void UpdateUIPosition()
     {
-        //?ì˜ ?„ì¬ ?„ì¹˜?ì„œ yì¶•ìœ¼ë¡?1ë§Œí¼ ?´ë™
+        // ÀûÀÇ ÇöÀç À§Ä¡¿¡¼­ yÃàÀ¸·Î 1¸¸Å­ ÀÌµ¿
         Vector3 screenPosition 
             = mainCamera.WorldToScreenPoint(transform.position + new Vector3(0, 1f, 0));
 
-        //?”ë©´ ì¢Œí‘œ??ë§ê²Œ ì²´ë ¥ë°??„ì¹˜ ?…ë°?´íŠ¸
+        // È­¸é ÁÂÇ¥¿¡ ¸Â°Ô Ã¼·Â¹Ù À§Ä¡ ¾÷µ¥ÀÌÆ®
         hpBarTransform.position = screenPosition;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         
-        //ì¶©ëŒ???¤ë¸Œ?íŠ¸ ?œê·¸ê°€ "Player"?¼ë•Œ
+        // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ® ÅÂ±×°¡ "Player" ÀÏ¶§
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ì²´ë ¥ë°??œì„±??
+            // Ã¼·Â¹Ù È°¼ºÈ­
             enemyHp.gameObject.SetActive(isActive = true);
 
             curHp -= 10;
 
-            //0?´í•˜ë¡??¨ì–´ì§€ì§€ ?Šë„ë¡??¤ì •
+            // 0ÀÌÇÏ·Î ¶³¾îÁöÁö ¾Êµµ·Ï ¼³Á¤.
             curHp = Mathf.Max(curHp, 0);
 
             UpdateHP();
         }
     }
 }
+
+
+
+
+ 
