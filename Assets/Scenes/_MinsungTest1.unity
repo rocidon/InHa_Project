@@ -5239,6 +5239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jump: 100
+  maxHp: 100
+  curHp: 0
 --- !u!54 &1343015118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5366,6 +5368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHp: {fileID: 1828814091}
+  player: {fileID: 0}
 --- !u!1 &1366765262
 GameObject:
   m_ObjectHideFlags: 0
@@ -6783,6 +6786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHp: {fileID: 1828814091}
+  player: {fileID: 0}
 --- !u!1 &1889627374
 GameObject:
   m_ObjectHideFlags: 0
