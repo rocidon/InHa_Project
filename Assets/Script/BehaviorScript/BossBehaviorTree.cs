@@ -21,7 +21,7 @@ public class BossBehaviorTree : BehaviorTree
     protected override Node SetupBehaviorTree()
     {
 
-        ///*
+        /*
         Node Root = new SelectorNode(new List<Node>
         {
             new SequenceNode(new List<Node>
@@ -104,7 +104,7 @@ public class BossBehaviorTree : BehaviorTree
             new ChasePlayer()
         });
         //*/
-        /*
+        ///*
         Node Root = new SelectorNode(new List<Node>
         {
             //Running상태면 같이 실행된다고 생각하면 될거 같다.

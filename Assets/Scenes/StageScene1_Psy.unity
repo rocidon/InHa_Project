@@ -2109,6 +2109,7 @@ GameObject:
   - component: {fileID: 1680885855}
   - component: {fileID: 1680885859}
   - component: {fileID: 1680885860}
+  - component: {fileID: 1680885861}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2216,13 +2217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c2691cd0a646744a2ce43563f89217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
-  speed: 3
-  coin: 0
-  spike: 0
-  blade: 0
-  itembox: 0
-  potal: 0
 --- !u!54 &1680885860
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2250,6 +2244,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &1680885861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680885854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df83c7f86271194c8b1851430f43fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 5
+  speed: 3
+  coin: 0
+  spike: 0
+  blade: 0
+  itembox: 0
+  potal: 0
 --- !u!1 &1721110461
 GameObject:
   m_ObjectHideFlags: 0
