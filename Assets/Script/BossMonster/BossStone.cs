@@ -14,20 +14,24 @@ public class BossStone : MonoBehaviour
     float ScaleX;
     [SerializeField] float StoneTimer;
     [SerializeField] float AirTime;
+    //[SerializeField] public GameObject WarningRange;
     Transform WarningRange;
+
     // Update is called once per frame
     private void Start()
     {
+        //WarningRange = Instantiate(WarningRange);
         WarningRange = transform.GetChild(1);
         WarningRange.GetComponent<MeshRenderer>().enabled = true;
-
-        WarningRange.localScale += new Vector3(0, 100, 0);
+        WarningRange.transform.localScale = new Vector3(1, 100, 1);
+        //Vector3 SeTrans = new Vector3(0, 100, 0);
         StoneTimer = 0;
         AirTime = Random.Range(1.5f, 1.5f);
         ScaleY = (transform.localScale.y/2);
         ScaleX = (transform.localScale.x/2);
         float RangeScaleY = WarningRange.transform.localScale.y;
-        WarningRange.position = new Vector3(transform.position.x, transform.position.y - (RangeScaleY+ScaleY), transform.position.z);
+        WarningRange.transform.position = new Vector3(transform.position.x, transform.position.y - (RangeScaleY+ScaleY), transform.position.z);
+
     }
     void Update()
     {

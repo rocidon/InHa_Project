@@ -945,6 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: {fileID: 1425453894}
   Count: 0
+  WarningRangePrefeb: {fileID: 3040149605392919384, guid: 51d95ccac0c8e0b4c84d8aa65e277dd7, type: 3}
 --- !u!1001 &648347967329790547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -993,25 +994,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3988710343407449323, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5002227173076414375, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8226666048010632908, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8226666048010632908, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8226666048010632908, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

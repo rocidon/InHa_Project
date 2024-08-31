@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7370224874426178563}
   - component: {fileID: 6265815692795293593}
   m_Layer: 0
-  m_Name: WarningCube
+  m_Name: WarningDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
