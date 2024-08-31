@@ -164,12 +164,11 @@ public class NormalMonster : Monster
     {
         Vector3 ChkPos = transform.forward + transform.position;
         Debug.DrawRay(ChkPos, Vector3.down * 0.5f, Color.green, 0.01f);
-        if(!Physics.Raycast(ChkPos, Vector3.down, out hit, 0.5f))
+        if (!Physics.Raycast(ChkPos, Vector3.down, out hit, 0.5f))
         {
             Turn();
         }
     }
-
     void Turn()
     {
         Vector3 BackVec = transform.forward * -1;
