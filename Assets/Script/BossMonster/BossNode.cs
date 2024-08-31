@@ -22,17 +22,7 @@ public class TestNode : Node
     }
     public override NodeState Evaluate()
     {
-        if (boss.IsPlayKillPattern1())
-        {
-            Debug.Log("Pattern 1 Played");
-            return state = NodeState.Running;
-        }
-        else
-        {
-            Debug.Log("Pattern 1 Play");
-            boss.SetPlayKillPattern1(true);
-        }
-        //Debug.Log("This is TestNode Running");
+        Debug.Log("This is TestNode Running");
         return state = NodeState.Running;
     }
 }
@@ -141,7 +131,7 @@ public class InstantKilAttack1 : Node
     public InstantKilAttack1() { }
     public InstantKilAttack1(BossMonster1 boss) {
         Boss = boss;
-        ChkPlayed = Boss.IsPlayKillPattern1();
+        ChkPlayed = true;
         state = NodeState.Failure;
         InnerTimer = 0.0f;
     }
@@ -151,26 +141,30 @@ public class InstantKilAttack1 : Node
         if (Boss.IsPlayKillPattern1())
         {
             Debug.Log("Played Kill Pattern 1");
-            state = NodeState.Success;
+            return state = NodeState.Running;
         }
         else
         {
-            Debug.Log("Playing Kill Pattern 1");
-            
-            return state = NodeState.Failure;
+            if (ChkPlayed)
+            {
+                Debug.Log("Playing Kill Pattern 1");
+                //enable gamecompoenet
+                Boss.StartCoroutine(Pattern());
+            }
+            return state= NodeState.Running;
         }
-        return state = NodeState.Failure;
-        throw new NotImplementedException();
+        
     }
     public IEnumerator Pattern()
     {
-        yield return new WaitForSeconds(1.0f);
-        Boss.BossCount++;
-        Debug.Log(Boss.BossCount);
-        yield return new WaitUntil(()=> Boss.BossCount >= 1);
-        Boss.BossCount = 0;
-        Debug.Log("set 0");
-        state = NodeState.Success;
+        ChkPlayed = false;
+        Debug.Log("after coroutine complete");
+        yield return new WaitForSeconds(5.0f); //animation end
+        Boss.GetComponent<FallingStone>().enabled = true;
+        Debug.Log("Create Stone");
+        yield return new WaitForSeconds(3.0f);
+        Boss.SetPlayKillPattern1(true);
+        Debug.Log("End Pattern 1");
     }
 }
 
@@ -188,22 +182,27 @@ public class InstantKilAttack2 : Node
     {
         if (boss.IsPlayKillPattern2()) {
             Debug.Log("Played kill Pattern 2");
-            return state = NodeState.Failure;
+            return state = NodeState.Success;
         }
         else
         {
-            Debug.Log("Play 2 : "+boss.BossCount);
-            if (boss.BossCount >= 1)
+
+            if (boss.IsPlayKillPattern1())
             {
                 boss.SetPlayKillPattern2(true);
                 //boss.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20.0f);
                 Debug.Log("Play Kill Pattern 2");
-
+                OnKillPattern();
                 boss.SetPlayKillCount(true);
-                return state = NodeState.Success;
+                return state = NodeState.Running;
             }
-            return state = NodeState.Failure;
+            return state = NodeState.Running;
         }
+    }
+
+    void OnKillPattern()
+    {
+        boss.GetComponent<BossSpecialGernerate>().enabled = true;
     }
 }
 
