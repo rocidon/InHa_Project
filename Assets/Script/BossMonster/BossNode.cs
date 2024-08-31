@@ -223,14 +223,8 @@ public class Dying : Node
     }
     public override NodeState Evaluate()
     {
-        if(NodeTimer > 3.0f) {
-            NodeTimer = 0;
-            //SetAnimator Dying value
-            //Play Dying Event
-            Boss.Dying();
-            return state = NodeState.Success;
-        }
-        return state = NodeState.Running;
+        Boss.Dying();
+        return state = NodeState.Success;
     }
 }
 
@@ -377,15 +371,15 @@ public class ChasePlayer : Node
         Center.forward = fv;
         Center.transform.Translate(Vector3.forward * Time.deltaTime * 2);
         //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime);
-        if (boss.IsPlayKillPattern1())
-        {
-            Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
-        }
-        else
-        {
-            Debug.Log("No Play Pattern 1 This is Pattern 2");
-        }
-        //set Animation Parameter value
+        //if (boss.IsPlayKillPattern1())
+        //{
+        //    Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
+        //}
+        //else
+        //{
+        //    Debug.Log("No Play Pattern 1 This is Pattern 2");
+        //}
+        ////set Animation Parameter value
 
         return state = NodeState.Running;
 ;
