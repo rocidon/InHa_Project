@@ -20,6 +20,12 @@ public class ButtonScr : MonoBehaviour
     public void OnClickEnd()
     {
         Debug.Log("End");
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
     }
 
     public void SceneTest1()

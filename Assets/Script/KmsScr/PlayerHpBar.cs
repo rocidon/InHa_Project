@@ -6,18 +6,37 @@ using UnityEngine.UI;
 public class PlayerHpBar : MonoBehaviour
 {
     // Slider 체력 컴포넌트 할당
-    [SerializeField]private Slider playerHp;        
+    [SerializeField]private Slider playerHp;
 
 
-    // Player 최대 및 초기 체력 설정
-    private float maxHp = 100;     
-    private float curHp;            
+    [SerializeField] private PlayerController player;
+    //Player 최대 및 초기 체력 설정
+    private float maxHp;
+    private float curHp;
+
+    //[SerializeField] private PlayerMove playerMove;
+    //private float maxHp;
+    //private float curHp;
 
     void Start()
     {
-        curHp = maxHp;              // 현재 체력을 최대 체력으로 초기화
-        playerHp.maxValue = maxHp;  // 슬라이더에 최대 체력으로 설정
-        playerHp.value = curHp;     // 슬라이
+        maxHp = player.maxHp;
+        curHp = player.curHp;
+
+        curHp = maxHp;
+        playerHp.maxValue = maxHp;
+        playerHp.value = curHp;
+
+
+        /*  HP가 설정된 플레이어 한테서 정보 가져와야함.
+        maxHp = playerMove.maxHp;
+        curHp = playerMove.CurrentHP;
+
+        curHp = maxHp;
+        playerHp.maxValue = maxHp;
+        playerHp.value = curHp;
+     
+        */
     }
 
     void Update()

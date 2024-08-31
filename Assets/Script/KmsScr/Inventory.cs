@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+
     public List<WeaponData> items;
+
     [SerializeField] private GameObject panel;
 
     [SerializeField]private Transform slotParent;
@@ -26,13 +28,17 @@ public class Inventory : MonoBehaviour
         FreshSlot();
     }
 
+    //아이템이 들어오거나하면 Slot의 내용을 정리하여 화면에 보여주는 기능
     public void FreshSlot()
     {
         int i = 0;
+        //slot에 item이 들어가면 Slot.cs에 선언된 item의 set 안의 내용이 실행되어 해당 슬롯에 이미지를 표시
         for (; i < items.Count && i < slots.Length; i++)
         {
             slots[i].item = items[i];
         }
+
+        // item이 없다면 null 처리
         for (; i < slots.Length; i++)
         {
             slots[i].item = null;
@@ -56,6 +62,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        //인벤토리(상태창)의 패널을 처음에 false
         panel.SetActive(false);
     }
     void Update()
@@ -69,6 +76,7 @@ public class Inventory : MonoBehaviour
 
     }
 
+    // 인벤토리(상태창) Toggle
     private void Toggle()
     {
         if (panel != null)
@@ -82,6 +90,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // 인벤토리(상태창) 공격력, 내구도 업데이트
     private void UpdateAttackPowerText()
     {
         float curAttack = 0f;
@@ -101,8 +110,8 @@ public class Inventory : MonoBehaviour
             // ----
         }
 
-        attackPowerText.text = "Attack    " + curAttack;
-        durabilityText.text = "Durability    " + curDurability;
+        attackPowerText.text =  "공격력    " + curAttack;
+        durabilityText.text =   "내구도    " + curDurability;
     }
 }
 

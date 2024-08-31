@@ -21,21 +21,24 @@ public class ShopButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldPriceText;
 
     private Inventory canvasInventory;
-
+    private InventorySlot[] slots;
     private void Start()
     {
         canvasInventory = FindObjectOfType<Inventory>();
 
+        // 현재 씬에서 Inventory를 찾음.
         if (canvasInventory == null)
         {
             Debug.Log("not found Inventory");
         }
 
+        // 버튼을 누르면 해당 함수 실행
         if (slotButton != null)
         {
             slotButton.onClick.AddListener(OnClickButton);
         }
 
+        // 설정된 Item 가격 표시
         silverPriceText.text = silverPrice.ToString();
         goldPriceText.text = goldPrice.ToString();
 
@@ -50,10 +53,11 @@ public class ShopButton : MonoBehaviour
             return;
         }
 
+        // 현재 재화가 아이템의 가격을 만족하는지
         bool silverCheck = currencyData.silverAmount >= silverPrice;
         bool goldCheck = currencyData.goldAmount >= goldPrice;
 
-        if (silverCheck && goldCheck)
+        if ((silverCheck && goldCheck)&& canvasInventory.items.Count == 0)
         {
             currencyData.silverAmount -= silverPrice;
             currencyData.goldAmount -= goldPrice;

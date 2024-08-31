@@ -17,3 +17,11 @@ public class ClearAdjustment : MonoBehaviour
     }
 
 }
+
+
+/* //Coin Eat,,, Drag, CurrencyData
+     public CurrencyData currencyData;
+
+     currencyData.curSilverAmount += ...;
+
+ */
