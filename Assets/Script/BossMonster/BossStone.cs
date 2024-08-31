@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,13 +14,20 @@ public class BossStone : MonoBehaviour
     float ScaleX;
     [SerializeField] float StoneTimer;
     [SerializeField] float AirTime;
+    Transform WarningRange;
     // Update is called once per frame
     private void Start()
     {
+        WarningRange = transform.GetChild(1);
+        WarningRange.GetComponent<MeshRenderer>().enabled = true;
+
+        WarningRange.localScale += new Vector3(0, 100, 0);
         StoneTimer = 0;
-        AirTime = Random.Range(1.5f, 2.5f);
+        AirTime = Random.Range(1.5f, 1.5f);
         ScaleY = (transform.localScale.y/2);
         ScaleX = (transform.localScale.x/2);
+        float RangeScaleY = WarningRange.transform.localScale.y;
+        WarningRange.position = new Vector3(transform.position.x, transform.position.y - (RangeScaleY+ScaleY), transform.position.z);
     }
     void Update()
     {
@@ -48,7 +56,7 @@ public class BossStone : MonoBehaviour
         {
             if (isGround)
             {
-
+                
 
                 if (FixPositon.y >= transform.position.y +MAXDistanceY)
                 {
@@ -78,6 +86,7 @@ public class BossStone : MonoBehaviour
             isGround = true;
             transform.position = new Vector3(transform.position.x, FixPositon.y + ScaleY, transform.position.z);
             FallingSpeed = 5.0f;
+            WarningRange.GetComponent<MeshRenderer>().enabled = false;
         }
 
     }
@@ -109,4 +118,5 @@ public class BossStone : MonoBehaviour
     {
         return isGround;
     }
+
 }

@@ -930,6 +930,7 @@ MonoBehaviour:
   FallingHeight: 0
   MinDis: 0
   MaxDis: 0
+  StoneCount: 0
 --- !u!114 &2047955183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 1425453894}
+  Count: 0
 --- !u!1001 &648347967329790547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -991,9 +993,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3988710343407449323, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5002227173076414375, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226666048010632908, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226666048010632908, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226666048010632908, guid: 97b2b70fdfffe0f4cb3a9f081fb31b78, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1010,7 +1028,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1983824068102546415, guid: 3a9822d7e1ecbff48b96a68eab7dd105, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.32
+      value: 30.18
       objectReference: {fileID: 0}
     - target: {fileID: 1983824068102546415, guid: 3a9822d7e1ecbff48b96a68eab7dd105, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1018,7 +1036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1983824068102546415, guid: 3a9822d7e1ecbff48b96a68eab7dd105, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1983824068102546415, guid: 3a9822d7e1ecbff48b96a68eab7dd105, type: 3}
       propertyPath: m_LocalRotation.w

@@ -192,12 +192,17 @@ public class InstantKilAttack2 : Node
                 boss.SetPlayKillPattern2(true);
                 //boss.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20.0f);
                 Debug.Log("Play Kill Pattern 2");
-                
+                OnKillPattern();
                 boss.SetPlayKillCount(true);
                 return state = NodeState.Running;
             }
             return state = NodeState.Running;
         }
+    }
+
+    void OnKillPattern()
+    {
+        boss.GetComponent<BossSpecialGernerate>().enabled = true;
     }
 }
 
