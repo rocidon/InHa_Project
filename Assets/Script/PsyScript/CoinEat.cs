@@ -10,7 +10,11 @@ public class CoinEat : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+<<<<<<< HEAD
             //collision.gameObject.GetComponent<PlayerMove>().coin++;
+=======
+            collision.gameObject.GetComponent<PlayerMovePsy>().coin++;
+>>>>>>> ParkSinYoung
             Destroy(this.gameObject);
         }
     }
