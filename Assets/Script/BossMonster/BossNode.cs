@@ -311,10 +311,21 @@ public class InLongRange : Node
 }
 public class ProjectileAttackPattern : Node
 {
+    BossMonster1 Boss;
+    
     public ProjectileAttackPattern() { }
+    public ProjectileAttackPattern(BossMonster1 boss) {
+        Boss = boss;
+    }
     public override NodeState Evaluate()
     {
-        return state = NodeState.Running;
+        if(Boss.BossCount == 0)
+        {
+            Boss.ThrowStone();
+            Boss.BossCount = 1;
+        }
+
+        return state = NodeState.Success;
         throw new NotImplementedException();
     }
 }
