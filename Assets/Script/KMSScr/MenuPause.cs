@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;     
-
+using UnityEngine.SceneManagement;
+using TMPro;
 public class PauseMenu : MonoBehaviour
 {
     public bool GameIsPaused;
     public GameObject pauseMenuCanvas;
 
+    [SerializeField] private TMP_Text sceneNameText;
+
     private void Start()
     {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        sceneNameText.text = currentSceneName;
         pauseMenuCanvas.SetActive(false);
     }
     void Update()

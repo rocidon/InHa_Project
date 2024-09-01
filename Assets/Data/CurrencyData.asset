@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e5949ec97e0d849baf689ca2027f7a, type: 3}
   m_Name: CurrencyData
   m_EditorClassIdentifier: 
-  silverImage: {fileID: 21300000, guid: f4799fd720ce8794691c2fa58f51f96b, type: 3}
-  goldImage: {fileID: 21300000, guid: 467461e28266fe44d8ea1b1ce96f60a1, type: 3}
-  silverAmount: 300
-  goldAmount: 300
+  silverImage: {fileID: 21300000, guid: 6558d9100ad9cb340b14a0aa4586d94d, type: 3}
+  goldImage: {fileID: 21300000, guid: 7d7113f684eafc94290836e2565245f9, type: 3}
+  silverAmount: 0
+  goldAmount: 0
   curSilverAmount: 0
   curGoldAmount: 0
