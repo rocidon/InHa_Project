@@ -14,12 +14,10 @@ public abstract class Node
     protected NodeState state;
     public Node parentNode;
     protected List<Node> childrenNode = new List<Node>();
-    public static float NodeTimer;
     //public float NodeTimer;
     public Node()
     {
         parentNode = null;
-        NodeTimer = 0f;
         //Anim = t
     }
     public Node(List<Node> children)

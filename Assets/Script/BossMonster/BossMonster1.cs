@@ -10,6 +10,9 @@ public class BossMonster1 : BossBehaviorTree
     bool InstantKillPattern;
     bool isPlayKillPattern1;
     bool isPlayKillPattern2;
+    int JumpAttackCount;
+    int ProjectileAttackCount;
+    
     void Start()
     {
         //Debug.Log("Start BossMonster1");
@@ -24,8 +27,10 @@ public class BossMonster1 : BossBehaviorTree
         NormalAttackCount = 0;
         isPlayKillPattern1 = false;
         isPlayKillPattern2 = false;
-        _Boss = this;
+        speed = 5.0f;
         BossCount = 0;
+        JumpAttackCount = 0;
+        ProjectileAttackCount = 0;
         _Health = _MaxHealth;
         //Value setting Before this Line
         SetRootNode();
@@ -66,6 +71,20 @@ public class BossMonster1 : BossBehaviorTree
         p += new Vector3(0, py, 0);
         Instantiate(Stone, p , Quaternion.Euler(0, 0, 0));
     }
+
+    public int getJumpAtkCount()
+    {
+        return JumpAttackCount;
+    }
+    public int getProjectileAtkCount()
+    {
+        return ProjectileAttackCount;
+    }
+    public void AddProjectileAtkCount(int val)
+    {
+        ProjectileAttackCount += val;
+    }
+
 }
 
 

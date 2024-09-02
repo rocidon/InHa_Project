@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,39 +26,67 @@ public class TestNode : Node
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Timer : " + TestTimer);
+        //Debug.Log("Timer : " + TestTimer);
         TestTimer += Time.deltaTime;
         if (TestTimer > 3.0f)
         {
+            Debug.Log("Time OUT! Current : " + TestTimer);
+            TestTimer = 0.0f;
             return state = NodeState.Failure;
         }
         return state = NodeState.Running;
     }
 }
+public class TestNode2 : Node
+{
+    public TestNode2()
+    {
+        Debug.Log("This is Test2");
+    }
+    public override NodeState Evaluate()
+    {
+        Debug.Log("This is Tets2 Evaluate");
+
+        return state = NodeState.Running;
+    }
+}
+public class IDLE : Node
+{
+    BossMonster1 boss;
+    public IDLE()
+    {}
+    public IDLE(BossMonster1 boss)
+    {
+        this.boss = boss;
+    }
+    public override NodeState Evaluate()
+    {
+        Debug.Log("Idle State");
+        //animation set idle state
+        return state = NodeState.Running;
+        throw new NotImplementedException();
+    }
+}
 public class ChkHeath : Node
 {
-    Monster monster;
+    BossMonster1 boss;
     float MAXHP;
     public ChkHeath()
     {
 
     }
-    public ChkHeath(Monster monster)
+    public ChkHeath(BossMonster1 boss)
     {
-        this.monster = monster;
-    }
-    public ChkHeath(Transform transform)
-    {
-        monster = transform.GetComponent<Monster>();
+        this.boss = boss;
     }
     public override NodeState Evaluate()
     {
-        MAXHP = monster.GetMaxHP();
+        MAXHP = boss.GetMaxHP();
         float LimitHP = MAXHP * 0.1f;
         
-        if (monster._Health <= LimitHP)
+        if (boss._Health <= LimitHP)
         {
-            if (monster._Health > 0f)
+            if (boss._Health > 0f)
             {
                 Debug.Log("Limit HP : " + LimitHP);
                 return NodeState.Success;
@@ -69,18 +98,20 @@ public class ChkHeath : Node
 
 public class ChkTimer : Node
 {
-    float ChkingTime;
+    float NodeTimer;
+    float ChkTime;
     public ChkTimer(float timer)
     {
-        ChkingTime = timer;
+        ChkTime = timer;
     }
     public override NodeState Evaluate()
     {
+        NodeTimer += Time.deltaTime;
         //Debug.Log("Current Time : " + NodeTimer);
-        if (NodeTimer >= ChkingTime)
-        {
-            NodeTimer = 0;
-            Debug.Log("Over Time! go next Node");
+        if (NodeTimer >= ChkTime)
+        {   
+            NodeTimer = 0.0f;
+            Debug.Log("Over "+ChkTime +" Move Next Node");
             return NodeState.Success;
         }
         return NodeState.Failure;
@@ -88,22 +119,18 @@ public class ChkTimer : Node
 }
 public class NormalAttack : Node
 {
-    Animator Anim;
+    BossMonster1 boss;
     public NormalAttack() {
         
     }
-    public NormalAttack(Transform transform)
-    {
-        Anim = transform.GetComponent<Animator>();
-    }
-    public NormalAttack(Monster monster) {
-        Anim = monster.animator;
+    public NormalAttack(BossMonster1 boss) {
+        this.boss = boss;
     }
 
     public override NodeState Evaluate()
     {
         //Write Animator Parmeter value setting
-        Anim.SetBool("IsNormalAttack", true);
+        //boss.NormalAttack()
         return state = NodeState.Running;
     }
 }
@@ -240,30 +267,28 @@ public class InCloseRange : Node
 {
     //Target and This parmeter 
     float Range;
-    Transform Target;
-    Transform Center;
+
+    GameObject Player;
+    BossMonster1 boss;
     public InCloseRange() {
         Range = 10.0f;
-        Target = null;
-
     }
-    public InCloseRange(Transform Taget, Transform SELF,float range)
+    public InCloseRange(BossMonster1 boss,  GameObject player, float Range = 10.0f)
     {
-        Range = range;
-        this.Target = Taget;
-        Center = SELF;
+        this.boss = boss; 
+        this.Player = player;
+        this.Range = Range;
     }
+
     public override NodeState Evaluate()
     {
-
-        Vector3 v= Target.position - Center.position;
+        Vector3 v = Player.transform.position - boss.transform.position;
         float distance = Vector3.Magnitude(v);
         //Debug.Log(distance);
         if(distance <= Range)
         {
             return state = NodeState.Success;
         }
-
         return state = NodeState.Failure;
     }
 }
@@ -290,31 +315,81 @@ public class NormalAttackCount : Node
 }
 public class JumpAttackPattern : Node
 {
+    BossMonster1 boss;
     public JumpAttackPattern() {
     //Get Monster Class
+    }
+    public JumpAttackPattern(BossMonster1 boss)
+    {
+        this.boss = boss;
     }
     public override NodeState Evaluate()
     {
         //Realize JumpAttackPattern
+        //boss.jumpattack()
         throw new NotImplementedException();
     } 
 }
 public class AnyAttackCount : Node
 {
+    BossMonster1 boss;
+    int Mode;
+    int ChkCount;
     public AnyAttackCount() { }
+    public AnyAttackCount(BossMonster1 boss,int ChkCount=5 ,int Mode=1)
+    {
+        this.boss=boss;
+        this.Mode = Mode;
+    }
     public override NodeState Evaluate()
     {
-        //AnyAttackCount = Normal Attack Count + jump + projectile
+        int AnyAttackCount = boss.NormalAttackCount 
+            + boss.getJumpAtkCount() + boss.getJumpAtkCount();
+        switch (Mode)
+        {
+            case 1:
+                {
+                    if (AnyAttackCount < ChkCount)
+                    {
+                        return state=NodeState.Success;
+                    }
+                    return state = NodeState.Failure;
+                }
+            case 2:
+                {
+                    if(AnyAttackCount >= ChkCount)
+                    {
+                        return state = NodeState.Success;
+                    }
+                    return state = NodeState.Failure;
+                }
+            default:
+                Debug.Log("비교 실패 해당 노드는 실패입니다.");
+                return state = NodeState.Failure;
+        }
+            //Normal Attack Count + jump + projectile
+        
         throw new NotImplementedException();
     }
 }
 public class InLongRange : Node
 {
     float ChkDistance;
+    BossMonster1 boss;
     public InLongRange() { }
+    public InLongRange(BossMonster1 boss, float ChkDistance =10.0f) {
+        this.boss = boss;
+        this.ChkDistance = ChkDistance;
+    }
     public override NodeState Evaluate()
     {
-        //if(Range > ChkDistance) true;
+        Vector3 v = boss.Player.transform.position - boss.transform.position;
+        float Distance = v.magnitude;
+        if(Distance>= ChkDistance)
+        {
+            return NodeState.Success;
+        }
+        return NodeState.Failure;
         throw new NotImplementedException();
     }
 }
@@ -329,13 +404,9 @@ public class ProjectileAttackPattern : Node
     }
     public override NodeState Evaluate()
     {
-        if(Boss.BossCount == 0)
-        {
-            Boss.ThrowStone();
-            Boss.BossCount = 1;
-        }
-
-        return state = NodeState.Success;
+        Boss.ThrowStone();
+        Boss.AddProjectileAtkCount(1);
+        return state = NodeState.Running;
         throw new NotImplementedException();
     }
 }
@@ -383,15 +454,22 @@ public class ChasePlayer : Node
         this.Center = Center;
         Anim = this.Center.GetComponent<Animator>();
     }
+    public ChasePlayer(BossMonster1 boss)
+    {
+        this.boss = boss;
+        Center = boss.transform;
+        Target = boss.Player.transform;
+        Anim = boss.GetComponent <Animator>();
+    }
     public override NodeState Evaluate()
     {
-        Debug.Log("Move");
+        Debug.Log("Move To Player");
         Vector3 fv = new Vector3(Target.position.x - Center.position.x,0,0);
         fv.Normalize();
-        Debug.Log(fv);
+        Debug.Log("Vector :" + fv);
         Center.forward = fv;
-        Center.transform.Translate(Vector3.forward * Time.deltaTime * 2);
-        //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime);
+        Center.transform.Translate(Vector3.forward * Time.deltaTime * boss.speed);
+        //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime*boss.speed);
         //if (boss.IsPlayKillPattern1())
         //{
         //    Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
