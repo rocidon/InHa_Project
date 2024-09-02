@@ -10,20 +10,20 @@ public class MoveToTarget : MonoBehaviour
 
     private void OnTriggerStay(Collider other)      // 숨을 수 있을 때 감지
     {
-     
-;
+
+        ;
         if (other.gameObject.CompareTag("FloorOnPosition") && Input.GetKey(KeyCode.UpArrow))
         {
             StartCoroutine(Hide());
             Debug.Log("숨었습니다.");
-        
+
         }
 
         if (other.gameObject.CompareTag("HidingPosition") && Input.GetKey(KeyCode.DownArrow))
         {
             StartCoroutine(ReturnToFloor());
             Debug.Log("Floor로 돌아왔습니다.");
-           
+
         }
 
     }
