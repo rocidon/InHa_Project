@@ -11,7 +11,7 @@ public class PlayerHpBar : MonoBehaviour
 
     [SerializeField] private PlayerController player;
     //Player 최대 및 초기 체력 설정
-    private float maxHp;
+    private float maxHp = 100;
     private float curHp;
 
     //[SerializeField] private PlayerMove playerMove;
@@ -20,12 +20,16 @@ public class PlayerHpBar : MonoBehaviour
 
     void Start()
     {
-        maxHp = player.maxHp;
-        curHp = player.curHp;
-
         curHp = maxHp;
         playerHp.maxValue = maxHp;
         playerHp.value = curHp;
+
+        //maxHp = player.maxHp;
+        //curHp = player.curHp;
+
+        //curHp = maxHp;
+        //playerHp.maxValue = maxHp;
+        //playerHp.value = curHp;
 
 
         /*  HP가 설정된 플레이어 한테서 정보 가져와야함.

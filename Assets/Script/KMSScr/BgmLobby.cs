@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class MusicController : MonoBehaviour
+public class BgmLobby : MonoBehaviour
 {
     private void Awake()
     {
