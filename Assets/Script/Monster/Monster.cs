@@ -12,7 +12,7 @@ public class Monster : MonoBehaviour
     public float speed;
     public Animator animator;
     protected bool IsDying;
-
+    protected bool Isaction;
     private enum MonsterState
     {
         Idle,

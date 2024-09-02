@@ -17,6 +17,7 @@ public class BossMonster1 : BossBehaviorTree
     {
         //Debug.Log("Start BossMonster1");
         //_Health = 1000f;
+        Isaction = false;
         _MaxHealth = 1000f;
         _Atk = 100f;
         _Def = 20f;
@@ -84,7 +85,14 @@ public class BossMonster1 : BossBehaviorTree
     {
         ProjectileAttackCount += val;
     }
-
+    public bool getIsAction()
+    {
+        return Isaction;
+    }
+    public void SetIsAction(bool val)
+    {
+        Isaction = val;
+    }
 }
 
 

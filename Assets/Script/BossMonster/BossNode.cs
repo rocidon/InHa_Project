@@ -441,6 +441,7 @@ public class ChasePlayer : Node
     Transform Center;
     Animator Anim;
     BossMonster1 boss;
+    Vector3 GoalPosition;
 
     public ChasePlayer() { }
     public ChasePlayer(Transform Target, BossMonster1 boss) {
@@ -463,24 +464,52 @@ public class ChasePlayer : Node
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Move To Player");
+        //Debug.Log("Move To Player");
         Vector3 fv = new Vector3(Target.position.x - Center.position.x,0,0);
         fv.Normalize();
         Debug.Log("Vector :" + fv);
         Center.forward = fv;
-        Center.transform.Translate(Vector3.forward * Time.deltaTime * boss.speed);
-        //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime*boss.speed);
-        //if (boss.IsPlayKillPattern1())
-        //{
-        //    Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
-        //}
-        //else
-        //{
-        //    Debug.Log("No Play Pattern 1 This is Pattern 2");
-        //}
-        ////set Animation Parameter value
-
+        GoalPosition = (fv*boss.speed) + Center.position;
+        boss.StartCoroutine(Pattern());
+        //Center.transform.Translate(Vector3.forward * Time.deltaTime * boss.speed);
         return state = NodeState.Running;
-;
+    }
+
+    public IEnumerator Pattern()
+    {
+        boss.SetIsAction(true);
+        bool PatternCompelte = false;
+        //0.5 °Å¸® Â÷
+        while (true)
+        {
+            Vector3 vv = boss.transform.position - GoalPosition;
+            float dis = vv.magnitude;
+            if (dis <= 0.5f)
+            {
+                PatternCompelte = true;
+                break;
+            }
+            Debug.Log("Move To Plalyer");
+            Center.transform.Translate(Vector3.forward * Time.deltaTime * boss.speed);
+        }
+        yield return new WaitUntil(() => PatternCompelte == true);
+        boss.SetIsAction(false);
+    }
+}
+
+public class IsAction : Node
+{
+    BossMonster1 Boss;
+    public IsAction(BossMonster1 boss) {
+        Boss = boss;
+    }
+    public override NodeState Evaluate()
+    {
+        if (Boss.getIsAction())
+        {
+            return state = NodeState.Failure;
+        }
+        return state = NodeState.Success;
+        throw new NotImplementedException();
     }
 }
