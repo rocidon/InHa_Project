@@ -109,11 +109,12 @@ public class BossBehaviorTree : BehaviorTree
         {
             //Running상태면 같이 실행된다고 생각하면 될거 같다.
            new InCloseRange(Player.transform, Boss.transform, 5),
-           new SequenceNode(new List<Node> {
-                new ProjectileAttackPattern(_Boss)
+           //new SequenceNode(new List<Node> {
+           //     new ProjectileAttackPattern(_Boss)
 
-           }),
-           new TestNode()
+           //}),
+           new TestNode(),
+
         });
         //*/
         return Root;
