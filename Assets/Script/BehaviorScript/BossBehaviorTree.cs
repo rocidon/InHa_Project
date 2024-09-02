@@ -96,17 +96,30 @@ public class BossBehaviorTree : BehaviorTree
            //new InCloseRange(Player.transform, Boss.transform, 5),
            //new SequenceNode(new List<Node> {
            //     new ProjectileAttackPattern(_Boss)
-
+           
            //}),
+
            new SequenceNode(new List<Node>
            {
-               new IsAction(Boss),
-               new ChasePlayer(Boss),
-               new IDLE(Boss)
+              new ChkTimer(1.0f),
+              new IsAction(Boss),
+              new InLongRange(Boss,4),
+              new ProjectileAttackPattern(Boss)
            }),
-
-           
-
+           new SelectorNode(new List<Node>
+           {
+                new SequenceNode(new List<Node>
+                {
+                    new IsAction(Boss),
+                    new InCloseRange(Boss, Player, 1),
+                    new IDLE()
+                }),
+                new SequenceNode(new List<Node>
+                {
+                    new IsAction(Boss),
+                    new ChasePlayer(Boss)
+                })
+           })
         });
         //*/
         return Root;

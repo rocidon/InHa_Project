@@ -18,6 +18,7 @@ public abstract class Node
     public Node()
     {
         parentNode = null;
+        
         //Anim = t
     }
     public Node(List<Node> children)

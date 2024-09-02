@@ -45,6 +45,7 @@ public class TestNode2 : Node
     }
     public override NodeState Evaluate()
     {
+
         Debug.Log("This is Tets2 Evaluate");
 
         return state = NodeState.Running;
@@ -396,19 +397,38 @@ public class InLongRange : Node
 public class ProjectileAttackPattern : Node
 {
     BossMonster1 Boss;
-    
+    Animator Animator;
+    float AnimTime;
     public ProjectileAttackPattern() { }
-    public ProjectileAttackPattern(BossMonster1 boss) {
+    public ProjectileAttackPattern(BossMonster1 boss)
+    {
         Boss = boss;
+        Animator = Boss.GetComponentInChildren<Animator>();
 
+        //AnimationClip clip = animator.GetAnimatorTransitionInfo(0);
+        //AnimTime = Boss.
     }
     public override NodeState Evaluate()
     {
+
         Boss.ThrowStone();
+        Boss.StartCoroutine(Pattern());
         Boss.AddProjectileAtkCount(1);
         return state = NodeState.Running;
         throw new NotImplementedException();
     }
+    IEnumerator Pattern()
+    {
+        Boss.SetIsAction(true);
+        yield return new WaitForSeconds(0.01f);
+        AnimTime = Animator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Animation Time : " + AnimTime);
+        Debug.Log("start Action");
+        yield return new WaitForSeconds(AnimTime);
+        Debug.Log("End Action");
+        Boss.SetIsAction(false);
+    }
+
 }
 public class SpecialAttackPattern1 : Node
 {
@@ -470,29 +490,14 @@ public class ChasePlayer : Node
         Debug.Log("Vector :" + fv);
         Center.forward = fv;
         GoalPosition = (fv*boss.speed) + Center.position;
-        boss.StartCoroutine(Pattern());
-        //Center.transform.Translate(Vector3.forward * Time.deltaTime * boss.speed);
+        Center.transform.Translate(Vector3.forward * Time.deltaTime);
         return state = NodeState.Running;
     }
 
     public IEnumerator Pattern()
     {
         boss.SetIsAction(true);
-        bool PatternCompelte = false;
-        //0.5 °Å¸® Â÷
-        while (true)
-        {
-            Vector3 vv = boss.transform.position - GoalPosition;
-            float dis = vv.magnitude;
-            if (dis <= 0.5f)
-            {
-                PatternCompelte = true;
-                break;
-            }
-            Debug.Log("Move To Plalyer");
-            Center.transform.Translate(Vector3.forward * Time.deltaTime * boss.speed);
-        }
-        yield return new WaitUntil(() => PatternCompelte == true);
+        yield return new WaitForSeconds(1.5f);
         boss.SetIsAction(false);
     }
 }
@@ -507,9 +512,12 @@ public class IsAction : Node
     {
         if (Boss.getIsAction())
         {
+            Debug.Log("Now actiong");
             return state = NodeState.Failure;
         }
+        Debug.Log("No action Next Node");
         return state = NodeState.Success;
         throw new NotImplementedException();
     }
 }
+
