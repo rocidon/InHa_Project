@@ -6,7 +6,7 @@ public class BossMonster1 : BossBehaviorTree
 {
     public int NormalAttackCount;
     public int BossCount;
-
+    public GameObject Stone;
     bool InstantKillPattern;
     bool isPlayKillPattern1;
     bool isPlayKillPattern2;
@@ -55,6 +55,16 @@ public class BossMonster1 : BossBehaviorTree
     }
     public bool IsPlayKillPattern2() { 
         return isPlayKillPattern2;
+    }
+
+    public void ThrowStone()
+    {
+        float px = transform.localScale.x;
+        float py = transform.GetComponent<CapsuleCollider>().height;
+        Vector3 p = transform.position;
+        p += transform.forward;
+        p += new Vector3(0, py, 0);
+        Instantiate(Stone, p , Quaternion.Euler(0, 0, 0));
     }
 }
 
