@@ -12,17 +12,25 @@ using UnityEngine;
 public class TestNode : Node
 {
     BossMonster1 boss;
+    float TestTimer;
     public TestNode()
     {
-        //Debug.Log("This is TestNode");
+        Debug.Log("incloseRange Create!!");
+        TestTimer = 0.0f;
     }
     public TestNode(BossMonster1 boss)
     {
         this.boss = boss;
+        //Debug.Log("incloseRange Create!!");
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("This is TestNode Running");
+        Debug.Log("Timer : " + TestTimer);
+        TestTimer += Time.deltaTime;
+        if (TestTimer > 3.0f)
+        {
+            return state = NodeState.Failure;
+        }
         return state = NodeState.Running;
     }
 }
@@ -237,6 +245,7 @@ public class InCloseRange : Node
     public InCloseRange() {
         Range = 10.0f;
         Target = null;
+
     }
     public InCloseRange(Transform Taget, Transform SELF,float range)
     {
@@ -311,10 +320,22 @@ public class InLongRange : Node
 }
 public class ProjectileAttackPattern : Node
 {
+    BossMonster1 Boss;
+    
     public ProjectileAttackPattern() { }
+    public ProjectileAttackPattern(BossMonster1 boss) {
+        Boss = boss;
+
+    }
     public override NodeState Evaluate()
     {
-        return state = NodeState.Running;
+        if(Boss.BossCount == 0)
+        {
+            Boss.ThrowStone();
+            Boss.BossCount = 1;
+        }
+
+        return state = NodeState.Success;
         throw new NotImplementedException();
     }
 }

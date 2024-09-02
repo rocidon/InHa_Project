@@ -74,3 +74,19 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Adaptive Performance.meta
+Assets/Adaptive Performance/Settings.meta
+Assets/Adaptive Performance/Settings/Simulator Provider Settings.asset
+Assets/Adaptive Performance/Settings/Simulator Provider Settings.asset.meta
+Assets/Data/Image/GoldCoinsIcon.png
+Assets/Data/Image/GoldCoinsIcon.png.meta
+Assets/Data/Image/SilverCoinsIcon.png
+Assets/Data/Image/SilverCoinsIcon.png.meta
+Assets/Script/KMSScr/BgmLobby.cs.meta
+Assets/Script/KMSScr/IntroText.cs
+Assets/Script/KMSScr/IntroText.cs.meta
+Assets/Script/KMSScr/MenuPause.cs.meta
+ProjectSettings/BurstAotSettings_Android.json
+ProjectSettings/BurstAotSettings_StandaloneWindows.json
+ProjectSettings/BurstAotSettings_WebGL.json
+ProjectSettings/CommonBurstAotSettings.json
