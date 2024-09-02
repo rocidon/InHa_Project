@@ -20,8 +20,9 @@ public class BossBehaviorTree : BehaviorTree
     //이곳에서 행동 트리 설정
     protected override Node SetupBehaviorTree()
     {
-        // 8월 24일 기준 해당 노드 수정 해야함.
-        /*Node Root = new SelectorNode(new List<Node>
+
+        ///*
+        Node Root = new SelectorNode(new List<Node>
         {
             new SequenceNode(new List<Node>
             {
@@ -31,10 +32,11 @@ public class BossBehaviorTree : BehaviorTree
                     new SequenceNode(new List<Node>
                     {
                         new ChkHeath(Boss),
-                        new InstantKilAttack1(),
-                        new InstantKilAttack2()
+                        new IsPlayInstantKill(_Boss),
+                        new InstantKilAttack1(_Boss),
+                        new InstantKilAttack2(_Boss)
                     }),
-                    new Dying()
+                    new Dying(_Boss)
                 })
             }),
             new SequenceNode(new List<Node>
@@ -101,7 +103,8 @@ public class BossBehaviorTree : BehaviorTree
             //add Chase Player Node here
             new ChasePlayer()
         });
-        */
+        //*/
+        /*
         Node Root = new SelectorNode(new List<Node>
         {
             //Running상태면 같이 실행된다고 생각하면 될거 같다.
@@ -113,7 +116,8 @@ public class BossBehaviorTree : BehaviorTree
 
            }),
            new TestNode()
-        }); 
+        });
+        //*/
         return Root;
     }
 }

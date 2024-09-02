@@ -29,6 +29,7 @@ public class TestNode : Node
 public class ChkHeath : Node
 {
     Monster monster;
+    float MAXHP;
     public ChkHeath()
     {
 
@@ -43,14 +44,14 @@ public class ChkHeath : Node
     }
     public override NodeState Evaluate()
     {
-        //Debug.Log(monster._Health);
-        //Debug.Log(monster.GetName());
-        //Debug.Log(monster._Health);
-        if (monster._Health <= 50.0f)
+        MAXHP = monster.GetMaxHP();
+        float LimitHP = MAXHP * 0.1f;
+        
+        if (monster._Health <= LimitHP)
         {
             if (monster._Health > 0f)
             {
-                Debug.Log("HP <= 50 && > 0");
+                Debug.Log("Limit HP : " + LimitHP);
                 return NodeState.Success;
             }
         }
@@ -210,20 +211,20 @@ public class Dying : Node
 {
     Animator Anim;
     Transform t;
+    BossMonster1 Boss;
     public Dying() { }
     public Dying(Transform transform) {
         Anim = transform.GetComponent <Animator>();
         t = transform;
     }
+    public Dying(BossMonster1 boss)
+    {
+        Boss = boss;
+    }
     public override NodeState Evaluate()
     {
-        if(NodeTimer > 3.0f) {
-            NodeTimer = 0;
-            //SetAnimator Dying value
-            //Play Dying Event
-            return state = NodeState.Success;
-        }
-        return state = NodeState.Running;
+        Boss.Dying();
+        return state = NodeState.Success;
     }
 }
 
@@ -245,6 +246,7 @@ public class InCloseRange : Node
     }
     public override NodeState Evaluate()
     {
+
         Vector3 v= Target.position - Center.position;
         float distance = Vector3.Magnitude(v);
         //Debug.Log(distance);
@@ -369,15 +371,15 @@ public class ChasePlayer : Node
         Center.forward = fv;
         Center.transform.Translate(Vector3.forward * Time.deltaTime * 2);
         //Center.position = Vector3.Lerp(Center.position, Target.position, Time.deltaTime);
-        if (boss.IsPlayKillPattern1())
-        {
-            Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
-        }
-        else
-        {
-            Debug.Log("No Play Pattern 1 This is Pattern 2");
-        }
-        //set Animation Parameter value
+        //if (boss.IsPlayKillPattern1())
+        //{
+        //    Debug.Log("Play Complete Pattern 1 and Now Playing Pattern 2");
+        //}
+        //else
+        //{
+        //    Debug.Log("No Play Pattern 1 This is Pattern 2");
+        //}
+        ////set Animation Parameter value
 
         return state = NodeState.Running;
 ;

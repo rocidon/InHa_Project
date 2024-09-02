@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public float _MaxHealth;
     public float _Health;
     public float _Atk;
     public float _Def;
     public FSM _fsm;
     public float speed;
     public Animator animator;
+    protected bool IsDying;
 
     private enum MonsterState
     {
@@ -32,6 +34,11 @@ public class Monster : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public float GetMaxHP()
+    {
+        return _MaxHealth;
     }
     public virtual void Movement()
     {
