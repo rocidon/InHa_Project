@@ -98,27 +98,23 @@ public class BossBehaviorTree : BehaviorTree
            //     new ProjectileAttackPattern(_Boss)
            
            //}),
-
-           new SequenceNode(new List<Node>
-           {
-              new ChkTimer(1.0f),
-              new IsAction(Boss),
-              new InLongRange(Boss,4),
-              new ProjectileAttackPattern(Boss)
-           }),
+           new IsAction(Boss),
            new SelectorNode(new List<Node>
            {
-                new SequenceNode(new List<Node>
-                {
-                    new IsAction(Boss),
-                    new InCloseRange(Boss, Player, 1),
-                    new IDLE()
-                }),
-                new SequenceNode(new List<Node>
-                {
-                    new IsAction(Boss),
-                    new ChasePlayer(Boss)
-                })
+               new SequenceNode(new List<Node>
+               {
+                   new ChkTimer(1.5f),
+                   new ProjectileAttackPattern(Boss)
+               }),
+               new SelectorNode(new List<Node>
+               {
+                   new SequenceNode(new List<Node>
+                   {
+                       new InCloseRange(Boss, Player,3),
+                       new IDLE(Boss)
+                   }),
+                   new ChasePlayer(Boss)
+               })
            })
         });
         //*/

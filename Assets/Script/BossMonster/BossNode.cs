@@ -64,6 +64,7 @@ public class IDLE : Node
     {
         Debug.Log("Idle State");
         //animation set idle state
+        boss.GetComponentInChildren<Animator>().SetBool("IsIdle", true);
         return state = NodeState.Running;
         throw new NotImplementedException();
     }
@@ -410,7 +411,7 @@ public class ProjectileAttackPattern : Node
     }
     public override NodeState Evaluate()
     {
-
+        Debug.Log("´øÁö±â");
         Boss.ThrowStone();
         Boss.StartCoroutine(Pattern());
         Boss.AddProjectileAtkCount(1);
@@ -420,12 +421,20 @@ public class ProjectileAttackPattern : Node
     IEnumerator Pattern()
     {
         Boss.SetIsAction(true);
-        yield return new WaitForSeconds(0.01f);
-        AnimTime = Animator.GetCurrentAnimatorStateInfo(0).length;
+        Animator.SetBool("IsProjectileAttack", true);      
+        Animator.SetBool("IsIdle", false);      
+
+        yield return new WaitForSeconds(0.1f);
+
+        AnimTime = Boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+
         Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Action");
-        yield return new WaitForSeconds(AnimTime);
+        yield return new WaitForSeconds(AnimTime-0.2f);
         Debug.Log("End Action");
+
+        Animator.SetBool("IsProjectileAttack", false);
+        Animator.SetBool("IsIdle", true);
         Boss.SetIsAction(false);
     }
 
@@ -484,13 +493,12 @@ public class ChasePlayer : Node
     }
     public override NodeState Evaluate()
     {
-        //Debug.Log("Move To Player");
+        Debug.Log("Move To Player");
         Vector3 fv = new Vector3(Target.position.x - Center.position.x,0,0);
         fv.Normalize();
         Debug.Log("Vector :" + fv);
-        Center.forward = fv;
-        GoalPosition = (fv*boss.speed) + Center.position;
-        Center.transform.Translate(Vector3.forward * Time.deltaTime);
+        boss.transform.forward = fv;
+        boss.transform.Translate(Vector3.forward * Time.deltaTime*2.0f);
         return state = NodeState.Running;
     }
 
@@ -513,10 +521,10 @@ public class IsAction : Node
         if (Boss.getIsAction())
         {
             Debug.Log("Now actiong");
-            return state = NodeState.Failure;
+            return state = NodeState.Success;
         }
         Debug.Log("No action Next Node");
-        return state = NodeState.Success;
+        return state = NodeState.Failure;
         throw new NotImplementedException();
     }
 }

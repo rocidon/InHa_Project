@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,13 @@ public class BossMonster1 : BossBehaviorTree
     int JumpAttackCount;
     int ProjectileAttackCount;
     
+    public enum ANIMATIONVALUE
+    {
+        IDLE,
+        NORMALATTACK,
+        PROJECTILEATTACK,
+        WALKING
+    }
     void Start()
     {
         //Debug.Log("Start BossMonster1");
