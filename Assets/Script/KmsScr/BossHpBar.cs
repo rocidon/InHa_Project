@@ -6,6 +6,8 @@ public class BossHpBar : MonoBehaviour
     // Slider UI 설정
     [SerializeField] private Slider bossHp;
 
+
+    // 따로 참조 받으면 지워도 됨.
     // boss 최대 및 초기 체력 설정
     public float maxHp = 100;  
     private float curHp;
@@ -46,6 +48,7 @@ public class BossHpBar : MonoBehaviour
 
 
 
+    // 테스트용
     private void OnCollisionEnter(Collision collision)
     {
         

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 382c349210acdb848a5b083250aa792c, type: 3}
   itemName: "[\uC77C\uBC18] \uD65C"
-  attackPower: 111
+  attackPower: 999
   durability: 100

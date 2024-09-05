@@ -9,9 +9,9 @@ public class PlayerHpBar : MonoBehaviour
     [SerializeField]private Slider playerHp;
 
 
-    [SerializeField] private PlayerController player;
+    //[SerializeField] private PlayerController player;
     //Player 최대 및 초기 체력 설정
-    private float maxHp = 100;
+    public float maxHp = 100;
     private float curHp;
 
     //[SerializeField] private PlayerMove playerMove;
@@ -53,6 +53,8 @@ public class PlayerHpBar : MonoBehaviour
     {
         playerHp.value = curHp;
     }
+
+    // 테스트용
     private void OnCollisionEnter(Collision collision)
     {
         // 충돌한 오브젝트 태그가 "Enemy"일 때
