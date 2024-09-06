@@ -25,7 +25,6 @@
 /[Aa]ssets/Model/Character_Model/
 /[Aa]ssets/Model/Animation/
 /[Aa]ssets/ExternalAssets/**/*
-!/[Aa]ssets/ExternalAssets/*.meta
 !/[Aa]ssets/ExternalAssets/**/*.meta
 
 # Visual Studio cache directory
