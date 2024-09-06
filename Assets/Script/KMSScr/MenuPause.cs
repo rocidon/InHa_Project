@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Rendering;
 public class PauseMenu : MonoBehaviour
 {
     public bool GameIsPaused;
@@ -35,13 +36,20 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuCanvas.SetActive(false);
+
+        // 배경음이 확정이 된다면, 전체 불륨이 아닌 배경음으로 바꿀예정.
+        AudioListener.volume = 1f;
+
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     public void Pause()
     {
+
         pauseMenuCanvas.SetActive(true);
+
+        AudioListener.volume = 0.4f;
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -68,6 +76,24 @@ public class PauseMenu : MonoBehaviour
             Pause();
         }
 
+
+    }
+
+
+    public void ReStartButton()
+    {
+        // 현재 활성화된 씬
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // 현재 씬을 로드
+        Resume();
+        SceneManager.LoadScene(currentScene.name);
+
+
+        // 필요 예상
+        // 현재 씬 피통 = 씬 전환될 때 플레이어 현재 피통.
+        // 기본으로 씬안에 적이 씬이 로드될때 피통이 초기화가 되거나 따로 설정.
+        // 
 
     }
 

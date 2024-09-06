@@ -17,6 +17,7 @@ public class Intro : MonoBehaviour
 
         if (transform.position.y >= 3000)
         {
+            SceneManager.LoadScene("TutorialScene_Psy");
             Debug.Log("ASDFSADSDF");
         }
         else
