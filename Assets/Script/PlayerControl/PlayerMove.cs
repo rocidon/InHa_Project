@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
@@ -20,14 +21,18 @@ public class PlayerMove : MonoBehaviour
     float GravityScale = 50f;       // 중력 변수
     float MaxHP = 100f;
     public float CurrentHP;
+    /* public float _Health;*/
     /* float PlayerAttackDamage = 5f;*/
-    float EnemyAttackDamage = 20f;
+    float Damage = 20f;
     /*public GameObject Bullet;   
-    public Transform FirePos;   */   
+    public Transform FirePos;   */
     public Animator anim;
     public bool IsPlayerDead = false;
- 
+    bool DontAttack = false;
+
     bool IsBanControl = false;
+    float delayTime = 0.0f;
+    [SerializeField] private float stopTime =1.5f;
     /* bool IsConflict = false;*/
 
     private float AttackTime;
@@ -42,6 +47,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip NormalAttack;
     public AudioClip SpecialAttack;
 
+    public NormalMonster normalmonster;
 
     void Start()
     {
@@ -50,75 +56,92 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
+        normalmonster = GameObject.Find("Enemy").GetComponent<NormalMonster>();
     }
 
     void Update()
     {
-        if (!IsBanControl)
+        if (IsBanControl)
         {
-            float xInput = Input.GetAxis("Horizontal");         // GetAxis("Horizontal")로 Player 방향 움직임
-            float xSpeed = xInput * Speed * Time.deltaTime; // Player가 움직이는 방향(xInput)으로 Speed를 곱해서 속도(xSpeed)를 정의한다.
-
-
-            if (xInput == 0f)
+            delayTime += Time.deltaTime;
+            if (delayTime > stopTime)
             {
-                anim.SetBool("Walk", false);
+                IsBanControl = false;
+                delayTime = 0.0f;
             }
-            else
-            {
-                anim.SetBool("Walk", true);
-                /*PlaySound(Walk, Player);*/
-            }
+            return;
+        }
 
-            Vector3 newVelocity = new Vector3(xSpeed * 0.8f, 0f, 0f);      // 위의 xSpeed를 새로운 Vector3, newVelocity로 정의한다.
-            transform.position += newVelocity;      // transform.position에 newVelocity를 더해 Player가 움직일 수 있도록 한다.
+        float xInput = Input.GetAxis("Horizontal");         // GetAxis("Horizontal")로 Player 방향 움직임
+        float xSpeed = xInput * Speed * Time.deltaTime; // Player가 움직이는 방향(xInput)으로 Speed를 곱해서 속도(xSpeed)를 정의한다.
 
-            if (xInput > 0)     // x축이 양수인 방향으로 움직일 때
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));     // 그 방향을 바라보고(방향이 바뀌지 않음)
 
-            }
-            else if (xInput < 0)    // x축이 음수인 방향으로 움직일 때
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));       // 움직인 방향으로 Player가 회전한다.(y축으로 180도)
-            }
+        if (xInput == 0f)
+        {
+            anim.SetBool("Walk", false);
+        }
+        else
+        {
+            anim.SetBool("Walk", true);
+            /*PlaySound(Walk, Player);*/
+        }
 
-            if (Input.GetKeyDown(KeyCode.Z) && !IsJumping)          // 지면 위에 있고 Z키를 누르면
-            {
-                Rigid.AddForce(transform.up * JumpPower, ForceMode.Impulse);        // transform.up 방향으로 JumpPower만큼 점프한다.
-                IsJumping = true;       // Player가 점프한다.
-                anim.SetTrigger("Jump");
-                PlaySound(Jump, Player);
-            }
+        Vector3 newVelocity = new Vector3(xSpeed * 0.8f, 0f, 0f);      // 위의 xSpeed를 새로운 Vector3, newVelocity로 정의한다.
+        transform.position += newVelocity;      // transform.position에 newVelocity를 더해 Player가 움직일 수 있도록 한다.
 
+        if (xInput > 0)     // x축이 양수인 방향으로 움직일 때
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));     // 그 방향을 바라보고(방향이 바뀌지 않음)
+
+        }
+        else if (xInput < 0)    // x축이 음수인 방향으로 움직일 때
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));       // 움직인 방향으로 Player가 회전한다.(y축으로 180도)
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z) && !IsJumping)          // 지면 위에 있고 Z키를 누르면
+        {
+            Rigid.AddForce(transform.up * JumpPower, ForceMode.Impulse);        // transform.up 방향으로 JumpPower만큼 점프한다.
+            IsJumping = true;       // Player가 점프한다.
+            anim.SetTrigger("Jump");
+            PlaySound(Jump, Player);
+        }
+
+        if (!DontAttack)
+        {
             if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown)
             {
                 anim.SetTrigger("Attack");
                 StoneSlash.Play();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(NormalAttack, Player);
+                IsBanControl = true;
 
             }
+
             if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown)
             {
                 anim.SetTrigger("Attack");
                 ElectricSlash.Play();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(SpecialAttack, Player);
+
             }
         }
+
+
     }
     private void FixedUpdate()
     {
         Rigid.AddForce(Vector3.down * GravityScale);
         // 점프 후 내려올 때 자연스럽게 내려오게 하기 위해 중력(gravityScale)을 곱해준다.
     }
-    void OnCollisionEnter(Collision collision)      // Collision Enter 판정
+    private void OnCollisionEnter(Collision collision)      // Collision Enter 판정
     {
         if (collision.gameObject.CompareTag("Enemy") && !IsPlayerDead)
         {
-
-            CurrentHP -= EnemyAttackDamage;
+            /*CurrentHP -= EnemyAttackDamage;*/
+            TakeDamage(Damage);
 
             if (CurrentHP <= 0)
             {
@@ -150,6 +173,8 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("HidingPosition입니다.");
             /*Rigid.velocity = Vector3.zero;*/      // HidingFloor에서는 velocity가 zero
             Speed = 0f;     // Player의 Speed가 0이 된다.
+            DontAttack = true;      // 검 공격 못함
+            IsJumping = true;       // 점프 못한다.
 
         }
         else if (!collision.gameObject.CompareTag("HidingFloor"))        // Player가 HidingFloor를 밟고 있지 않는 상황이라면
@@ -162,6 +187,8 @@ public class PlayerMove : MonoBehaviour
                 JumpPower = 0f;
                 IsBanControl = true;
             }
+            DontAttack = false;     // 검 공격 가능
+
         }
     }
     void OnDamage()
@@ -190,5 +217,13 @@ public class PlayerMove : MonoBehaviour
         audioPlayer.loop = false;
         audioPlayer.time = 0;
         audioPlayer.Play();
+    }
+
+    public void TakeDamage(float damage)        // damage는 몬스터의 공격력인데 어떻게 받아 들일 수 있는지?
+    {
+        CurrentHP -= damage;
+        Debug.Log("적에게 공격 받았습니다.");
+        //StartCoroutine(OnDamage());
+        //수정필요
     }
 }

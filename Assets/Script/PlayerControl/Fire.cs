@@ -33,7 +33,10 @@ public class Fire : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && !IsShootCoolDown)
             {
+              
+
                 Instantiate(Bullet, FirePos.transform.position, FirePos.transform.rotation);
+
                 anim.SetTrigger("Shoot");
                 ShootTime = 0;
                 StartCoroutine(ShootCoolDown());
