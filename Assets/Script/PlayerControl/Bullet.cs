@@ -11,16 +11,26 @@ public class Bullet : MonoBehaviour
     public float damage = 20.0f;        // 총알 데미지, 몬스터와 충돌 시 데미지가 들어갈 수 있게
     public float force = 1.0f;          // 총알이 날아가는 힘
     private Rigidbody Rigid;
-    bool ShootStop = false;
+    private BoxCollider Collider;
+    bool IsShoot = true;
+
+
     /*Renderer renderer;
     public GameObject target;*/
 
     /*private*/
-    void Start()
+    private void Awake()
     {
         player = GameObject.FindWithTag("RogueHooded");
         Rigid = GetComponent<Rigidbody>();
+        Collider = GetComponent<BoxCollider>();
+        Rigid.isKinematic = true;
+        Collider.isTrigger = true;
+
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f - player.transform.eulerAngles.y));
+    }
+    void Start()
+    {
         Destroy(gameObject, 3f);        // 3초 뒤 총알 프리팹이 사라지도록
         /*renderer = target.GetComponent<Renderer>();*/
         /* Application.targetFrameRate = 60;
@@ -37,26 +47,21 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-
         /*Rigid.AddForce(transform.forward * force);*/
         //180 - player.y방향 
         //90 -> 90   -90 -> 270
-        if (!ShootStop)
-        {
-            transform.Translate(new Vector3(0f, -0.15f, 0f));     // 총알이 이동하는 방향(x축)과 속도
-        }
+
+        if(IsShoot) transform.Translate(new Vector3(0f, -1f, 0f) * 15f * Time.deltaTime);     // 총알이 이동하는 방향(x축)과 속도
+
     }
 
-    void OnCollisionEnter(Collision collision)      // Collision Enter 판정
+    private void OnTriggerEnter(Collider other)
     {
-        ShootStop = true;
-        if (collision.gameObject.CompareTag("Enemy"))
+        if(other.CompareTag("Enemy"))
         {
-            Debug.Log("화살이 적을 맞췄습니다.");
+            Debug.Log("화살로 적을 맞춤");
             GreenHit.Play();
-            GetComponent<Rigidbody>().isKinematic = true;
-            Destroy(gameObject, 3f);
-            /*StartCoroutine("FadeOut");*/
+            IsShoot = false;
         }
     }
 
