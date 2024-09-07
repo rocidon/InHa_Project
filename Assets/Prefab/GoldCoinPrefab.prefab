@@ -150,3 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dca4369113c40d45a333526179380ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyData: {fileID: 11400000, guid: c4a76de789e77cf4fbe1d4fef56f0cb4, type: 2}
+  silverCoin: 2
+  goldCoin: 3

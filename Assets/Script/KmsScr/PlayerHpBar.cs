@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +8,13 @@ public class PlayerHpBar : MonoBehaviour
 {
     // Slider 체력 컴포넌트 할당
     [SerializeField]private Slider playerHp;
+    [SerializeField] private TextMeshProUGUI healthText;
 
 
-    [SerializeField] private PlayerController player;
+    //[SerializeField] private PlayerController player;
     //Player 최대 및 초기 체력 설정
-    private float maxHp = 100;
+    public float maxHp = 100;
     private float curHp;
-
     //[SerializeField] private PlayerMove playerMove;
     //private float maxHp;
     //private float curHp;
@@ -23,6 +24,7 @@ public class PlayerHpBar : MonoBehaviour
         curHp = maxHp;
         playerHp.maxValue = maxHp;
         playerHp.value = curHp;
+        UpdateHealthText();  // 매 프레임마다 텍스트 업데이트
 
         //maxHp = player.maxHp;
         //curHp = player.curHp;
@@ -45,14 +47,24 @@ public class PlayerHpBar : MonoBehaviour
 
     void Update()
     {
+        UpdateHealthText();
+
         UpdateHP();
     }
 
-
+    private void UpdateHealthText()  // 체력 텍스트 업데이트 메서드
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"{curHp}/{maxHp}";
+        }
+    }
     private void UpdateHP()
     {
         playerHp.value = curHp;
     }
+
+    // 테스트용
     private void OnCollisionEnter(Collision collision)
     {
         // 충돌한 오브젝트 태그가 "Enemy"일 때

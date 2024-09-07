@@ -17,8 +17,12 @@ public class CurrencyAmountTextOutput : MonoBehaviour
     public CurrencyData currencyData;
     public Image image;
 
-    public CurrencyType Type; 
+    public CurrencyType Type;
 
+    private void Awake()
+    {
+        
+    }
     void Update()
     {
         UpdateUI();

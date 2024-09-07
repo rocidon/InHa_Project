@@ -17,7 +17,7 @@ public class EnemyHpBar : MonoBehaviour
 
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    //설정된 Enemy의 HP를 받아올때는 다시 해야할수도.
+    // Enemy의 HP를 참조 받을 때는 아래 참고
     //HP가 설정된 스크립트가 있는 오브젝트를 드래그.
 
     // [SerializeField] private (몬스터 HP가 들어가 있는..) (변수명);
@@ -52,14 +52,15 @@ public class EnemyHpBar : MonoBehaviour
         //curHp = maxHp;
         //ㅇㅇㅇ.maxValue = maxHp;
         //ㅇㅇㅇ.value = curHp;
-        //아래 카메라 설정도 해야함
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
         // 체력바 RectTransform 저장
         hpBarTransform = enemyHp.GetComponent<RectTransform>();
 
-        // 메인 카메라 저장
-        mainCamera = Camera.main;
+        // 카메라 저장, 꼭 플레이어랑 연결되는 카메라여야함.
+        // 현재는 "Camera" 라서 이렇게 사용.
+        mainCamera = GameObject.Find("Camera").GetComponent<Camera>();
+
 
         // 체력바 활성화 여부
         enemyHp.gameObject.SetActive(isActive);
@@ -95,6 +96,7 @@ public class EnemyHpBar : MonoBehaviour
         hpBarTransform.position = screenPosition;
     }
 
+    // 테스트용
     private void OnCollisionEnter(Collision collision)
     {
         

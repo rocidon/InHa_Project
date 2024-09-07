@@ -9,11 +9,21 @@ public class PotalSceneChange2 : MonoBehaviour
     public float interactionRange = 2f;
     private bool isPlayerInRange = false;
 
+
+    public CurrencyData currencyData;
+
+
     private void Update()
     {
         // 플레이어가 포탈 범위에 있을 때
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
         {
+            currencyData.silverAmount += currencyData.curSilverAmount;
+            currencyData.goldAmount += currencyData.curGoldAmount;
+
+            currencyData.curSilverAmount = 0;
+            currencyData.curGoldAmount = 0;
+
             SceneManager.LoadScene("StageScene3_Psy");
         }
     }
