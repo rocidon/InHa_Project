@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public bool GameIsPaused;
     public GameObject pauseMenuCanvas;
-
+    public GameObject noReStart;
     [SerializeField] private TMP_Text sceneNameText;
 
     private void Start()
@@ -17,6 +17,8 @@ public class PauseMenu : MonoBehaviour
 
         sceneNameText.text = currentSceneName;
         pauseMenuCanvas.SetActive(false);
+        noReStart.SetActive(false);
+
     }
     void Update()
     {
@@ -80,14 +82,41 @@ public class PauseMenu : MonoBehaviour
     }
 
 
+    public void NoReStart()
+    {
+        if (noReStart.activeSelf == false)
+            noReStart.SetActive(true);
+        else
+        {
+            noReStart.SetActive(false);
+        }
+
+    }
+
     public void ReStartButton()
     {
         // 현재 활성화된 씬
         Scene currentScene = SceneManager.GetActiveScene();
 
-        // 현재 씬을 로드
-        Resume();
-        SceneManager.LoadScene(currentScene.name);
+
+
+        if (currentScene.name == "StoreScene_Psy")
+        {
+            NoReStart();
+            Debug.Log("False");
+            
+        }
+        else if(currentScene.name == "BossScene_Psy")
+        {
+            SceneManager.LoadScene("StoreScene_Psy");
+            Resume();
+        }
+        else
+        {
+            // 현재 씬을 로드
+            SceneManager.LoadScene(currentScene.name);
+            Resume();
+        }
 
 
         // 필요 예상
@@ -96,6 +125,8 @@ public class PauseMenu : MonoBehaviour
         // 
 
     }
+
+
 
 
 

@@ -26,10 +26,18 @@ public class ShopObject : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
 
         // Player와 오브젝트의 거리가 detectionRadius 안에 있고 && X키가 눌렸을 때
-        if (distance <= detectionRadius && Input.GetKeyDown(KeyCode.X))
+        if (distance <= detectionRadius )
         {
-            Debug.Log("pressed the \'X\'");
-            Toggle();
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                Debug.Log("pressed the \'X\'");
+                Toggle();
+            }
+        }
+        else
+        {
+            panel.SetActive(false);
+
         }
 
 
