@@ -9,6 +9,11 @@ TagManager:
   - Ground
   - Undefined
   - Enemy
+  - Potal
+  - Item
+  - Coin
+  - RogueHooded
+  - Floor
   layers:
   - Default
   - TransparentFX
