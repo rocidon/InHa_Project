@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class BossBehaviorTree : BehaviorTree
@@ -20,101 +21,73 @@ public class BossBehaviorTree : BehaviorTree
     //이곳에서 행동 트리 설정
     protected override Node SetupBehaviorTree()
     {
-
-        /*
-        Node Root = new SelectorNode(new List<Node>
-        {
-            new SequenceNode(new List<Node>
-            {
-                new ChkTimer(1.5f),
-                new SelectorNode(new List<Node>
-                {
-                    new SequenceNode(new List<Node>
-                    {
-                        new ChkHeath(Boss),
-                        new SelectorNode(new List<Node>
-                        {
-                            new SequenceNode(new List<Node>
-                            {
-                                new ChkHeath(Boss),
-                                new IsPlayInstantKill(Boss),
-                                new InstantKilAttack1(Boss),
-                                new InstantKilAttack2(Boss),
-                            }),
-                            new Dying(Boss)
-                        })
-                    }),
-                    new SelectorNode(new List<Node>
-                    {
-                        new SelectorNode(new List<Node>
-                        {
-                            new SequenceNode(new List<Node>
-                            {
-                                new InCloseRange(Boss, Player, 10.0f),
-                                new SelectorNode(new List<Node>
-                                {
-                                    new SequenceNode(new List<Node>
-                                    {
-                                        new NormalAttackCount(Boss, 3),
-                                        new JumpAttackPattern(Boss)
-                                    }),
-                                    new SequenceNode(new List<Node>
-                                    {
-                                        new AnyAttackCount(Boss, 5, 1),
-                                        new NormalAttack()
-                                    })
-                                })
-                            }),
-                            new SequenceNode(new List<Node>
-                            {
-                            new InLongRange(Boss),
-                            new AnyAttackCount(Boss, 5, 1),
-                            new ProjectileAttackPattern(Boss)
-                            })
-                        }),
-                        new SelectorNode(new List<Node>
-                        {
-                            //스페셜 공격 부분
-                        })
-                    }),
-                    //set target and Center                    
-                })
-            }),
-            new SequenceNode(new List<Node>
-            {
-              new ChkTimer(0.5f),
-              new ChasePlayer(Boss)
-             }),
-             
-             new IDLE(Boss)
-        });
-        //*/
         ///*
         Node Root = new SelectorNode(new List<Node>
         {
-            //Running상태면 같이 실행된다고 생각하면 될거 같다.
-           //new InCloseRange(Player.transform, Boss.transform, 5),
-           //new SequenceNode(new List<Node> {
-           //     new ProjectileAttackPattern(_Boss)
-           
-           //}),
            new IsAction(Boss),
-           new SelectorNode(new List<Node>
+           new SequenceNode(new List<Node>
            {
-               new SequenceNode(new List<Node>
-               {
-                   new ChkTimer(1.5f),
-                   new ProjectileAttackPattern(Boss)
-               }),
+               new ChkTimer(1.5f),
                new SelectorNode(new List<Node>
                {
                    new SequenceNode(new List<Node>
                    {
-                       new InCloseRange(Boss, Player,3),
-                       new IDLE(Boss)
+                       new ChkHeath(Boss),
+                       new SequenceNode(new List<Node>
+                       {
+                           new IsPlayInstantKill(Boss),
+                           new InstantKilAttack1(Boss),
+                           new InstantKilAttack2(Boss)
+                       })
                    }),
-                   new ChasePlayer(Boss)
+                   new SelectorNode(new List<Node>
+                   {
+                       new SequenceNode(new List<Node>
+                       {
+                            new InCloseRange(Boss, Player, 3),
+                            new SelectorNode(new List<Node>
+                            {
+                                new SequenceNode(new List<Node>
+                                {
+                                    new NormalAttackCount(Boss, 1),
+                                    new JumpAttackPattern(Boss)
+                                }),
+                                new SequenceNode(new List<Node>
+                                {
+                                    new AnyAttackCount(Boss, 5, 1),
+                                    new NormalAttack(Boss)
+                                })
+                            })
+                       }),
+                       new SequenceNode(new List<Node>
+                       {
+                           new InLongRange(Boss, 10),
+                           new ProjectileAttackPattern(Boss)
+                       })
+                   }),
+                   new SelectorNode(new List<Node>
+                   {
+                       new SequenceNode(new List<Node>
+                       {
+                           new AnyAttackCount(Boss, 100, 2),
+                           new SpecialAttackPattern1(Boss)
+                       }),
+                       new SequenceNode(new List<Node>
+                       {
+                           new SpecialAttackCount(Boss, 3),
+                           new SpecialAttackPattern2(Boss)
+                       })
+                   })
                })
+           }),
+           new SelectorNode(new List<Node>
+           {
+               new SequenceNode(new List<Node>
+               {
+                   new InCloseRange(Boss, Player, 3),
+                   new IDLE(Boss)
+               }),
+               new ChasePlayer(Boss)
            })
         });
         //*/

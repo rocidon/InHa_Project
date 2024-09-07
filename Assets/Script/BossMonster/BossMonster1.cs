@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class BossMonster1 : BossBehaviorTree
 {
-    public int NormalAttackCount;
-    public int BossCount;
-    public GameObject Stone;
-    bool InstantKillPattern;
-    bool isPlayKillPattern1;
-    bool isPlayKillPattern2;
-    int JumpAttackCount;
-    int ProjectileAttackCount;
-    
+    public enum StandardMotion
+    {
+        Idle,
+        Movement
+    }
     public enum ANIMATIONVALUE
     {
         IDLE,
@@ -21,10 +17,25 @@ public class BossMonster1 : BossBehaviorTree
         PROJECTILEATTACK,
         WALKING
     }
+
+    public int NormalAttackCount;
+    public int BossCount;
+    public GameObject Stone;
+
+    StandardMotion currentMotion;
+    bool InstantKillPattern;
+    bool isPlayKillPattern1;
+    bool isPlayKillPattern2;
+    int JumpAttackCount;
+    int ProjectileAttackCount;
+    int SpecialAttackCount;
+
+
     void Start()
     {
         //Debug.Log("Start BossMonster1");
         //_Health = 1000f;
+        currentMotion = StandardMotion.Idle;
         Isaction = false;
         _MaxHealth = 1000f;
         _Atk = 100f;
@@ -40,7 +51,10 @@ public class BossMonster1 : BossBehaviorTree
         BossCount = 0;
         JumpAttackCount = 0;
         ProjectileAttackCount = 0;
+        SpecialAttackCount = 0;
         _Health = _MaxHealth;
+
+        animator = GetComponentInChildren<Animator>();
         //Value setting Before this Line
         SetRootNode();
     }
@@ -80,7 +94,14 @@ public class BossMonster1 : BossBehaviorTree
         p += new Vector3(0, py, 0);
         Instantiate(Stone, p , Quaternion.Euler(0, 0, 0));
     }
-
+    public int getNormalAtkCount()
+    {
+        return NormalAttackCount;
+    }
+    public int getSpecialAtkCount()
+    {
+        return SpecialAttackCount;
+    }
     public int getJumpAtkCount()
     {
         return JumpAttackCount;
@@ -89,9 +110,28 @@ public class BossMonster1 : BossBehaviorTree
     {
         return ProjectileAttackCount;
     }
+    public void AddNormalAtkCount(int val)
+    {
+        NormalAttackCount += val;
+    }
+    public void AddSpecialAtkCount(int val)
+    {
+        SpecialAttackCount += val;
+    }
+    public void AddJumpAtkCount(int val)
+    {
+        JumpAttackCount += val;
+    }
     public void AddProjectileAtkCount(int val)
     {
         ProjectileAttackCount += val;
+    }
+
+    public void ResetCommonAtkCount()
+    {
+        JumpAttackCount = 0;
+        ProjectileAttackCount = 0;
+        NormalAttackCount = 0;
     }
     public bool getIsAction()
     {
@@ -100,6 +140,42 @@ public class BossMonster1 : BossBehaviorTree
     public void SetIsAction(bool val)
     {
         Isaction = val;
+    }
+
+    public void SetStandardMotion(StandardMotion Mot)
+    {
+        currentMotion = Mot;
+        switch (Mot)
+        {
+            case StandardMotion.Idle:
+                animator.SetBool("IsWalking", false);
+                animator.SetBool("IsIdle", true);
+
+                break;
+            case StandardMotion.Movement:
+                animator.SetBool("IsWalking", true);
+                animator.SetBool("IsIdle", false);
+                break;
+            default:
+                Debug.Log("허용되지 않은 idle 모션 값");
+                break;
+        }
+    }
+    public void SetCurrentMotion(bool val)
+    {
+        switch (currentMotion)
+        {
+            case StandardMotion.Idle:
+                animator.SetBool("IsIdle", val);
+
+                break;
+            case StandardMotion.Movement:
+                animator.SetBool("IsWalking", val);
+                break;
+            default:
+                Debug.Log("허용되지 않은 idle 모션 값");
+                break;
+        }
     }
 }
 

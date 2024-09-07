@@ -64,7 +64,7 @@ public class IDLE : Node
     {
         Debug.Log("Idle State");
         //animation set idle state
-        boss.GetComponentInChildren<Animator>().SetBool("IsIdle", true);
+        boss.SetStandardMotion(BossMonster1.StandardMotion.Idle);
         return state = NodeState.Running;
         throw new NotImplementedException();
     }
@@ -121,20 +121,50 @@ public class ChkTimer : Node
 }
 public class NormalAttack : Node
 {
-    BossMonster1 boss;
+    BossMonster1 Boss;
+    Animator Animator;
+    float AnimTime;
     public NormalAttack() {
         
     }
     public NormalAttack(BossMonster1 boss) {
-        this.boss = boss;
+        this.Boss = boss;
+        Animator = Boss.GetComponentInChildren<Animator>();
     }
 
     public override NodeState Evaluate()
     {
+
         //Write Animator Parmeter value setting
         //boss.NormalAttack()
+        Boss.StartCoroutine(Pattern());
         return state = NodeState.Running;
     }
+    IEnumerator Pattern()
+    {
+        Boss.SetIsAction(true);
+        Animator.SetBool("IsNormalAttack", true);      
+        Boss.SetCurrentMotion(false);
+        yield return new WaitForSeconds(0.1f);
+
+        AnimTime = Animator.GetCurrentAnimatorStateInfo(0).length;
+
+        //Debug.Log("Animation Time : " + AnimTime);
+        Debug.Log("start Normal ATk Action");
+
+        yield return new WaitForSeconds(AnimTime - 1.0f);
+        Debug.Log("End Action");
+        //구현부
+
+        //
+        Boss.AddNormalAtkCount(1);
+        yield return new WaitForSeconds(1.0f);
+        Animator.SetBool("IsNormalAttack", false);
+        Boss.SetCurrentMotion(true);
+
+        Boss.SetIsAction(false);
+    }
+
 }
 
 public class IsPlayInstantKill : Node
@@ -308,8 +338,9 @@ public class NormalAttackCount : Node
     }
     public override NodeState Evaluate()
     {
-        if(boss.NormalAttackCount > ChkCount)
+        if(boss.getNormalAtkCount() > ChkCount)
         {
+            boss.AddNormalAtkCount(boss.getNormalAtkCount()*-1);
             return state = NodeState.Success;
         }
         return state = NodeState.Failure;
@@ -318,19 +349,49 @@ public class NormalAttackCount : Node
 public class JumpAttackPattern : Node
 {
     BossMonster1 boss;
+    Animator Animator;
+    float AnimTime;
     public JumpAttackPattern() {
     //Get Monster Class
     }
     public JumpAttackPattern(BossMonster1 boss)
     {
         this.boss = boss;
+        Animator = boss.GetComponentInChildren<Animator>();
     }
     public override NodeState Evaluate()
     {
         //Realize JumpAttackPattern
         //boss.jumpattack()
+        boss.StartCoroutine(Pattern());
+        return state = NodeState.Running;
         throw new NotImplementedException();
-    } 
+    }
+    IEnumerator Pattern()
+    {
+        boss.SetIsAction(true);
+        Animator.SetBool("IsJumpAttack", true);
+        boss.SetCurrentMotion(false);
+        // Animator.SetBool("IsIdle", false);    
+
+        yield return new WaitForSeconds(0.1f);
+
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+
+        Debug.Log("Animation Time : " + AnimTime);
+        Debug.Log("start Jump Atk Action");
+
+        yield return new WaitForSeconds(AnimTime - 1.0f);
+        Debug.Log("End Action");
+        /*이곳에서 충돌처리하게 만들어줘야함*/
+
+        boss.AddJumpAtkCount(1);
+        yield return new WaitForSeconds(1.0f);
+        Animator.SetBool("IsJumpAttack", false);
+        //  Animator.SetBool("IsIdle", true);
+        boss.SetCurrentMotion(true);
+        boss.SetIsAction(false);
+    }
 }
 public class AnyAttackCount : Node
 {
@@ -342,11 +403,12 @@ public class AnyAttackCount : Node
     {
         this.boss=boss;
         this.Mode = Mode;
+        this.ChkCount = ChkCount;
     }
     public override NodeState Evaluate()
     {
-        int AnyAttackCount = boss.NormalAttackCount 
-            + boss.getJumpAtkCount() + boss.getJumpAtkCount();
+        int AnyAttackCount = boss.getNormalAtkCount()
+            + boss.getJumpAtkCount() + boss.getProjectileAtkCount();
         switch (Mode)
         {
             case 1:
@@ -412,38 +474,49 @@ public class ProjectileAttackPattern : Node
     public override NodeState Evaluate()
     {
         Debug.Log("던지기");
-        Boss.ThrowStone();
+
         Boss.StartCoroutine(Pattern());
-        Boss.AddProjectileAtkCount(1);
         return state = NodeState.Running;
         throw new NotImplementedException();
     }
     IEnumerator Pattern()
     {
         Boss.SetIsAction(true);
-        Animator.SetBool("IsProjectileAttack", true);      
-        Animator.SetBool("IsIdle", false);      
-
+        Animator.SetBool("IsProjectileAttack", true);
+        // Animator.SetBool("IsIdle", false);      
+        Boss.SetCurrentMotion(false);
         yield return new WaitForSeconds(0.1f);
 
         AnimTime = Boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
 
         Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Action");
-        yield return new WaitForSeconds(AnimTime-0.2f);
-        Debug.Log("End Action");
 
+        yield return new WaitForSeconds(AnimTime-1.0f);
+
+        Boss.ThrowStone();
+
+        Boss.AddProjectileAtkCount(1);
+        yield return new WaitForSeconds(1.0f);
         Animator.SetBool("IsProjectileAttack", false);
-        Animator.SetBool("IsIdle", true);
+        //Animator.SetBool("IsIdle", true);
+        Boss.SetCurrentMotion(true);
         Boss.SetIsAction(false);
     }
 
 }
 public class SpecialAttackPattern1 : Node
 {
+    BossMonster1 Boss;
+
     public SpecialAttackPattern1() { }
+    public SpecialAttackPattern1(BossMonster1 boss) {
+        Boss = boss;
+    }
     public override NodeState Evaluate()
     {
+        Debug.Log("Any Atk Count : " +( Boss.getNormalAtkCount()
+            + Boss.getJumpAtkCount() + Boss.getProjectileAtkCount()));
 
         throw new NotImplementedException();
     }
@@ -451,6 +524,7 @@ public class SpecialAttackPattern1 : Node
 public class SpecialAttackCount : Node
 {
     public SpecialAttackCount() { }
+    public SpecialAttackCount(BossMonster1 boss, int ChkCount=3) { }
     public override NodeState Evaluate()
     {
         throw new NotImplementedException();
@@ -459,6 +533,7 @@ public class SpecialAttackCount : Node
 public class SpecialAttackPattern2 : Node
 {
     public SpecialAttackPattern2() { }
+    public SpecialAttackPattern2(BossMonster1 boss) { }
     public override NodeState Evaluate()
     {
         throw new NotImplementedException();
@@ -496,9 +571,10 @@ public class ChasePlayer : Node
         Debug.Log("Move To Player");
         Vector3 fv = new Vector3(Target.position.x - Center.position.x,0,0);
         fv.Normalize();
-        Debug.Log("Vector :" + fv);
+       // Debug.Log("Vector :" + fv);
         boss.transform.forward = fv;
-        boss.transform.Translate(Vector3.forward * Time.deltaTime*2.0f);
+        boss.transform.Translate(Vector3.forward * Time.deltaTime*1.0f);
+        boss.SetStandardMotion(BossMonster1.StandardMotion.Movement);
         return state = NodeState.Running;
     }
 
