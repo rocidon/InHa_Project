@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
-{
+{   
     [SerializeField] GameObject player;
     [SerializeField] float x;
     [SerializeField] float y;
