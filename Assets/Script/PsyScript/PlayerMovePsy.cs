@@ -31,11 +31,11 @@ public class PlayerMovePsy : MonoBehaviour
     {
         Move();
         Jump();
-        Debug.Log(coin);
-        Debug.Log(spike);
-        Debug.Log(blade);
-        Debug.Log(itembox);
-        Debug.Log(potal);
+        //Debug.Log(coin);
+        //Debug.Log(spike);
+        //Debug.Log(blade);
+        //Debug.Log(itembox);
+        //Debug.Log(potal);
 
     }
     // 플레이어 이동
