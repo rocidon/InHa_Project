@@ -18,7 +18,6 @@ public abstract class BehaviorTree : Monster
     protected void PlayTree()
     {
         if (RootNode is null) return;
-        Node.NodeTimer += Time.deltaTime;
         //RootNode.NodeTimer += Time.deltaTime;
         RootNode.Evaluate();
         //Debug.Log("Timer : " + TreeTimer);
