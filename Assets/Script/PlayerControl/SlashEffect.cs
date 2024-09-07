@@ -12,20 +12,15 @@ public class SlashEffect : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
     }
-
+    
     private void OnParticleTrigger()
     {
-        Debug.Log("Effect Trigger");
+        Debug.Log("공격 파티클이 적에게 닿았다.");
         ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
-
-        /*foreach(var v in inside)
-        {
-            Debug.Log("Effect Trigger2");
-        }*/
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        Debug.Log($"Effect Collision : {other.name}");
+        
+        /* foreach (var v in inside)
+         {
+             Debug.Log("Effect Trigger2");
+         }*/
     }
 }
