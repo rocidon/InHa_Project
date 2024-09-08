@@ -26,7 +26,7 @@ public class BossSpecialAttackver1 : MonoBehaviour
             Transform tmp = UpStone.transform.GetChild(0);
             ObjWidth = tmp.GetComponent<BoxCollider>().size.x * tmp.localScale.x;
             ObjHeight = tmp.GetComponent<BoxCollider>().size.y * tmp.localScale.y;
-            StartPosY = transform.position.y - (ObjHeight);
+            StartPosY = transform.position.y - (ObjHeight+0.1f);
         }
     }
 

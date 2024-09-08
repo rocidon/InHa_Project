@@ -12,14 +12,15 @@ public class BossSpecialAttack1Obj : MonoBehaviour
     float GoalHeight;
     float DTime;
     Transform WarningRange;
+    Transform tmp;
     // Start is called before the first frame update
     void Start()
     {
         WarningRange = transform.GetChild(1);
         WarningRange.GetComponent<MeshRenderer>().enabled = true;
         WarningRange.transform.localScale = new Vector3(1, 100, 1);
-        Transform tmp = transform.GetChild(0);
-
+        tmp = transform.GetChild(0);
+        tmp.GetComponent<BoxCollider>().enabled = false; 
         ObjHeight = tmp.GetComponent<BoxCollider>().size.y * tmp.localScale.y;
 
         
@@ -54,6 +55,7 @@ public class BossSpecialAttack1Obj : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1.0f);
+        tmp.GetComponent<BoxCollider>().enabled = true;
         WarningRange.GetComponent<MeshRenderer>().enabled = false;
 
         while (true)
@@ -63,7 +65,7 @@ public class BossSpecialAttack1Obj : MonoBehaviour
             transform.Translate(Vector3.up * Speed * DTime);
             yield return new WaitForSeconds(DTime);
         }
-
+        tmp.GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(3.0f);
         Destroy(gameObject);
     }
