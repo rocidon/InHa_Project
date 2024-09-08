@@ -381,12 +381,25 @@ public class JumpAttackPattern : Node
         Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Jump Atk Action");
 
-        yield return new WaitForSeconds(AnimTime - 1.0f);
+        float Dtime = Time.deltaTime;
+        while(AnimTime - 2.4f > Dtime)
+        {
+            float DeltaTime = Time.deltaTime;
+            //이동할 거리 / 걸리는 시간 = 움직일 속도
+            float DSpeed = 3.0f / (AnimTime - 2.4f);
+            boss.transform.Translate(Vector3.forward * DeltaTime * DSpeed);
+            Dtime += DeltaTime;
+            yield return new WaitForSeconds(DeltaTime);
+        }
+
+        Dtime -= (AnimTime - 2.4f);
+        //yield return new WaitForSeconds(AnimTime - 2.4f);
+
         Debug.Log("End Action");
         /*이곳에서 충돌처리하게 만들어줘야함*/
-
+        boss.JumppAttack();
         boss.AddJumpAtkCount(1);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.4f - Dtime);
         Animator.SetBool("IsJumpAttack", false);
         //  Animator.SetBool("IsIdle", true);
         boss.SetCurrentMotion(true);

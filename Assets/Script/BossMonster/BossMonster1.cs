@@ -177,6 +177,16 @@ public class BossMonster1 : BossBehaviorTree
                 break;
         }
     }
+
+    public void JumppAttack()
+    {
+        GameObject jumAtk = transform.GetChild(1).gameObject;
+        if(jumAtk.name == "JumpAttack")//유효성 검사
+        {
+            BossJumpAtk BJA = jumAtk.GetComponent<BossJumpAtk>();
+            BJA.OnAtk();
+        }
+    }
 }
 
 

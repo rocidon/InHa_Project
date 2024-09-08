@@ -219,7 +219,7 @@ public class PlayerMove : MonoBehaviour
         audioPlayer.Play();
     }
 
-    public void TakeDamage(float damage)        // damage는 몬스터의 공격력인데 어떻게 받아 들일 수 있는지?
+    public void TakeDamage(float damage)        // damage는 몬스터의 공격력인데 어떻게 받아 들일 수 있는지?=>
     {
         CurrentHP -= damage;
         Debug.Log("적에게 공격 받았습니다.");
