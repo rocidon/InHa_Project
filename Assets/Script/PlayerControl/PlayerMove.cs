@@ -220,7 +220,9 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void TakeDamage(float damage)        // damage는 몬스터의 공격력인데 어떻게 받아 들일 수 있는지?
-    {
+    {                                           /* 덕상 comment : 몬스터에서 전달해주면 해결됨, TakeDamage가 발생하면
+                                                 * onDamage도 이 함수 내에서 호출해주면 가능함 TakeDamage로 피격데미지 처리
+                                                 * onDamage에서 피격 시 밀려나는 이벤트 처리 */
         CurrentHP -= damage;
         Debug.Log("적에게 공격 받았습니다.");
         //StartCoroutine(OnDamage());
