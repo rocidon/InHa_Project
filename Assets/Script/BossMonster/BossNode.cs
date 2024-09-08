@@ -152,13 +152,13 @@ public class NormalAttack : Node
         //Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Normal ATk Action");
 
-        yield return new WaitForSeconds(AnimTime - 1.0f);
+        yield return new WaitForSeconds(AnimTime - 0.93f);
         Debug.Log("End Action");
         //구현부
-
+        Boss.NormalAttack();
         //
         Boss.AddNormalAtkCount(1);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.93f);
         Animator.SetBool("IsNormalAttack", false);
         Boss.SetCurrentMotion(true);
 
@@ -267,7 +267,7 @@ public class InstantKilAttack2 : Node
             return state = NodeState.Running;
         }
     }
-
+    //잘하면 코루틴 돌릴 것
     void OnKillPattern()
     {
         boss.GetComponent<BossSpecialGernerate>().enabled = true;
@@ -345,6 +345,10 @@ public class NormalAttackCount : Node
         }
         return state = NodeState.Failure;
     }
+
+
+
+
 }
 public class JumpAttackPattern : Node
 {
@@ -520,18 +524,50 @@ public class ProjectileAttackPattern : Node
 }
 public class SpecialAttackPattern1 : Node
 {
-    BossMonster1 Boss;
-
+    BossMonster1 boss;
+    Animator Animator;
+    float AnimTime;
     public SpecialAttackPattern1() { }
     public SpecialAttackPattern1(BossMonster1 boss) {
-        Boss = boss;
+        this.boss = boss;
+        Animator = boss.GetComponentInChildren<Animator>();
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Any Atk Count : " +( Boss.getNormalAtkCount()
-            + Boss.getJumpAtkCount() + Boss.getProjectileAtkCount()));
-
+        Debug.Log("Any Atk Count : " +(boss.getNormalAtkCount()
+            + boss.getJumpAtkCount() + boss.getProjectileAtkCount()));
+        boss.StartCoroutine(Pattern());
+        return state = NodeState.Success;
         throw new NotImplementedException();
+    }
+
+    IEnumerator Pattern()
+    {
+        boss.SetIsAction(true);
+
+        Animator.SetBool("IsSpeicalAttack1", true);
+        boss.SetCurrentMotion(false);
+
+        yield return new WaitForSeconds(0.1f);
+
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+
+        Debug.Log("Animation Time : " + AnimTime);
+        Debug.Log("start Speical 1 Atk Action");
+
+        yield return new WaitForSeconds(AnimTime/2);
+
+        //yield return new WaitForSeconds(AnimTime - 2.4f);
+        Debug.Log("End Action");
+
+        /*이곳에서 충돌처리하게 만들어줘야함*/
+        boss.SpeicalAttack1();
+        
+        yield return new WaitForSeconds(AnimTime / 2);
+        Animator.SetBool("IsSpeicalAttack1", false);
+        boss.SetCurrentMotion(true);
+
+        boss.SetIsAction(false);
     }
 }
 public class SpecialAttackCount : Node
@@ -582,10 +618,6 @@ public class ChasePlayer : Node
     public override NodeState Evaluate()
     {
         Debug.Log("Move To Player");
-        Vector3 fv = new Vector3(Target.position.x - Center.position.x,0,0);
-        fv.Normalize();
-       // Debug.Log("Vector :" + fv);
-        boss.transform.forward = fv;
         boss.transform.Translate(Vector3.forward * Time.deltaTime*1.0f);
         boss.SetStandardMotion(BossMonster1.StandardMotion.Movement);
         return state = NodeState.Running;
@@ -601,20 +633,54 @@ public class ChasePlayer : Node
 
 public class IsAction : Node
 {
+    Transform Target;
+    Transform Center;
     BossMonster1 Boss;
     public IsAction(BossMonster1 boss) {
         Boss = boss;
+        Center = boss.transform;
+        Target = boss.Player.transform;
     }
     public override NodeState Evaluate()
     {
         if (Boss.getIsAction())
         {
             Debug.Log("Now actiong");
+
             return state = NodeState.Success;
         }
         Debug.Log("No action Next Node");
+        Vector3 fv = new Vector3(Target.position.x - Center.position.x, 0, 0);
+        fv.Normalize();
+        Boss.transform.forward = fv;
         return state = NodeState.Failure;
         throw new NotImplementedException();
     }
 }
 
+public class SelectSpeicalPattern : Node
+{
+    int SelectNumber;
+    BossMonster1 boss;
+    public SelectSpeicalPattern() {
+        SelectNumber = UnityEngine.Random.Range(0,11);
+    }
+    public SelectSpeicalPattern(BossMonster1 boss)
+    {
+        this.boss = boss;
+        SelectNumber = UnityEngine.Random.Range(0, 11);
+        boss.ResetCommonAtkCount();
+    }
+    public override NodeState Evaluate()
+    {
+        
+        if (SelectNumber < 5)
+        {
+            Debug.Log("Play Speical Attack 1");
+            return state = NodeState.Success;
+        }
+        Debug.Log("Play Speical Attack 2");
+        return state = NodeState.Failure;
+        throw new NotImplementedException();
+    }
+}

@@ -1,23 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossJumpAtk : MonoBehaviour
+public class BossNormalAttack : MonoBehaviour
 {
     BoxCollider Range;
     float BossAtk;
-    private void Start()
+    void Start()
     {
         BossAtk = GetComponentInParent<BossMonster1>()._Atk;
-        BossAtk *= 1.5f;
         Range = GetComponent<BoxCollider>();
-        /*콜라이더 세팅을 해줘야함*/
-
     }
+
     public void OnAtk()
     {
-        Debug.Log("On Jump Atk Script!");
+        Debug.Log("On Normal Atk Script!");
         Range.enabled = true;
         StartCoroutine(RemainRange());
     }
@@ -26,15 +23,14 @@ public class BossJumpAtk : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
-            Debug.Log("Player Jump Hit");
+            Debug.Log("Player Normal Hit");
         }
     }
-
 
     IEnumerator RemainRange()
     {
         yield return new WaitForSeconds(0.25f);
-        Debug.Log("Off Jump Atk Script!");
+        Debug.Log("Off Normal Atk Script!");
         Range.enabled = false;
     }
 }

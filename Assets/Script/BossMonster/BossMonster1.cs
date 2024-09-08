@@ -167,7 +167,6 @@ public class BossMonster1 : BossBehaviorTree
         {
             case StandardMotion.Idle:
                 animator.SetBool("IsIdle", val);
-
                 break;
             case StandardMotion.Movement:
                 animator.SetBool("IsWalking", val);
@@ -185,6 +184,37 @@ public class BossMonster1 : BossBehaviorTree
         {
             BossJumpAtk BJA = jumAtk.GetComponent<BossJumpAtk>();
             BJA.OnAtk();
+        }
+        else
+        {
+            Debug.Log("잘못된 인덱스 접근 : Not " + "JumpAttack");
+        }
+    }
+
+    public void NormalAttack()
+    {
+        GameObject Atk = transform.GetChild(2).gameObject;
+        if (Atk.name == "NormalAttack")//유효성 검사
+        {
+            BossNormalAttack NAtk = Atk.GetComponent<BossNormalAttack>();
+            NAtk.OnAtk();
+        }
+        else
+        {
+            Debug.Log("잘못된 인덱스 접근 : Not " + "NormalAttack");
+        }
+    }
+
+    public void SpeicalAttack1()
+    {
+        BossSpecialAttackver1 SAtk = GetComponent<BossSpecialAttackver1>();
+        if(SAtk != null)
+        {
+            SAtk.OnAtk();
+        }
+        else
+        {
+            Debug.Log("No compoenet BossSpecialAttackver1 Add Compoenet");
         }
     }
 }
