@@ -44,7 +44,7 @@ public class BossBehaviorTree : BehaviorTree
                    {
                        new SequenceNode(new List<Node>
                        {
-                            new InCloseRange(Boss, Player, 3),
+                            new InCloseRange(Boss, Player, 5.0f),
                             new SelectorNode(new List<Node>
                             {
                                 new SequenceNode(new List<Node>
@@ -75,8 +75,9 @@ public class BossBehaviorTree : BehaviorTree
                            {
                                new SequenceNode(new List<Node>
                                {
-                                  // new SelectSpeicalPattern(Boss),
-                                   new SpecialAttackPattern1(Boss)
+                                   new SelectSpeicalPattern(Boss),
+                                   //new SpecialAttackPattern1(Boss)
+                                   new SpecialAttackPattern2(Boss)
                                }),
                                new SpecialAttackPattern2(Boss)
                            })

@@ -22,7 +22,6 @@ public class BossSpecialAttack1Obj : MonoBehaviour
         tmp = transform.GetChild(0);
         tmp.GetComponent<BoxCollider>().enabled = false; 
         ObjHeight = tmp.GetComponent<BoxCollider>().size.y * tmp.localScale.y;
-
         
         float RangeScaleY = WarningRange.transform.localScale.y;
         WarningRange.transform.position =
@@ -53,7 +52,6 @@ public class BossSpecialAttack1Obj : MonoBehaviour
 
     IEnumerator Pattern()
     {
-
         yield return new WaitForSeconds(1.0f);
         tmp.GetComponent<BoxCollider>().enabled = true;
         WarningRange.GetComponent<MeshRenderer>().enabled = false;

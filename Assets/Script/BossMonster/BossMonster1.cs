@@ -129,6 +129,7 @@ public class BossMonster1 : BossBehaviorTree
 
     public void ResetCommonAtkCount()
     {
+        Debug.Log("Reset common Attack Count");
         JumpAttackCount = 0;
         ProjectileAttackCount = 0;
         NormalAttackCount = 0;
@@ -211,6 +212,19 @@ public class BossMonster1 : BossBehaviorTree
         if(SAtk != null)
         {
             SAtk.OnAtk();
+        }
+        else
+        {
+            Debug.Log("No compoenet BossSpecialAttackver1 Add Compoenet");
+        }
+    }
+
+    public void SpeicalAttack2() 
+    {
+        BossSpecialAttackver1 SAtk = GetComponent<BossSpecialAttackver1>();
+        if(SAtk != null)
+        {
+            //SAtk.OnAtk();
         }
         else
         {

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 //Boss1에 대한 행동 패턴들
@@ -385,12 +386,14 @@ public class JumpAttackPattern : Node
         Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Jump Atk Action");
 
+        float MoveDistance = Vector3.Magnitude(boss.transform.position - boss.Player.transform.position) - 1.5f;
+
         float Dtime = Time.deltaTime;
-        while(AnimTime - 2.4f > Dtime)
+        while(AnimTime - 2.6f >= Dtime)
         {
             float DeltaTime = Time.deltaTime;
             //이동할 거리 / 걸리는 시간 = 움직일 속도
-            float DSpeed = 3.0f / (AnimTime - 2.4f);
+            float DSpeed = MoveDistance / (AnimTime - 2.6f);
             boss.transform.Translate(Vector3.forward * DeltaTime * DSpeed);
             Dtime += DeltaTime;
             yield return new WaitForSeconds(DeltaTime);
@@ -403,7 +406,7 @@ public class JumpAttackPattern : Node
         /*이곳에서 충돌처리하게 만들어줘야함*/
         boss.JumppAttack();
         boss.AddJumpAtkCount(1);
-        yield return new WaitForSeconds(2.4f - Dtime);
+        yield return new WaitForSeconds(2.6f - Dtime);
         Animator.SetBool("IsJumpAttack", false);
         //  Animator.SetBool("IsIdle", true);
         boss.SetCurrentMotion(true);
@@ -534,8 +537,6 @@ public class SpecialAttackPattern1 : Node
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Any Atk Count : " +(boss.getNormalAtkCount()
-            + boss.getJumpAtkCount() + boss.getProjectileAtkCount()));
         boss.StartCoroutine(Pattern());
         return state = NodeState.Success;
         throw new NotImplementedException();
@@ -581,13 +582,95 @@ public class SpecialAttackCount : Node
 }
 public class SpecialAttackPattern2 : Node
 {
+    BossMonster1 boss;
+    Animator Animator;
+    float AnimTime;
     public SpecialAttackPattern2() { }
-    public SpecialAttackPattern2(BossMonster1 boss) { }
+    public SpecialAttackPattern2(BossMonster1 boss) {
+        this.boss = boss;
+        Animator = boss.GetComponentInChildren<Animator>();
+    }
     public override NodeState Evaluate()
     {
+        boss.StartCoroutine(Pattern());
+        return state = NodeState.Success;
         throw new NotImplementedException();
     }
+    IEnumerator Pattern()
+    {
+        boss.SetIsAction(true);
+
+        Animator.SetBool("IsSpeicalReady", true);
+        Animator.SetBool("BackJumpStart", true);
+        Animator.SetBool("BackJump-ing", true);
+
+        boss.SetCurrentMotion(false);
+
+        yield return new WaitForSeconds(0.1f);
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(AnimTime); //wait roar
+        yield return new WaitForSeconds(0.1f);
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(AnimTime- 1.1f); //wait jumpstart
+
+        //jump-ing
+        Vector3 StartPos = boss.transform.position;
+        float MoveDistance = 5.0f;
+        float Theta60 = 60.0f * 3.141592f / 180.0f;
+        float Dtime = Time.deltaTime;
+        while (1.0f >= Dtime)
+        {
+            float DeltaTime = Time.deltaTime;
+            //이동에 필요한 시간? 
+            float DSpeed = MoveDistance/ 1.0f;
+            float dx = Mathf.Abs(StartPos.x - boss.transform.position.x+0.01f);
+            float dy = dx * (dx - MoveDistance) * -1;
+            dy *= 0.8f;
+            //dy = dy != 0 ? dy / Mathf.Abs(dy) : dy;
+            Debug.Log(dy);
+            //Vector3 v = new Vector3(0, 0, -1);
+            //Vector3 v = new Vector3(0, Mathf.Sin(Theta60)*MoveDistance/2, -Mathf.Cos(Theta60)*MoveDistance);
+            boss.transform.Translate(Vector3.back * DeltaTime * DSpeed);
+            boss.transform.position = new Vector3(boss.transform.position.x, StartPos.y + dy, boss.transform.position.z);
+            Dtime += DeltaTime;
+            yield return new WaitForSeconds(DeltaTime);
+        }
+
+        boss.transform.position = new Vector3(boss.transform.position.x, StartPos.y, boss.transform.position.z);
+        Animator.SetBool("BackJumpEnd", true);
+        yield return new WaitForSeconds(0.1f);
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(AnimTime - 0.1f);
+
+        Animator.SetBool("IsSpeicalAttack2", true);
+        yield return new WaitForSeconds(0.1f);
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Speical 2 Anim Time : "+ AnimTime);
+        Debug.Log("start Speical 2 Atk Action");
+        yield return new WaitForSeconds(AnimTime -2.4f);
+
+        Debug.Log("End Action");
+
+        /*이곳에서 충돌처리하게 만들어줘야함*/
+        boss.SpeicalAttack2();
+
+        yield return new WaitForSeconds(2.4f);
+
+        //all animation off
+        Animator.SetBool("IsSpeicalReady", false);
+        Animator.SetBool("BackJumpStart", false);
+        Animator.SetBool("BackJump-ing", false);
+        Animator.SetBool("BackJumpEnd", false);
+        Animator.SetBool("IsSpeicalAttack2", false);
+
+        boss.SetCurrentMotion(true);
+
+        boss.SetIsAction(false);
+    }
 }
+
+
+
 public class ChasePlayer : Node
 {
     Transform Target;
@@ -668,12 +751,14 @@ public class SelectSpeicalPattern : Node
     public SelectSpeicalPattern(BossMonster1 boss)
     {
         this.boss = boss;
-        SelectNumber = UnityEngine.Random.Range(0, 11);
-        boss.ResetCommonAtkCount();
+        
+        
     }
     public override NodeState Evaluate()
     {
-        
+        SelectNumber = UnityEngine.Random.Range(0, 11);
+        boss.ResetCommonAtkCount();
+        Debug.Log("Select Number : " + SelectNumber);
         if (SelectNumber < 5)
         {
             Debug.Log("Play Speical Attack 1");
