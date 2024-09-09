@@ -76,10 +76,11 @@ public class BossBehaviorTree : BehaviorTree
                                new SequenceNode(new List<Node>
                                {
                                    new SelectSpeicalPattern(Boss),
-                                   //new SpecialAttackPattern1(Boss)
-                                   new SpecialAttackPattern2(Boss)
+                                   new SpecialAttackPattern1(Boss)                                   
+                                   //new SpecialAttackPattern2(Boss)
                                }),
                                new SpecialAttackPattern2(Boss)
+                               //new SpecialAttackPattern1(Boss)
                            })
                        })
                    })
