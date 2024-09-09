@@ -221,10 +221,10 @@ public class BossMonster1 : BossBehaviorTree
 
     public void SpeicalAttack2() 
     {
-        BossSpecialAttackver1 SAtk = GetComponent<BossSpecialAttackver1>();
+        BossSpecialAttackver2 SAtk = GetComponent<BossSpecialAttackver2>();
         if(SAtk != null)
         {
-            //SAtk.OnAtk();
+            SAtk.OnAtk();
         }
         else
         {

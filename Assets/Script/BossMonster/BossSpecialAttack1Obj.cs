@@ -63,6 +63,7 @@ public class BossSpecialAttack1Obj : MonoBehaviour
             transform.Translate(Vector3.up * Speed * DTime);
             yield return new WaitForSeconds(DTime);
         }
+
         tmp.GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(3.0f);
         Destroy(gameObject);
