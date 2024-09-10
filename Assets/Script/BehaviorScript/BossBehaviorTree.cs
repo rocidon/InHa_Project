@@ -36,8 +36,8 @@ public class BossBehaviorTree : BehaviorTree
                        new SequenceNode(new List<Node>
                        {
                            new IsPlayInstantKill(Boss),
-                           new InstantKilAttack1(Boss),
-                           new InstantKilAttack2(Boss)
+                           new InstantKilAttack1(Boss)
+                           //new InstantKilAttack2(Boss)
                        })
                    }),
                    new SelectorNode(new List<Node>

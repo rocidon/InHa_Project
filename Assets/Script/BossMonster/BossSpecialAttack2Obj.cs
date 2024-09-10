@@ -18,8 +18,8 @@ public class BossSpecialAttack2Obj : MonoBehaviour
     Vector3 fv;
     void Start()
     {
-        ImpactPoint = Random.Range(3.0f, 8.0f);
-        Duration = Random.Range(1.0f, 3.0f);
+        ImpactPoint = Random.Range(4.0f, 7.0f);
+        Duration = Random.Range(1.0f, 2.0f);
         StartPoint = transform.position;
         Target = GameObject.FindWithTag("Player");
         if (Target == null)
