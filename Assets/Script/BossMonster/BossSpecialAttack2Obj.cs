@@ -10,15 +10,16 @@ public class BossSpecialAttack2Obj : MonoBehaviour
     GameObject Target;
     [SerializeField]
     public float Height;
+    [SerializeField]
+    public float ImpactPoint;
 
     Transform WarningRange;
-    float ImpactPoint;
     float Duration;
     Vector3 StartPoint;
     Vector3 fv;
     void Start()
     {
-        ImpactPoint = Random.Range(4.0f, 7.0f);
+        //ImpactPoint = Random.Range(4.0f, 7.0f);
         Duration = Random.Range(1.0f, 2.0f);
         StartPoint = transform.position;
         Target = GameObject.FindWithTag("Player");
@@ -30,8 +31,7 @@ public class BossSpecialAttack2Obj : MonoBehaviour
         {
 
             fv = new Vector3(Target.transform.position.x - transform.position.x, 0, 0);
-
-            StartPoint = new Vector3(StartPoint.x, StartPoint.y - Height, StartPoint.z);
+            StartPoint = new Vector3(StartPoint.x, StartPoint.y - (Height+0.1f), StartPoint.z);
             //Debug.Log(StartPoint);
             //StartPoint.y = transform.position.y - Height;
             fv.Normalize();
@@ -39,8 +39,6 @@ public class BossSpecialAttack2Obj : MonoBehaviour
             //Debug.Log(fv.x);
             WarningRange = transform.GetChild(1);
             WarningRange.GetComponent<MeshRenderer>().enabled = false;
-            //WarningRange.position = new Vector3(StartPoint.x + ImpactPoint, StartPoint.y, StartPoint.z);
-            //WarningRange.position = new Vector3(StartPoint.x + ImpactPoint, StartPoint.y, StartPoint.z);
             StartCoroutine(Pattern());
         }
     }
@@ -48,7 +46,6 @@ public class BossSpecialAttack2Obj : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
             //Take Damage Player
             Debug.Log("Hit Player on Special Atk Obj");
         }
@@ -59,7 +56,8 @@ public class BossSpecialAttack2Obj : MonoBehaviour
         float DSpeed = ImpactPoint / Duration;
         float dx;
         float dy;
-        while (Duration > Dtime)
+        
+        while (Duration> Dtime)
         {
             float DeltaTime = Time.deltaTime;
             dx = Mathf.Abs(StartPoint.x - transform.position.x);

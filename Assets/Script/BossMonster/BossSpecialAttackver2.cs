@@ -20,17 +20,18 @@ public class BossSpecialAttackver2 : MonoBehaviour
     }
     IEnumerator Pattern(Vector3 StartPosition)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
-            yield return new WaitForSeconds(0.05f);
-            SpawnObject(StartPosition);
+            yield return new WaitForSeconds(0.1f);
+            SpawnObject(StartPosition, i);
         }
     }
-    void SpawnObject(Vector3 StartPosition)
+    void SpawnObject(Vector3 StartPosition, int i)
     {
         Vector3 p = new Vector3(StartPosition.x, StartPosition.y+Height, StartPosition.z);
         GameObject tmp = Instantiate(ThrowStone, p, Quaternion.identity);
         tmp.GetComponent<BossSpecialAttack2Obj>().Height = Height;
+        tmp.GetComponent<BossSpecialAttack2Obj>().ImpactPoint = 4.0f + (i % 5.0f);
     }
 
 }
