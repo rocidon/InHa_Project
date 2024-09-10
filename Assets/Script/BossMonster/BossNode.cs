@@ -207,6 +207,7 @@ public class InstantKilAttack1 : Node
 
     public override NodeState Evaluate()
     {
+        Boss.SetIsAction(true);
         if (Boss.IsPlayKillPattern1())
         {
             Debug.Log("Played Kill Pattern 1");
@@ -263,6 +264,7 @@ public class InstantKilAttack2 : Node
                 Debug.Log("Play Kill Pattern 2");
                 OnKillPattern();
                 boss.SetPlayKillCount(true);
+                boss.SetIsAction(false);
                 return state = NodeState.Running;
             }
             return state = NodeState.Running;
