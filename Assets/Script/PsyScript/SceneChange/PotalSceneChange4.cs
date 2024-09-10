@@ -14,7 +14,7 @@ public class PotalSceneChange4 : MonoBehaviour
         // 플레이어가 포탈 범위에 있을 때
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
         {
-            SceneManager.LoadScene("BossScene_Psy");
+            LoadingSceneController.Instance.LoadScene("BossScene_Psy");
         }
     }
     private void OnTriggerEnter(Collider other)

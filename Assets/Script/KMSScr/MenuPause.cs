@@ -108,13 +108,13 @@ public class PauseMenu : MonoBehaviour
         }
         else if(currentScene.name == "BossScene_Psy")
         {
-            SceneManager.LoadScene("StoreScene_Psy");
+            LoadingSceneController.Instance.LoadScene("StoreScene_Psy");
             Resume();
         }
         else
         {
             // 현재 씬을 로드
-            SceneManager.LoadScene(currentScene.name);
+            LoadingSceneController.Instance.LoadScene(currentScene.name);
             Resume();
         }
 

@@ -14628,12 +14628,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6237800104950807778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac15911fb5828d249be07b30cdbac3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 3
+  currencyData: {fileID: 0}
 --- !u!135 &3657956326611671980
 SphereCollider:
   m_ObjectHideFlags: 0

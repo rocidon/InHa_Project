@@ -5,9 +5,9 @@ public class ButtonScr : MonoBehaviour
     public void OnClickNewGame()
     {
         // "NewGame"Log 출력
-        Debug.Log("NewGame");                 
+        Debug.Log("NewGame");
         // 함수 실행시 "_MinsungTest"이라는 이름의 씬 전환
-        SceneManager.LoadScene("IntroScene"); 
+        LoadingSceneController.Instance.LoadScene("IntroScene"); 
     }
     public void OnClickRoadGame()
     {
