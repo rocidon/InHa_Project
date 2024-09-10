@@ -545,26 +545,30 @@ public class SpecialAttackPattern1 : Node
     IEnumerator Pattern()
     {
         boss.SetIsAction(true);
-
-        Animator.SetBool("IsSpeicalAttack1", true);
+        Animator.SetBool("IsSpeicalReady", true);        
         boss.SetCurrentMotion(false);
 
         yield return new WaitForSeconds(0.1f);
 
         AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(AnimTime); //wait for roar
 
+        Animator.SetBool("IsSpeicalAttack1", true);    
+
+        yield return new WaitForSeconds(0.1f);
         Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Speical 1 Atk Action");
+        AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
 
         yield return new WaitForSeconds(AnimTime/2);
 
-        //yield return new WaitForSeconds(AnimTime - 2.4f);
         Debug.Log("End Action");
 
-        /*이곳에서 충돌처리하게 만들어줘야함*/
+        /*패턴 실행*/
         boss.SpeicalAttack1();
         
         yield return new WaitForSeconds(AnimTime / 2);
+        Animator.SetBool("IsSpeicalReady", false);
         Animator.SetBool("IsSpeicalAttack1", false);
         boss.SetCurrentMotion(true);
 
