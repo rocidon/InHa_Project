@@ -36,20 +36,21 @@ public class BossBehaviorTree : BehaviorTree
                        new SequenceNode(new List<Node>
                        {
                            new IsPlayInstantKill(Boss),
-                           new InstantKilAttack1(Boss),
-                           new InstantKilAttack2(Boss)
+                           new InstantKilAttack1(Boss)
+                           //new InstantKilAttack2(Boss)
                        })
                    }),
                    new SelectorNode(new List<Node>
                    {
                        new SequenceNode(new List<Node>
                        {
-                            new InCloseRange(Boss, Player, 3),
+                            new InCloseRange(Boss, Player, 5.0f),
                             new SelectorNode(new List<Node>
                             {
                                 new SequenceNode(new List<Node>
                                 {
-                                    new NormalAttackCount(Boss, 1),
+                                    new InLongRange(Boss, 1.5f),
+                                    //new NormalAttackCount(Boss, 1),
                                     new JumpAttackPattern(Boss)
                                 }),
                                 new SequenceNode(new List<Node>
@@ -69,13 +70,17 @@ public class BossBehaviorTree : BehaviorTree
                    {
                        new SequenceNode(new List<Node>
                        {
-                           new AnyAttackCount(Boss, 100, 2),
-                           new SpecialAttackPattern1(Boss)
-                       }),
-                       new SequenceNode(new List<Node>
-                       {
-                           new SpecialAttackCount(Boss, 3),
-                           new SpecialAttackPattern2(Boss)
+                           new AnyAttackCount(Boss, 5, 2),
+                           new SelectorNode(new List<Node>
+                           {
+                               new SequenceNode(new List<Node>
+                               {
+                                   new SelectSpeicalPattern(Boss),
+                                   new SpecialAttackPattern1(Boss),                                   
+                               }),
+                               new SpecialAttackPattern2(Boss)
+                              // new SpecialAttackPattern1(Boss)
+                           })
                        })
                    })
                })
@@ -84,7 +89,7 @@ public class BossBehaviorTree : BehaviorTree
            {
                new SequenceNode(new List<Node>
                {
-                   new InCloseRange(Boss, Player, 3),
+                   new InCloseRange(Boss, Player, 1.5f),
                    new IDLE(Boss)
                }),
                new ChasePlayer(Boss)

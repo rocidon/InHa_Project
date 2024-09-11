@@ -39,7 +39,7 @@ public class BossProjectile : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
