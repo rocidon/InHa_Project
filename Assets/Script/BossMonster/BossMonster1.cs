@@ -129,6 +129,7 @@ public class BossMonster1 : BossBehaviorTree
 
     public void ResetCommonAtkCount()
     {
+        Debug.Log("Reset common Attack Count");
         JumpAttackCount = 0;
         ProjectileAttackCount = 0;
         NormalAttackCount = 0;
@@ -167,7 +168,6 @@ public class BossMonster1 : BossBehaviorTree
         {
             case StandardMotion.Idle:
                 animator.SetBool("IsIdle", val);
-
                 break;
             case StandardMotion.Movement:
                 animator.SetBool("IsWalking", val);
@@ -175,6 +175,60 @@ public class BossMonster1 : BossBehaviorTree
             default:
                 Debug.Log("허용되지 않은 idle 모션 값");
                 break;
+        }
+    }
+
+    public void JumppAttack()
+    {
+        GameObject jumAtk = transform.GetChild(1).gameObject;
+        if(jumAtk.name == "JumpAttack")//유효성 검사
+        {
+            BossJumpAtk BJA = jumAtk.GetComponent<BossJumpAtk>();
+            BJA.OnAtk();
+        }
+        else
+        {
+            Debug.Log("잘못된 인덱스 접근 : Not " + "JumpAttack");
+        }
+    }
+
+    public void NormalAttack()
+    {
+        GameObject Atk = transform.GetChild(2).gameObject;
+        if (Atk.name == "NormalAttack")//유효성 검사
+        {
+            BossNormalAttack NAtk = Atk.GetComponent<BossNormalAttack>();
+            NAtk.OnAtk();
+        }
+        else
+        {
+            Debug.Log("잘못된 인덱스 접근 : Not " + "NormalAttack");
+        }
+    }
+
+    public void SpeicalAttack1()
+    {
+        BossSpecialAttackver1 SAtk = GetComponent<BossSpecialAttackver1>();
+        if(SAtk != null)
+        {
+            SAtk.OnAtk();
+        }
+        else
+        {
+            Debug.Log("No compoenet BossSpecialAttackver1 Add Compoenet");
+        }
+    }
+
+    public void SpeicalAttack2() 
+    {
+        BossSpecialAttackver2 SAtk = GetComponent<BossSpecialAttackver2>();
+        if(SAtk != null)
+        {
+            SAtk.OnAtk();
+        }
+        else
+        {
+            Debug.Log("No compoenet BossSpecialAttackver1 Add Compoenet");
         }
     }
 }

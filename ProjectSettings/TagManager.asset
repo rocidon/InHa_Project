@@ -14,11 +14,13 @@ TagManager:
   - Coin
   - RogueHooded
   - Floor
+  - Boss
+  - Monster
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
