@@ -7,7 +7,6 @@ TagManager:
   - Obstacle
   - Round
   - Ground
-  - Undefined
   - Enemy
   - Potal
   - Item
@@ -23,7 +22,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Floor
   - Ground
   - 
   - 
