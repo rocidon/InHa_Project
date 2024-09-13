@@ -48,6 +48,11 @@ public class PlayerMove : MonoBehaviour
     public AudioClip SpecialAttack;
 
     public NormalMonster normalmonster;
+    GameObject nearObject;
+
+    int normalWeaponCount = 0;
+    int specialWeaponCount = 0;
+
 
     void Start()
     {
@@ -57,6 +62,7 @@ public class PlayerMove : MonoBehaviour
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
         // normalmonster = GameObject.Find("Enemy").GetComponent<NormalMonster>();
+       
     }
 
     void Update()
@@ -109,7 +115,7 @@ public class PlayerMove : MonoBehaviour
 
         if (!DontAttack)
         {
-            if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown)
+            if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && normalWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
                 StoneSlash.Play();
@@ -119,7 +125,7 @@ public class PlayerMove : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown)
+            if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown && specialWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
                 ElectricSlash.Play();
@@ -228,4 +234,30 @@ public class PlayerMove : MonoBehaviour
         //StartCoroutine(OnDamage());
         //¼öÁ¤ÇÊ¿ä
     }
+    void OnTriggerStay(Collider other)              // ¹«±â ¸Ô¾úÀ» ¶§ °ø°Ý °¡´ÉÇÏµµ·Ï
+    {
+        if (other.tag == "normalWeapon")
+        {
+            nearObject = other.gameObject;
+            Debug.Log("Normal °Ë È¹µæ");
+            nearObject.SetActive(false);
+            normalWeaponCount++;
+        }
+
+        if (other.tag == "specialWeapon")
+        {
+            nearObject = other.gameObject;
+            Debug.Log("Special °Ë È¹µæ");
+            nearObject.SetActive(false);
+            specialWeaponCount++;
+        }
+    }
+
+    /*void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "normalWeapon")
+        {
+            nearObject = null;
+        }
+    }*/
 }

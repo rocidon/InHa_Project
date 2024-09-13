@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     /*private*/
     private void Awake()
     {
-        player = GameObject.FindWithTag("RogueHooded");
+        player = GameObject.FindWithTag("Player");
         Rigid = GetComponent<Rigidbody>();
         Collider = GetComponent<BoxCollider>();
         Rigid.isKinematic = true;

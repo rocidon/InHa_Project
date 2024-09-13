@@ -7,22 +7,28 @@ TagManager:
   - Obstacle
   - Round
   - Ground
+  - Undefined
   - Enemy
   - Potal
   - Item
   - Coin
   - RogueHooded
   - Floor
-  - Boss
-  - Monster
+  - HidingPosition
+  - FloorOnPosition
+  - HidingFloor
+  - Weapon
+  - normalWeapon
+  - specialWeapon
+  - crossBow
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Floor
+  - 
   - Ground
   - 
   - 
