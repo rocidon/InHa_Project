@@ -4748,6 +4748,7 @@ GameObject:
   - component: {fileID: 2000590749}
   - component: {fileID: 2000590750}
   - component: {fileID: 2000590751}
+  - component: {fileID: 2000590752}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4905,6 +4906,22 @@ MonoBehaviour:
   playerHp: {fileID: 1597872352}
   healthText: {fileID: 861480789}
   maxHp: 100
+--- !u!114 &2000590752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000590742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdde53de24b1a649a5a983a14fe4a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2000590746}
+  smoothing: 0.2
+  minCameraBoundary: {x: -100, y: 5}
+  maxCameraBoundary: {x: 100, y: 100}
 --- !u!1 &2014252887
 GameObject:
   m_ObjectHideFlags: 0

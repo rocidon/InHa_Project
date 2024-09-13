@@ -19,6 +19,8 @@ public class Fire : MonoBehaviour
     WaitForSeconds Delay = new WaitForSeconds(1f);
 
     public PlayerMove player;
+    GameObject nearObject;
+    int crossBowCount = 0;
 
     private AudioSource Crossbow;
     public AudioClip CrossbowShoot;
@@ -31,7 +33,7 @@ public class Fire : MonoBehaviour
     {
         if (!DontShoot)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !IsShootCoolDown)
+            if (Input.GetKeyDown(KeyCode.Space) && !IsShootCoolDown && crossBowCount == 1)
             {
               
 
@@ -80,6 +82,17 @@ public class Fire : MonoBehaviour
         audioPlayer.clip = clip;
         audioPlayer.loop = false;
         audioPlayer.Play();
+    }
+
+    void OnTriggerEnter(Collider other)              // ¹«±â ¸Ô¾úÀ» ¶§ °ø°Ý °¡´ÉÇÏµµ·Ï
+    {
+        if (other.tag == "crossBow")
+        {
+            nearObject = other.gameObject;
+            Debug.Log("¼®±Ã È¹µæ");
+            nearObject.SetActive(false);
+            crossBowCount++;
+        }
     }
 }   
 

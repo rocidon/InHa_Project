@@ -14,6 +14,13 @@ TagManager:
   - Coin
   - RogueHooded
   - Floor
+  - HidingPosition
+  - FloorOnPosition
+  - HidingFloor
+  - Weapon
+  - normalWeapon
+  - specialWeapon
+  - crossBow
   layers:
   - Default
   - TransparentFX
