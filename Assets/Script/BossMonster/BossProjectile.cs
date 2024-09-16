@@ -37,7 +37,7 @@ public class BossProjectile : MonoBehaviour
             Debug.Log(other.name);
             Destroy(gameObject);
         }
-        else
+        if(!other.CompareTag("Boss"))
         {
             Destroy(gameObject);
         }

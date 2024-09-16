@@ -20,7 +20,7 @@ public class BossSpecialAttack2Obj : MonoBehaviour
     void Start()
     {
         //ImpactPoint = Random.Range(4.0f, 7.0f);
-        Duration = Random.Range(1.0f, 2.0f);
+        Duration = Random.Range(1.0f, 1.5f);
         StartPoint = transform.position;
         Target = GameObject.FindWithTag("Player");
         if (Target == null)
@@ -44,11 +44,17 @@ public class BossSpecialAttack2Obj : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.CompareTag("Player"))
         {
             //Take Damage Player
             Debug.Log("Hit Player on Special Atk Obj");
+            Destroy(gameObject);
         }
+        //if (!other.CompareTag("Boss"))
+        //{            
+        //    Destroy(gameObject);
+        //}
     }
     IEnumerator Pattern()
     {
@@ -57,7 +63,7 @@ public class BossSpecialAttack2Obj : MonoBehaviour
         float dx;
         float dy;
         
-        while (Duration> Dtime)
+        while (Duration > Dtime)
         {
             float DeltaTime = Time.deltaTime;
             dx = Mathf.Abs(StartPoint.x - transform.position.x);
@@ -65,7 +71,7 @@ public class BossSpecialAttack2Obj : MonoBehaviour
             {
                 WarningRange.GetComponent<MeshRenderer>().enabled = true;
             }
-            dy = dx * (dx - ImpactPoint) * -10.0f;
+            dy = (dx * (dx - ImpactPoint)) * -1.0f;
             transform.Translate(Vector3.forward * DeltaTime * DSpeed);
             transform.position = new Vector3(transform.position.x, StartPoint.y + dy, transform.position.z);
             WarningRange.position = new Vector3(StartPoint.x + ImpactPoint*fv.x, StartPoint.y, StartPoint.z);

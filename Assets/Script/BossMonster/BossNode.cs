@@ -640,7 +640,6 @@ public class SpecialAttackPattern2 : Node
         //jump-ing
         Vector3 StartPos = boss.transform.position;
         float MoveDistance = 5.0f;
-        //float Theta60 = 60.0f * 3.141592f / 180.0f;
         float Dtime = Time.deltaTime;
         while (1.0f >= Dtime)
         {
@@ -649,9 +648,6 @@ public class SpecialAttackPattern2 : Node
             float DSpeed = MoveDistance/ 1.0f;
             float dx = Mathf.Abs(StartPos.x - boss.transform.position.x+0.01f);
             float dy = dx * (dx - MoveDistance) * -1;
-            //dy *= 2.0f;
-            //dy = dy != 0 ? dy / Mathf.Abs(dy) : dy;
-            //Debug.Log(dy);
             boss.transform.Translate(Vector3.back * DeltaTime * DSpeed);
             boss.transform.position = new Vector3(boss.transform.position.x, StartPos.y + dy, boss.transform.position.z);
             Dtime += DeltaTime;
