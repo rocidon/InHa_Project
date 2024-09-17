@@ -49,7 +49,7 @@ public class BossBehaviorTree : BehaviorTree
                             {
                                 new SequenceNode(new List<Node>
                                 {
-                                    new InLongRange(Boss, 1.5f),
+                                    new InLongRange(Boss, 4.0f),
                                     //new NormalAttackCount(Boss, 1),
                                     new JumpAttackPattern(Boss)
                                 }),

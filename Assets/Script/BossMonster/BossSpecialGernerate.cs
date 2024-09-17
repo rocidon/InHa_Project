@@ -25,7 +25,8 @@ public class BossSpecialGernerate : MonoBehaviour
         
         ScaleX = transform.localScale.x / 2;
         // ScaleY = transform.GetComponent<CapsuleCollider>().height / 2;
-        ScaleY = Attack.GetComponent<BoxCollider>().size.y / 2;
+        //ScaleY = Attack.GetComponent<BoxCollider>().size.y / 2;
+        ScaleY = Attack.GetComponent<SphereCollider>().radius;
         Pattern(StartPosition);
 
     }

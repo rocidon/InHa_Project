@@ -129,9 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34f0e536cd494a4bb3e43d00e74c777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Effect: {fileID: 8953796771267719375, guid: 9ba0f047fcf5b4849a265a6499c2db88, type: 3}
+  FailEffect: {fileID: 4975053013700516587, guid: 7f1f7cb512de34f48941bc13e3e1e0b5, type: 3}
   Height: 0
   ImpactPoint: 0
+  Target: {fileID: 0}
 --- !u!1 &6736313355968656335
 GameObject:
   m_ObjectHideFlags: 0
