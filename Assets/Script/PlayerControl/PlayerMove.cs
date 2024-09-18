@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     public float JumpPower = 20f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
-    float MaxHP = 100f;
+    public float MaxHP = 100f;
     public float CurrentHP;
     /* public float _Health;*/
     /* float PlayerAttackDamage = 5f;*/

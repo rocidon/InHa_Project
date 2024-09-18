@@ -15,9 +15,30 @@ public class PauseMenu : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        sceneNameText.text = currentSceneName;
+        if (currentSceneName == "TutorialScene_Psy")
+        {
+            sceneNameText.text = "TUTORIAL";
+        }
+        else if (currentSceneName == "StageScene1_Psy")
+        {
+            sceneNameText.text = "STAGE 01";
+        }
+        else if (currentSceneName == "StageScene2_Psy")
+        {
+            sceneNameText.text = "STAGE 02";
+        }
+        else if (currentSceneName == "StageScene3_Psy")
+        {
+            sceneNameText.text = "STAGE 03";
+        }
+        else if (currentSceneName == "BossScene_Psy")
+        {
+            sceneNameText.text = "STAGE BOSS";
+        }
+
         pauseMenuCanvas.SetActive(false);
-        noReStart.SetActive(false);
+        //noReStart.SetActive(false);
+
 
     }
     void Update()
@@ -35,6 +56,18 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // 일시정지 esc
+    public void Pause()
+    {
+
+        pauseMenuCanvas.SetActive(true);
+
+        AudioListener.volume = 0.4f;
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    // 계속하기
     public void Resume()
     {
         pauseMenuCanvas.SetActive(false);
@@ -46,16 +79,10 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
-    public void Pause()
-    {
 
-        pauseMenuCanvas.SetActive(true);
 
-        AudioListener.volume = 0.4f;
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-    }
 
+    // 끝내기
     public void OnClickEnd()
     {
         Debug.Log("END");
@@ -80,43 +107,31 @@ public class PauseMenu : MonoBehaviour
 
 
     }
-
-
-    public void NoReStart()
-    {
-        if (noReStart.activeSelf == false)
-            noReStart.SetActive(true);
-        else
-        {
-            noReStart.SetActive(false);
-        }
-
-    }
-
     public void ReStartButton()
     {
         // 현재 활성화된 씬
         Scene currentScene = SceneManager.GetActiveScene();
 
 
+        // 현재 씬을 로드
+        LoadingSceneController.Instance.LoadScene(currentScene.name);
+        Resume();
 
-        if (currentScene.name == "StoreScene_Psy")
-        {
-            NoReStart();
-            Debug.Log("False");
-            
-        }
-        else if(currentScene.name == "BossScene_Psy")
-        {
-            SceneManager.LoadScene("StoreScene_Psy");
-            Resume();
-        }
-        else
-        {
-            // 현재 씬을 로드
-            SceneManager.LoadScene(currentScene.name);
-            Resume();
-        }
+        //{
+        //    if (currentScene.name == "StoreScene_Psy")
+        //    {
+        //        //NoReStart();
+        //        Debug.Log("False");
+
+        //    }
+        //    else if (currentScene.name == "BossScene_Psy")
+        //    {
+        //        LoadingSceneController.Instance.LoadScene("StoreScene_Psy");
+        //        Resume();
+        //    }
+        //    else
+        //    {
+        //    }
 
 
         // 필요 예상
@@ -125,6 +140,20 @@ public class PauseMenu : MonoBehaviour
         // 
 
     }
+
+    // 폐기
+    //public void NoReStart()
+    //{
+    //    if (noReStart.activeSelf == false)
+    //        noReStart.SetActive(true);
+    //    else
+    //    {
+    //        noReStart.SetActive(false);
+    //    }
+
+    //}
+
+
 
 
 

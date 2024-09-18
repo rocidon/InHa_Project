@@ -24,7 +24,7 @@ public class PotalSceneChange1 : MonoBehaviour
             currencyData.curSilverAmount = 0;
             currencyData.curGoldAmount = 0;
 
-            SceneManager.LoadScene("StageScene2_Psy");
+            LoadingSceneController.Instance.LoadScene("StageScene2_Psy");
         }
     }
     private void OnTriggerEnter(Collider other)
