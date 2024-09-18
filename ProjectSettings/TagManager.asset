@@ -21,6 +21,8 @@ TagManager:
   - normalWeapon
   - specialWeapon
   - crossBow
+  - Boss
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - Ground
   - Floor
   - Round

@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 //https://danpung2.tistory.com/58
 public class NormalMonster : Monster
 {
+    [SerializeField]
+    GameObject Weapon;
     RaycastHit hit;
     public enum State
     {
@@ -23,14 +25,14 @@ public class NormalMonster : Monster
     float oSpeed;
     float _Timer;
     Field_of_View fov;
-    MonsterAttack Atk;
+
     void Start()
     {
         _Health = 200.0f;
         _Atk = 10.0f;
         _Def = 1.0f;
         animator = GetComponentInChildren<Animator>();
-        Atk = GetComponentInChildren<MonsterAttack>();
+        //Atk = GetComponentInChildren<MonsterAttack>();
         _Timer = 0f;
         fov = GetComponent<Field_of_View>();
         _currentState = State.Idle;
@@ -38,14 +40,12 @@ public class NormalMonster : Monster
         speed = speed >= 1.0f ? speed : 5.0f;
         oSpeed = speed;
         AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
-
-        Atk.SetDamage(_Atk);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("currentFindPlayer : " + fov.FindPlayer);
+        //Debug.Log("currentFindPlayer : " + fov.FindPlayer);
         switch (_currentState)
         {            
             case State.Idle:
@@ -82,8 +82,10 @@ public class NormalMonster : Monster
                 }
                 break;
             case State.Attack:
+                //_Timer += Time.deltaTime;
                 if (fov.AtkPlayer== false)
                 {
+                    //_Timer = 0;
                     ChangeState(State.See);
                 }
                 break;
@@ -163,11 +165,12 @@ public class NormalMonster : Monster
     }
     void RayHit()
     {
-        Vector3 ChkPos = transform.forward + transform.position;
-        Debug.DrawRay(ChkPos, Vector3.down * 0.5f, Color.green, 0.01f);
-        if (!Physics.Raycast(ChkPos, Vector3.down, out hit, 0.5f))
+        Vector3 ChkPos = transform.up +transform.forward + transform.position;
+        Debug.DrawRay(ChkPos, Vector3.down * 2.0f, Color.green, 0.01f);
+        if (!Physics.Raycast(ChkPos, Vector3.down, out hit, 2.0f))
         {
             Turn();
+            //Debug.Log("normalMonster Turn");
         }
     }
     void Turn()
@@ -208,7 +211,10 @@ public class NormalMonster : Monster
 
     public override void Attack()
     {
-        Atk.IsAtk = true;
+
+            Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);
+
+        
     }
     public override void TakeDamage(float damage)
     {
@@ -284,24 +290,44 @@ public class MoveState : BaseState
 public class AttackState : BaseState
 {
     private Monster _normalMob;
+    float AnimTimer;
+    bool FirstHit;
     public AttackState(Monster monster) : base(monster)
     {
         _normalMob = monster;
+        //AnimTimer = 0f;
     }
 
     public override void onStateEnter()
     {
+        FirstHit = false;
+        AnimTimer = 0f;
+        //_normalMob.Attack();
         //throw new System.NotImplementedException();
     }
     public override void onStateUpdate()
     {
-        //Debug.Log("Attack!");
-        _normalMob.Attack();
+        if (!FirstHit)
+        {
+            _normalMob.Attack();
+            FirstHit = true;
+        }
+        else
+        {
+            AnimTimer += Time.deltaTime;
+            if (AnimTimer >= 2.4f)
+            {
+                AnimTimer = 0;
+                _normalMob.Attack();
+            }
+        }
+        //Debug.Log("Attack -ing");
         //throw new System.NotImplementedException();
     }
 
     public override void onStateExit()
     {
+        //Debug.Log("Attack Out");
         //throw new System.NotImplementedException();
     }
 }
