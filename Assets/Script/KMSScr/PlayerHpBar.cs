@@ -56,7 +56,7 @@ public class PlayerHpBar : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = $"{curHp}/{maxHp}";
+            healthText.text = $"{curHp} / {maxHp}";
         }
     }
     private void UpdateHP()
