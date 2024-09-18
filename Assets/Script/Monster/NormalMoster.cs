@@ -45,6 +45,7 @@ public class NormalMonster : Monster
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("currentFindPlayer : " + fov.FindPlayer);
         switch (_currentState)
         {            
             case State.Idle:
@@ -53,7 +54,7 @@ public class NormalMonster : Monster
                     if(_Timer > 1.0f)
                     {
                         ChangeState(State.Move);
-                        _Timer = 1.0f;
+                        _Timer = 0.0f;
                     }
                     _Timer += Time.deltaTime;
                 }
