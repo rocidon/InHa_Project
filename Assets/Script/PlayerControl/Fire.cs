@@ -30,6 +30,7 @@ public class Fire : MonoBehaviour
     {
         Crossbow = GetComponent<AudioSource>();
         player = GameObject.Find("ImprovedPlayerPrefab").GetComponent<PlayerMove>();
+
     }
     void Update()
     {

@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip NormalAttack;
     public AudioClip SpecialAttack;
 
-    public NormalMonster normalmonster;
+    public NormalMonster normalMonsterAttack;
     GameObject nearObject;
 
     int normalWeaponCount = 0;
@@ -63,8 +63,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
-        // normalmonster = GameObject.Find("Enemy").GetComponent<NormalMonster>();
-       
+        normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>();
     }
 
     void Update()
@@ -148,10 +147,10 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      // Collision Enter 판정
     {
-        if (collision.gameObject.CompareTag("Enemy") && !IsPlayerDead)
+        if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            TakeDamage(Damage);
+            TakeDamage(normalMonsterAttack._Atk);
 
             if (CurrentHP <= 0)
             {
@@ -165,7 +164,7 @@ public class PlayerMove : MonoBehaviour
             {
                 anim.SetTrigger("GetHit");
                 Debug.Log("공격받았습니다.");
-                OnDamage();
+                /*OnDamage();*/
                 PlaySound(Hit, Player);
             }
         }
@@ -229,14 +228,16 @@ public class PlayerMove : MonoBehaviour
         audioPlayer.Play();
     }
 
-    public void TakeDamage(float damage)        // damage는 몬스터의 공격력인데 어떻게 받아 들일 수 있는지?
+    public void TakeDamage(float MonsterDamage)       // damage는 몬스터의 공격력인데 어떻게 받아 들일 수 있는지?
     {                                           /* 덕상 comment : 몬스터에서 전달해주면 해결됨, TakeDamage가 발생하면
                                                  * onDamage도 이 함수 내에서 호출해주면 가능함 TakeDamage로 피격데미지 처리
                                                  * onDamage에서 피격 시 밀려나는 이벤트 처리 */
-        CurrentHP -= damage;
+        //normalMonsterDamage = normalMonsterAttack._Atk;
+        CurrentHP -= MonsterDamage;
         Debug.Log("적에게 공격 받았습니다.");
+        OnDamage();
         //StartCoroutine(OnDamage());
-        //수정필요
+        //Enermy
     }
     void OnTriggerStay(Collider other)              // normal무기 먹었을 때 공격 가능하도록
     {

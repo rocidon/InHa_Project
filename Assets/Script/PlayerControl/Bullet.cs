@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
-        Destroy(gameObject, 3f);        // 3초 뒤 총알 프리팹이 사라지도록
+        Destroy(gameObject, 2f);        // 3초 뒤 총알 프리팹이 사라지도록
         /*renderer = target.GetComponent<Renderer>();*/
         /* Application.targetFrameRate = 60;
          Shoot(new Vector3(0, 0, 100));*/
@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Monster"))
         {
             Debug.Log("화살로 적을 맞춤");
             GreenHit.Play();
