@@ -84,7 +84,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &3290685669012273910
 MonoBehaviour:
@@ -124,10 +124,10 @@ MonoBehaviour:
   AtkRadius: 1
   TargetMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   ObstacleMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 896
   FindPlayer: 0
   AtkPlayer: 0
   height: 1.15

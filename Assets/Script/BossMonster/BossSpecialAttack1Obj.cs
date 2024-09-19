@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class BossSpecialAttack1Obj : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject Effect;
     float Speed;
     float Height;
     float ObjHeight;
@@ -45,6 +47,7 @@ public class BossSpecialAttack1Obj : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Hit Player on Special Atk Obj");
+            Instantiate(Effect, other.transform.position, Quaternion.identity);
         }
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossNormalAttack : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject Effect;
     BoxCollider Range;
     float BossAtk;
     void Start()
@@ -24,6 +26,7 @@ public class BossNormalAttack : MonoBehaviour
         {
             //other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
             Debug.Log("Player Normal Hit");
+            Instantiate(Effect, other.transform.position, Quaternion.identity);
         }
     }
 

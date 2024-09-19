@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class BossJumpAtk : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject Effect;
+    [SerializeField]
+    public GameObject SmashEffect;
     BoxCollider Range;
     float BossAtk;
     private void Start()
@@ -19,6 +23,7 @@ public class BossJumpAtk : MonoBehaviour
     {
         Debug.Log("On Jump Atk Script!");
         Range.enabled = true;
+        Instantiate(SmashEffect, transform.position, Quaternion.identity);
         StartCoroutine(RemainRange());
     }
     private void OnTriggerEnter(Collider other)
@@ -27,6 +32,7 @@ public class BossJumpAtk : MonoBehaviour
         {
             //other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
             Debug.Log("Player Jump Hit");
+            Instantiate(Effect, other.transform.position, Quaternion.identity);
         }
     }
 
@@ -36,5 +42,6 @@ public class BossJumpAtk : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         Debug.Log("Off Jump Atk Script!");
         Range.enabled = false;
+        
     }
 }

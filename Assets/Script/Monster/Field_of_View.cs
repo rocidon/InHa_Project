@@ -50,10 +50,7 @@ public class Field_of_View : MonoBehaviour
 
         DetectedPlayer(myPos, lookDir);
     }
-    void OnDrawGizmosSelected()
-    {
 
-    }
     Vector3 AngleToDir(float angle)
     {
         float radian = (angle) * Mathf.Deg2Rad;

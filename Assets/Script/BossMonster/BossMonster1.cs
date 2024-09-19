@@ -61,9 +61,12 @@ public class BossMonster1 : BossBehaviorTree
 
     void Update()
     {
-        //if()
-        PlayTree();
-        //_Health -= 10;
+        if (!IsDying)
+        {
+            PlayTree();
+            //TakeDamage(10);
+        }
+        
     }
     public void SetPlayKillPattern1(bool val) { isPlayKillPattern1 = val; }
     public void SetPlayKillPattern2(bool val) { isPlayKillPattern2 = val; }
@@ -78,8 +81,26 @@ public class BossMonster1 : BossBehaviorTree
     }
     public override void Dying()
     {
-        
+        animator.SetTrigger("IsDying");
+        StartCoroutine(WAIT());
+        //base.Dying();
+    }
+    IEnumerator WAIT()
+    {
+        yield return new WaitForSeconds(0.1f);
+        float time = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(time);
         base.Dying();
+    }
+    public override void TakeDamage(float damage)
+    {
+        //Debug.Log("!!!!!!");
+        _Health -= damage;
+        if(_Health <= 0.0f)
+        {
+            IsDying = true;
+            Dying();
+        }
     }
     public bool IsPlayKillPattern2() { 
         return isPlayKillPattern2;

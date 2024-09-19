@@ -150,7 +150,7 @@ public class NormalAttack : Node
 
         AnimTime = Animator.GetCurrentAnimatorStateInfo(0).length;
 
-        //Debug.Log("Animation Time : " + AnimTime);
+        Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Normal ATk Action");
 
         yield return new WaitForSeconds(AnimTime - 0.93f);
@@ -159,7 +159,7 @@ public class NormalAttack : Node
         Boss.NormalAttack();
         //
         Boss.AddNormalAtkCount(1);
-        yield return new WaitForSeconds(0.93f);
+        yield return new WaitForSeconds(0.23f);
         Animator.SetBool("IsNormalAttack", false);
         Boss.SetCurrentMotion(true);
 
@@ -408,24 +408,25 @@ public class JumpAttackPattern : Node
         float MoveDistance = Vector3.Magnitude(boss.transform.position - boss.Player.transform.position) - 1.5f;
 
         float Dtime = Time.deltaTime;
-        while(AnimTime - 2.6f >= Dtime)
+        while(AnimTime - 1.0f >= Dtime)
         {
             float DeltaTime = Time.deltaTime;
             //이동할 거리 / 걸리는 시간 = 움직일 속도
-            float DSpeed = MoveDistance / (AnimTime - 2.6f);
+            float DSpeed = MoveDistance / (AnimTime - 1.0f);
             boss.transform.Translate(Vector3.forward * DeltaTime * DSpeed);
             Dtime += DeltaTime;
             yield return new WaitForSeconds(DeltaTime);
         }
 
-        Dtime -= (AnimTime - 2.4f);
+        Dtime -= (AnimTime - 1.0f);
         //yield return new WaitForSeconds(AnimTime - 2.4f);
 
         Debug.Log("End Action");
         /*이곳에서 충돌처리하게 만들어줘야함*/
         boss.JumppAttack();
         boss.AddJumpAtkCount(1);
-        yield return new WaitForSeconds(2.6f - Dtime);
+        //yield return new WaitForSeconds(1.0f - Dtime);
+        yield return new WaitForSeconds(0.3f);
         Animator.SetBool("IsJumpAttack", false);
         //  Animator.SetBool("IsIdle", true);
         boss.SetCurrentMotion(true);
@@ -639,7 +640,6 @@ public class SpecialAttackPattern2 : Node
         //jump-ing
         Vector3 StartPos = boss.transform.position;
         float MoveDistance = 5.0f;
-        //float Theta60 = 60.0f * 3.141592f / 180.0f;
         float Dtime = Time.deltaTime;
         while (1.0f >= Dtime)
         {
@@ -648,9 +648,6 @@ public class SpecialAttackPattern2 : Node
             float DSpeed = MoveDistance/ 1.0f;
             float dx = Mathf.Abs(StartPos.x - boss.transform.position.x+0.01f);
             float dy = dx * (dx - MoveDistance) * -1;
-            //dy *= 2.0f;
-            //dy = dy != 0 ? dy / Mathf.Abs(dy) : dy;
-            //Debug.Log(dy);
             boss.transform.Translate(Vector3.back * DeltaTime * DSpeed);
             boss.transform.position = new Vector3(boss.transform.position.x, StartPos.y + dy, boss.transform.position.z);
             Dtime += DeltaTime;
