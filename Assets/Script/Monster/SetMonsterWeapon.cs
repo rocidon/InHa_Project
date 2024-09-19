@@ -17,12 +17,6 @@ public class SetMonsterWeapon : MonoBehaviour
         WeaponLocation = WeaponPoint.transform;
         //transform.position = WeaponLocation.position;
     }
-    //void Start()
-    //{
-    //    transform.position = WeaponLocation.position;
-    //}
-
-    // Update is called once per frame
     void Update()
     {
         transform.position = WeaponLocation.position;

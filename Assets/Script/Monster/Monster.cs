@@ -48,6 +48,10 @@ public class Monster : MonoBehaviour
     {
         Debug.Log("I'm parent Class Idle");
     }
+    public virtual void AttackFail()
+    {
+        Debug.Log("Fail Attack");
+    }
     public virtual void Attack()
     {
         Debug.Log("I'm Parnet Class Attck");

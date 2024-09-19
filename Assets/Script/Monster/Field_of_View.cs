@@ -77,6 +77,7 @@ public class Field_of_View : MonoBehaviour
             {                
                 if (DebugMode) Debug.DrawLine(Mypositon, targetPos, Color.red);
                 FindPlayer = true;
+                Debug.Log("Player Positon : " + targetPos);
                 if (distance <= AtkRadius && (transform.forward != targetDir))
                 {
                     AtkPlayer = true;
