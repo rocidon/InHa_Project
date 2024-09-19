@@ -19,6 +19,7 @@ public class BossProjectile : MonoBehaviour
         Target = GameObject.FindWithTag("Player");
         if (Target.CompareTag("Player"))
         {
+            Debug.Log(Target.name);
             transform.LookAt(Target.transform);
         }
     }
@@ -35,6 +36,7 @@ public class BossProjectile : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log(other.name);
+            other.GetComponent<PlayerMove>().TakeDamage(5.0f);
             Destroy(gameObject);
             Instantiate(Effect, transform.position, Quaternion.identity);
         }

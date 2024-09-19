@@ -8,7 +8,7 @@ public class CustomAnim : MonoBehaviour
     private void LateUpdate()
     {
        /* transform.position += new Vector3(0, 4, 0);*/
-        transform.localScale += new Vector3(0, 1.5f, 0);
+        //transform.localScale += new Vector3(0, 1.5f, 0);
     }
     // Update is called once per frame
 }
