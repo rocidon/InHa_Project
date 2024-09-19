@@ -15,8 +15,8 @@ public class PlayerMove : MonoBehaviour
     public ParticleSystem StoneSlash;
     public ParticleSystem ElectricSlash;
 
-    float Speed = 10f;       // Player 이동 속도
-    public float JumpPower = 10f;     // Player 점프 높이
+    float Speed = 7f;       // Player 이동 속도
+    public float JumpPower = 18f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
     public float MaxHP = 100f;
@@ -185,8 +185,8 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!collision.gameObject.CompareTag("HidingFloor"))        // Player가 HidingFloor를 밟고 있지 않는 상황이라면
         {
-            Speed = 10f;        // Speed 원상복구
-            JumpPower = 20f;            // JumpPower 원상복구
+            Speed = 7f;        // Speed 원상복구
+            JumpPower = 18f;            // JumpPower 원상복구
             if (IsPlayerDead == true)
             {
                 Speed = 0f;

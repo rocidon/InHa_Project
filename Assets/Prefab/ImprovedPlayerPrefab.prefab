@@ -871,7 +871,7 @@ MonoBehaviour:
   SnowHit: {fileID: 8765975935309372712}
   StoneSlash: {fileID: 7828095732787423156}
   ElectricSlash: {fileID: 4381977235242885546}
-  JumpPower: 10
+  JumpPower: 18
   MaxHP: 100
   CurrentHP: 100
   anim: {fileID: 9023233706569696506}
