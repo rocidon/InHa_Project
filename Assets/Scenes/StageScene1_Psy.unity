@@ -886,7 +886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6883696098381587976, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_TagString
-      value: RogueHooded
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1302,6 +1302,10 @@ PrefabInstance:
     - target: {fileID: 6579317243065980498, guid: e73124e3539f873418f3093ce2aae07a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552785316833840349, guid: e73124e3539f873418f3093ce2aae07a, type: 3}
+      propertyPath: m_TagString
+      value: normalWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -436,6 +436,10 @@ PrefabInstance:
       propertyPath: FloorOnPosition
       value: 
       objectReference: {fileID: 1232904699}
+    - target: {fileID: 1215863203573659404, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: JumpPower
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3215066522240372178, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -502,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6883696098381587976, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_TagString
-      value: RogueHooded
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7539848379421311701, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_AnchorMax.x

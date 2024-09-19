@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public ParticleSystem ElectricSlash;
 
     float Speed = 10f;       // Player 이동 속도
-    public float JumpPower = 20f;     // Player 점프 높이
+    public float JumpPower = 10f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
     public float MaxHP = 100f;

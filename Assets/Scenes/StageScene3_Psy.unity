@@ -921,6 +921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImprovedPlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6883696098381587976, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7539848379421311701, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2702,7 +2706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3020864964086867545, guid: e73124e3539f873418f3093ce2aae07a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6579317243065980498, guid: e73124e3539f873418f3093ce2aae07a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2743,6 +2747,10 @@ PrefabInstance:
     - target: {fileID: 6579317243065980498, guid: e73124e3539f873418f3093ce2aae07a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552785316833840349, guid: e73124e3539f873418f3093ce2aae07a, type: 3}
+      propertyPath: m_TagString
+      value: crossBow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -29,7 +29,7 @@ public class PotalSceneChange3 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 플레이어가 포탈의 범위에 들어왔을 때
-        if(other.CompareTag("RogueHooded"))
+        if(other.CompareTag("Player"))
         {
             isPlayerInRange = true;
         }
@@ -37,7 +37,7 @@ public class PotalSceneChange3 : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // 플레이어가 범위 밖으로 갔을 때
-        if (other.CompareTag("RogueHooded"))
+        if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
         }

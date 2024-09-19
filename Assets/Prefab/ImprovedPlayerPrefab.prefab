@@ -871,7 +871,8 @@ MonoBehaviour:
   SnowHit: {fileID: 8765975935309372712}
   StoneSlash: {fileID: 7828095732787423156}
   ElectricSlash: {fileID: 4381977235242885546}
-  JumpPower: 20
+  JumpPower: 10
+  MaxHP: 100
   CurrentHP: 100
   anim: {fileID: 9023233706569696506}
   IsPlayerDead: 0
@@ -896,7 +897,6 @@ MonoBehaviour:
   playerHp: {fileID: 1712811077430743463}
   healthText: {fileID: 5933253491489307088}
   playerMove: {fileID: 1215863203573659404}
-  maxHp: 100
 --- !u!1001 &7490346125561982934
 PrefabInstance:
   m_ObjectHideFlags: 0

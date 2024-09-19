@@ -53,7 +53,7 @@ public class BossHpBar : MonoBehaviour
     {
         
         // 충돌한 오브젝트의 태그가 Player 일대
-        if (collision.gameObject.CompareTag("RogueHooded"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             // 체력바 활성화
             bossHp.gameObject.SetActive(isActive = true);

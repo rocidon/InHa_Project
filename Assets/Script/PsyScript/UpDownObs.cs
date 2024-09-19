@@ -33,7 +33,7 @@ public class UpDownObs : MonoBehaviour
         Debug.Log("충돌");
 
         // 위아래 움직이는 장애물 장애물 충돌 시 밀리는 코드
-        if (collision.gameObject.tag == "RogueHooded")
+        if (collision.gameObject.tag == "Player")
         {
             //collision.gameObject.GetComponent<PlayerMove>().blade++;
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
