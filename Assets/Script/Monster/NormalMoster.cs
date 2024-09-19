@@ -330,6 +330,11 @@ public class AttackState : BaseState
         //Debug.Log("Attack Out");
         //throw new System.NotImplementedException();
     }
+
+    IEnumerator Pattern()
+    {
+        yield return new WaitForSeconds(0.1f);
+    }
 }
 
 public class SeeState : BaseState
