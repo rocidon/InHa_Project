@@ -30,7 +30,13 @@ public class BossJumpAtk : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
+            //other.gameObject.GetComponent<PlayerMove>().Take
+            //
+            //
+            //
+            //
+            //
+            //(BossAtk);
             Debug.Log("Player Jump Hit");
             Instantiate(Effect, other.transform.position, Quaternion.identity);
         }

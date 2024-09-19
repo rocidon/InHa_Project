@@ -674,6 +674,10 @@ PrefabInstance:
       propertyPath: FloorOnPosition
       value: 
       objectReference: {fileID: 2080199938}
+    - target: {fileID: 2721435077754299446, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 325353010}
     - target: {fileID: 6110291289477397682, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -750,6 +754,11 @@ PrefabInstance:
 --- !u!4 &325353009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6110291289477397682, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+  m_PrefabInstance: {fileID: 325353008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &325353010 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9023233706569696506, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
   m_PrefabInstance: {fileID: 325353008}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &517564319

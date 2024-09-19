@@ -888,6 +888,10 @@ PrefabInstance:
       propertyPath: FloorOnPosition
       value: 
       objectReference: {fileID: 1961314073}
+    - target: {fileID: 2721435077754299446, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 765164632}
     - target: {fileID: 6110291289477397682, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -961,6 +965,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+--- !u!95 &765164632 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9023233706569696506, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+  m_PrefabInstance: {fileID: 765164631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &771922918
 PrefabInstance:
   m_ObjectHideFlags: 0
