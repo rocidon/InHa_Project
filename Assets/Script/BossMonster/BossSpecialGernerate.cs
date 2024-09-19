@@ -24,17 +24,13 @@ public class BossSpecialGernerate : MonoBehaviour
         AttackScaleX = Attack.transform.localScale.x / 2;
         
         ScaleX = transform.localScale.x / 2;
-        ScaleY = transform.GetComponent<CapsuleCollider>().height / 2;
-
-        StartCoroutine(Pattern(StartPosition));
-
-        //Vector3 OBjPos1 = StartPosition + new Vector3(ScaleX + AttackScaleX, ScaleY, 0);
-        //Vector3 OBjPos2 = StartPosition - new Vector3(ScaleX + AttackScaleX, -ScaleY, 0);
-        //Instantiate(Attack, OBjPos1, Quaternion.Euler(0, 90, 0));
-        //Instantiate(Attack, OBjPos2, Quaternion.Euler(0, -90, 0));
+        // ScaleY = transform.GetComponent<CapsuleCollider>().height / 2;
+        //ScaleY = Attack.GetComponent<BoxCollider>().size.y / 2;
+        ScaleY = Attack.GetComponent<SphereCollider>().radius;
+        Pattern(StartPosition);
 
     }
-    IEnumerator Pattern(Vector3 StartPosition)
+    void Pattern(Vector3 StartPosition)
     {
         GameObject ob1 = Instantiate(WarningRangePrefeb);
         GameObject ob2 = Instantiate(WarningRangePrefeb);
@@ -47,7 +43,7 @@ public class BossSpecialGernerate : MonoBehaviour
         ob1.transform.position = OBjPos1;
         ob2.transform.position = OBjPos2;
 
-        yield return new WaitForSeconds(2.5f);
+       
 
         ob1.GetComponent<MeshRenderer>().enabled = false;
         ob2.GetComponent<MeshRenderer>().enabled = false;

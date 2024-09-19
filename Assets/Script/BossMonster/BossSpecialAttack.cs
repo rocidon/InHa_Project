@@ -6,6 +6,8 @@ using UnityEngine;
 public class BossSpecialAttack : MonoBehaviour
 {
     [SerializeField]
+    public GameObject Effect;
+    [SerializeField]
     public float Speed;
     private void Start()
     {
@@ -16,6 +18,8 @@ public class BossSpecialAttack : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+        //transform.Translate(transform.forward * Speed * Time.deltaTime);
+        //transform.Rotate(new Vector3(2*Speed*Time.deltaTime,0,0));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,5 +37,6 @@ public class BossSpecialAttack : MonoBehaviour
             Debug.Log("Detroy Floor");
             Destroy(other.gameObject);
         }
+        Instantiate(Effect, transform.position, Quaternion.identity);
     }
 }

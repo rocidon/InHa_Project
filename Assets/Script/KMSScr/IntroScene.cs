@@ -17,7 +17,7 @@ public class Intro : MonoBehaviour
 
         if (transform.position.y >= 3000)
         {
-            SceneManager.LoadScene("TutorialScene_Psy");
+            LoadingSceneController.Instance.LoadScene("TutorialScene_Psy");
             Debug.Log("ASDFSADSDF");
         }
         else
@@ -28,7 +28,7 @@ public class Intro : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("TutorialScene_Psy");
+            LoadingSceneController.Instance.LoadScene("TutorialScene_Psy");
         }
     }
 
