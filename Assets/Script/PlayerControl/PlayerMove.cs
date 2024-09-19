@@ -1,6 +1,7 @@
 // PlayerMove
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
@@ -30,9 +31,10 @@ public class PlayerMove : MonoBehaviour
     public bool IsPlayerDead = false;
     bool DontAttack = false;
 
-    bool IsBanControl = false;
-    float delayTime = 0.0f;
-    [SerializeField] private float stopTime =1.5f;
+    public bool IsBanControl = false;
+    float delayTime = 0.0f;             // normal 공격 delayTime
+ 
+    /*[SerializeField] private*/public float stopTime = 1.5f;
     /* bool IsConflict = false;*/
 
     private float AttackTime;
@@ -70,11 +72,13 @@ public class PlayerMove : MonoBehaviour
         if (IsBanControl)
         {
             delayTime += Time.deltaTime;
+            
             if (delayTime > stopTime)
             {
                 IsBanControl = false;
                 delayTime = 0.0f;
             }
+          
             return;
         }
 
@@ -234,7 +238,7 @@ public class PlayerMove : MonoBehaviour
         //StartCoroutine(OnDamage());
         //수정필요
     }
-    void OnTriggerStay(Collider other)              // 무기 먹었을 때 공격 가능하도록
+    void OnTriggerStay(Collider other)              // normal무기 먹었을 때 공격 가능하도록
     {
         if (other.tag == "normalWeapon")
         {
@@ -244,7 +248,7 @@ public class PlayerMove : MonoBehaviour
             normalWeaponCount++;
         }
 
-        if (other.tag == "specialWeapon")
+        if (other.tag == "specialWeapon")           // speical무기 먹었을 때 공격 가능하도록
         {
             nearObject = other.gameObject;
             Debug.Log("Special 검 획득");

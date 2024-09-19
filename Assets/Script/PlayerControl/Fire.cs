@@ -24,6 +24,8 @@ public class Fire : MonoBehaviour
 
     private AudioSource Crossbow;
     public AudioClip CrossbowShoot;
+
+
     void Start()
     {
         Crossbow = GetComponent<AudioSource>();
@@ -31,6 +33,8 @@ public class Fire : MonoBehaviour
     }
     void Update()
     {
+       
+
         if (!DontShoot)
         {
             if (Input.GetKeyDown(KeyCode.Space) && !IsShootCoolDown && crossBowCount == 1)
@@ -43,6 +47,7 @@ public class Fire : MonoBehaviour
                 ShootTime = 0;
                 StartCoroutine(ShootCoolDown());
                 PlaySound(CrossbowShoot, Crossbow);
+                
             }
             else if (player.CurrentHP <= 0)
             {
