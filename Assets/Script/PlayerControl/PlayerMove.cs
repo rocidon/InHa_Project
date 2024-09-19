@@ -16,11 +16,11 @@ public class PlayerMove : MonoBehaviour
     public ParticleSystem StoneSlash;
     public ParticleSystem ElectricSlash;
 
-    float Speed = 10f;       // Player 이동 속도
-    public float JumpPower = 20f;     // Player 점프 높이
+    float Speed = 7f;       // Player 이동 속도
+    public float JumpPower = 18f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
-    public float MaxHP = 100f;
+    public float MaxHP = 100f;      
     public float CurrentHP;
     /* public float _Health;*/
     /* float PlayerAttackDamage = 5f;*/
@@ -33,8 +33,9 @@ public class PlayerMove : MonoBehaviour
 
     public bool IsBanControl = false;
     float delayTime = 0.0f;             // normal 공격 delayTime
- 
-    /*[SerializeField] private*/public float stopTime = 1.5f;
+
+    public float stopTime = 1.5f;
+    /*[SerializeField] private*/
     /* bool IsConflict = false;*/
 
     private float AttackTime;
@@ -55,6 +56,9 @@ public class PlayerMove : MonoBehaviour
     int normalWeaponCount = 0;
     int specialWeaponCount = 0;
 
+    public float normalAttack = 10.0f;          // normal 무기 공격력
+    public float specialAttack = 15.0f;         // special 무기 공격력
+    
 
     void Start()
     {
@@ -147,10 +151,10 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      // Collision Enter 판정
     {
-        if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
+        if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            TakeDamage(normalMonsterAttack._Atk);
+            TakeDamage(20);
 
             if (CurrentHP <= 0)
             {
@@ -188,8 +192,8 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!collision.gameObject.CompareTag("HidingFloor"))        // Player가 HidingFloor를 밟고 있지 않는 상황이라면
         {
-            Speed = 10f;        // Speed 원상복구
-            JumpPower = 20f;            // JumpPower 원상복구
+            Speed = 7f;        // Speed 원상복구
+            JumpPower = 18f;            // JumpPower 원상복구
             if (IsPlayerDead == true)
             {
                 Speed = 0f;
