@@ -9,22 +9,11 @@ public class EnemyHpBar : MonoBehaviour
 
     // Slider UI 컴포넌트 할당
     [SerializeField] private Slider enemyHp;
+    [SerializeField] private NormalMonster normalMonster;
 
     // enemy 최대 및 초기 체력 설정
-    public float maxHp = 100;  
+    private float maxHp;  
     private float curHp;
-
-
-
-    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    // Enemy의 HP를 참조 받을 때는 아래 참고
-    //HP가 설정된 스크립트가 있는 오브젝트를 드래그.
-
-    // [SerializeField] private (몬스터 HP가 들어가 있는..) (변수명);
-    // public float maxHp = 100;  
-    // private float curHp;
-    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
 
 
     // UI 요소
@@ -38,7 +27,8 @@ public class EnemyHpBar : MonoBehaviour
 
     void Start()
     {
-        curHp = maxHp;
+        maxHp = normalMonster._Health;
+        curHp = normalMonster._Health;
 
         // Slider 최댓값과 초기값
         enemyHp.maxValue = maxHp;
@@ -97,23 +87,23 @@ public class EnemyHpBar : MonoBehaviour
     }
 
     // 테스트용
-    private void OnCollisionEnter(Collision collision)
-    {
+    //private void OnCollisionEnter(Collision collision)
+    //{
         
-        // 충돌한 오브젝트 태그가 "Player" 일때
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 체력바 활성화
-            enemyHp.gameObject.SetActive(isActive = true);
+    //    // 충돌한 오브젝트 태그가 "Player" 일때
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        // 체력바 활성화
+    //        enemyHp.gameObject.SetActive(isActive = true);
 
-            curHp -= 10;
+    //        curHp -= 10;
 
-            // 0이하로 떨어지지 않도록 설정.
-            curHp = Mathf.Max(curHp, 0);
+    //        // 0이하로 떨어지지 않도록 설정.
+    //        curHp = Mathf.Max(curHp, 0);
 
-            UpdateHP();
-        }
-    }
+    //        UpdateHP();
+    //    }
+    //}
 }
 
 

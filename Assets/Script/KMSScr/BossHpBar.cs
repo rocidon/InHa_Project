@@ -5,34 +5,35 @@ public class BossHpBar : MonoBehaviour
 {
     // Slider UI 설정
     [SerializeField] private Slider bossHp;
+    [SerializeField] private BossMonster1 BossMonster;
 
 
     // 따로 참조 받으면 지워도 됨.
     // boss 최대 및 초기 체력 설정
-    public float maxHp = 100;  
+    private float maxHp;
     private float curHp;
 
-
     // HP바 처음 상태.
-    private bool isActive = false;
+    //private bool isActive = false;
 
     void Start()
     {
-        curHp = maxHp;
 
-        // Slider에 HP 설정
+        maxHp = BossMonster._MaxHealth;
+        curHp = BossMonster._Health;
+
         bossHp.maxValue = maxHp;
         bossHp.value = curHp;
 
-        bossHp.gameObject.SetActive(isActive);
+        //bossHp.gameObject.SetActive(isActive);
 
     }
 
     void Update()
     {
-        UpdateHP();          
+        curHp = BossMonster._Health;
+        UpdateHP();
 
-        
         if (curHp <= 0)
         {
             //bossHp.gameObject.SetActive(false);
@@ -40,8 +41,7 @@ public class BossHpBar : MonoBehaviour
         }
     }
 
-
-    private void UpdateHP()   
+    private void UpdateHP()
     {
         bossHp.value = curHp;
     }
@@ -49,21 +49,21 @@ public class BossHpBar : MonoBehaviour
 
 
     // 테스트용
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        // 충돌한 오브젝트의 태그가 Player 일대
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 체력바 활성화
-            bossHp.gameObject.SetActive(isActive = true);
+    //private void OnCollisionEnter(Collision collision)
+    //{
 
-            curHp -= 10;
+    //    // 충돌한 오브젝트의 태그가 Player 일대
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        // 체력바 활성화
+    //        bossHp.gameObject.SetActive(isActive = true);
 
-            //0 이하로 떨어지지 않도록.
-            curHp = Mathf.Max(curHp, 0);
+    //        curHp -= 10;
 
-            UpdateHP();
-        }
-    }
+    //        //0 이하로 떨어지지 않도록.
+    //        curHp = Mathf.Max(curHp, 0);
+
+    //        UpdateHP();
+    //    }
+    //}
 }
