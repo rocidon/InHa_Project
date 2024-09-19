@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7847138285394760671}
   - component: {fileID: 4248403155980805603}
   - component: {fileID: 1677790578647240953}
-  - component: {fileID: 5170161217663181402}
   - component: {fileID: 5253397431085908764}
+  - component: {fileID: 5170161217663181402}
   - component: {fileID: 8684540012309024792}
   m_Layer: 0
   m_Name: Weapon
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5170161217663181402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4479423981183108441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce47629e6d5d7f3449ab481d6330ec12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponPoint: {fileID: 7990355719827652019}
 --- !u!65 &5253397431085908764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -120,6 +107,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5034445, y: 1.7752615, z: 0.1306338}
   m_Center: {x: -0.0000035464768, y: 0.52186507, z: 0.00000021606684}
+--- !u!114 &5170161217663181402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479423981183108441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce47629e6d5d7f3449ab481d6330ec12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponPoint: {fileID: 7990355719827652019}
 --- !u!114 &8684540012309024792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Effect: {fileID: 5192010313740847528, guid: 609276caaa9aa5d4c8aa8a55713c641a, type: 3}
+  BaseMonster: {fileID: 0}
 --- !u!1 &5933356327616400180
 GameObject:
   m_ObjectHideFlags: 0

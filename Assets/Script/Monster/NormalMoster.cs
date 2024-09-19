@@ -37,7 +37,7 @@ public class NormalMonster : Monster
         fov = GetComponent<Field_of_View>();
         _currentState = State.Idle;
         _fsm = new FSM(new IdleState(this));
-        speed = speed >= 1.0f ? speed : 5.0f;
+        speed = speed >= 1.0f ? speed : 3.0f;
         oSpeed = speed;
         AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
     }
@@ -85,8 +85,8 @@ public class NormalMonster : Monster
                 //_Timer += Time.deltaTime;
                 if (fov.AtkPlayer== false)
                 {
-                    //_Timer = 0;
                     ChangeState(State.See);
+                    //Weapon.GetComponent<MonsterWeapon>().ControlTrigger(false);
                 }
                 break;
             case State.See:                
@@ -211,15 +211,19 @@ public class NormalMonster : Monster
 
     public override void Attack()
     {
+       Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);        
+    }
 
-            Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);
-
-        
+    public override void AttackFail()
+    {
+        Weapon.GetComponent<MonsterWeapon>().ControlTrigger(false);
+        //base.AttackFail();
     }
     public override void TakeDamage(float damage)
     {
         _Health -= damage;
         Debug.Log(_Health);
+        AttackFail();
         _OnDamage();
         //StartCoroutine(OnDamage());
         //수정필요
@@ -291,7 +295,9 @@ public class AttackState : BaseState
 {
     private Monster _normalMob;
     float AnimTimer;
+    float AnimLength;
     bool FirstHit;
+    bool StartPattern;
     public AttackState(Monster monster) : base(monster)
     {
         _normalMob = monster;
@@ -301,39 +307,55 @@ public class AttackState : BaseState
     public override void onStateEnter()
     {
         FirstHit = false;
+        StartPattern = false;
         AnimTimer = 0f;
+        _normalMob.StartCoroutine(Pattern());
         //_normalMob.Attack();
         //throw new System.NotImplementedException();
     }
     public override void onStateUpdate()
     {
-        if (!FirstHit)
-        {
-            _normalMob.Attack();
-            FirstHit = true;
-        }
-        else
+        if (StartPattern)
         {
             AnimTimer += Time.deltaTime;
-            if (AnimTimer >= 2.4f)
+            if (AnimTimer >= AnimLength)
             {
                 AnimTimer = 0;
                 _normalMob.Attack();
             }
         }
+        //if (!FirstHit)
+        //{
+        //    _normalMob.Attack();
+        //    FirstHit = true;
+        //}
+        //else
+        //{
+        //    AnimTimer += Time.deltaTime;
+        //    if (AnimTimer >= 2.4f)
+        //    {
+        //        AnimTimer = 0;
+        //        _normalMob.Attack();
+        //    }
+        //}
         //Debug.Log("Attack -ing");
         //throw new System.NotImplementedException();
     }
 
     public override void onStateExit()
     {
-        //Debug.Log("Attack Out");
+        _normalMob.AttackFail();
+        Debug.Log("Attack Out");
         //throw new System.NotImplementedException();
     }
 
     IEnumerator Pattern()
     {
         yield return new WaitForSeconds(0.1f);
+        AnimLength = _normalMob.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Current : " + _normalMob.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"));
+        _normalMob.Attack();
+        StartPattern = true;
     }
 }
 
