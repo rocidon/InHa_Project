@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -375,6 +376,9 @@ public class JumpAttackPattern : Node
     BossMonster1 boss;
     Animator Animator;
     float AnimTime;
+    float JumpDistance;
+    float dx;
+    float dy;
     public JumpAttackPattern() {
     //Get Monster Class
     }
@@ -382,6 +386,8 @@ public class JumpAttackPattern : Node
     {
         this.boss = boss;
         Animator = boss.GetComponentInChildren<Animator>();
+        Transform JumpObj = boss.transform.GetChild(1);
+        //JumpDistance = boss.transform.localScale.z * JumpObj.GetComponent<BoxCollider>().size.z;
     }
     public override NodeState Evaluate()
     {
@@ -401,24 +407,28 @@ public class JumpAttackPattern : Node
         yield return new WaitForSeconds(0.1f);
 
         AnimTime = boss.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length;
-
+        //origin 2.2
         Debug.Log("Animation Time : " + AnimTime);
         Debug.Log("start Jump Atk Action");
 
         float MoveDistance = Vector3.Magnitude(boss.transform.position - boss.Player.transform.position) - 1.5f;
+        float DSpeed = MoveDistance / (AnimTime - (1.0f / 2));
 
         float Dtime = Time.deltaTime;
-        while(AnimTime - 1.0f >= Dtime)
+        while(AnimTime - (1.0f/2) >= Dtime)
         {
             float DeltaTime = Time.deltaTime;
             //이동할 거리 / 걸리는 시간 = 움직일 속도
-            float DSpeed = MoveDistance / (AnimTime - 1.0f);
+            dx = 
+            dy = dx*(dx - MoveDistance) * -1;
+
             boss.transform.Translate(Vector3.forward * DeltaTime * DSpeed);
+
             Dtime += DeltaTime;
             yield return new WaitForSeconds(DeltaTime);
         }
 
-        Dtime -= (AnimTime - 1.0f);
+        Dtime -= (AnimTime - (1.0f / 2));
         //yield return new WaitForSeconds(AnimTime - 2.4f);
 
         Debug.Log("End Action");
@@ -426,7 +436,7 @@ public class JumpAttackPattern : Node
         boss.JumppAttack();
         boss.AddJumpAtkCount(1);
         //yield return new WaitForSeconds(1.0f - Dtime);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f/2);
         Animator.SetBool("IsJumpAttack", false);
         //  Animator.SetBool("IsIdle", true);
         boss.SetCurrentMotion(true);
@@ -764,7 +774,7 @@ public class SelectSpeicalPattern : Node
     int SelectNumber;
     BossMonster1 boss;
     public SelectSpeicalPattern() {
-        SelectNumber = UnityEngine.Random.Range(0,11);
+        //SelectNumber = UnityEngine.Random.Range(0,11);
     }
     public SelectSpeicalPattern(BossMonster1 boss)
     {

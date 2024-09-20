@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
-        normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>();
+        normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>(); //
     }
 
     void Update()
