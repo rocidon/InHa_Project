@@ -249,7 +249,7 @@ public class PlayerMove : MonoBehaviour
                                                  * onDamage에서 피격 시 밀려나는 이벤트 처리 */
         //normalMonsterDamage = normalMonsterAttack._Atk;
         CurrentHP -= MonsterDamage;
-        Debug.Log("MonsterDamage");
+        Debug.Log("MonsterDamage : " + MonsterDamage);
         OnDamage();
         //StartCoroutine(OnDamage());
         //Enermy
