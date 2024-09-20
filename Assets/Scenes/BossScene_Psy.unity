@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 326771884}
   - component: {fileID: 326771883}
   - component: {fileID: 326771882}
+  - component: {fileID: 326771886}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -293,6 +294,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &326771886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326771881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe58545104815847baf2f019720d4a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 5, z: -10}
 --- !u!1001 &658765211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1195,7 +1209,7 @@ Transform:
   m_GameObject: {fileID: 1743927431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.13, z: -4.58}
+  m_LocalPosition: {x: 0, y: 3.13, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1215,8 +1229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 733923808}
   smoothing: 0.2
-  minCameraBoundary: {x: -15, y: 0.5}
-  maxCameraBoundary: {x: 15, y: 100}
+  minCameraBoundary: {x: -10, y: 3}
+  maxCameraBoundary: {x: 8, y: 100}
 --- !u!81 &1743927434
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1283,15 +1297,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743927431}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbe58545104815847baf2f019720d4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 733923808}
-  smoothing: 0.2
-  minCameraBoundary: {x: -10, y: 3}
-  maxCameraBoundary: {x: 8, y: 100}
+  offset: {x: 0, y: 5, z: -10}
 --- !u!1 &1948023689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1983525936
 Camera:
   m_ObjectHideFlags: 0
