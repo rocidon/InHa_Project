@@ -241,9 +241,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 4914360315343258842, guid: 00f72cbed888e6946a68ceca09ae0154, type: 3}
-      propertyPath: m_TagString
-      value: Boss
+    - target: {fileID: 5127647536782185963, guid: 00f72cbed888e6946a68ceca09ae0154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127647536782185963, guid: 00f72cbed888e6946a68ceca09ae0154, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.11
       objectReference: {fileID: 0}
     - target: {fileID: 5741765873776038456, guid: 00f72cbed888e6946a68ceca09ae0154, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1454,12 +1458,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828095732787423156, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: TriggerModule.primitives.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7828095732787423156, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 410604711}
     - target: {fileID: 7828095732787423156, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[1]
       value: 
