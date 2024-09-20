@@ -112,7 +112,7 @@ public class PlayerMove : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));       // 움직인 방향으로 Player가 회전한다.(y축으로 180도)
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && !IsJumping)          // 지면 위에 있고 Z키를 누르면
+        if (Input.GetKeyDown(KeyCode.Space) && !IsJumping)          // 지면 위에 있고 Z키를 누르면
         {
             Rigid.AddForce(transform.up * JumpPower, ForceMode.Impulse);        // transform.up 방향으로 JumpPower만큼 점프한다.
             IsJumping = true;       // Player가 점프한다.
@@ -122,7 +122,7 @@ public class PlayerMove : MonoBehaviour
 
         if (!DontAttack)
         {
-            if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && normalWeaponCount == 1)
+            if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown && normalWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
                 StoneSlash.Play();
@@ -132,7 +132,7 @@ public class PlayerMove : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown && specialWeaponCount == 1)
+            if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && specialWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
                 ElectricSlash.Play();

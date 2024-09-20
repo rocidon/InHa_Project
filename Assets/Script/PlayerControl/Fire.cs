@@ -37,7 +37,7 @@ public class Fire : MonoBehaviour
 
         if (!DontShoot)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !IsShootCoolDown && crossBowCount == 1)
+            if (Input.GetKeyDown(KeyCode.Z) && !IsShootCoolDown && crossBowCount == 1)
             {
               
 
