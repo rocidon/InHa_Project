@@ -130,7 +130,9 @@ public class NormalMonster : Monster
                     _Timer += Time.deltaTime;
                     break;
                 case State.Death:
-
+                    gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                    Debug.Log(gameObject.GetComponent<CapsuleCollider>().enabled);
+                    transform.GetChild(1).GetComponent<BoxCollider>().enabled = false;
                     if (_Timer > 10.0f)
                     {
                         _Timer = 0f;
@@ -250,7 +252,7 @@ public class NormalMonster : Monster
     void _OnDamage()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * -4, ForceMode.Impulse);
+        //rb.AddForce(transform.forward * -4, ForceMode.Impulse);
         ChangeState(State.Hited);
     }
     public override IEnumerator OnDamage()
@@ -430,11 +432,12 @@ public class DeathState : BaseState
 
     public override void onStateEnter()
     {
-        _normalMob._IsAction = true;
+        
         //throw new System.NotImplementedException();
     }
     public override void onStateUpdate()
     {
+
         //_normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
         //throw new System.NotImplementedException();
     }
