@@ -38,7 +38,7 @@ public class BossSpecialAttackver1 : MonoBehaviour
 
     IEnumerator Pattern(Vector3 StartPosition)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 9; i++)
         {
             yield return new WaitForSeconds(0.15f);
             SpawnStone(StartPosition, i);

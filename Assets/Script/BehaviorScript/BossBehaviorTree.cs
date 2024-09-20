@@ -12,15 +12,26 @@ public class BossBehaviorTree : BehaviorTree
     public GameObject Player;
     //protected Monster Boss;
     protected BossMonster1 Boss;
-    //private void Awake()
-    //{
-    //    _Health = 1000f;
-    //    _Atk = 100f;
-    //    _Def = 100f;
-    //}
+    float LongRange;
+    float CloseRange;
+    float JumpRange;
+    private void Init()
+    {
+        Transform NormalObj = Boss.transform.GetChild(2);
+        Transform JumpObj = Boss.transform.GetChild(1);
+        CloseRange = Boss.transform.localScale.z * NormalObj.localPosition.z
+            + Boss.transform.localScale.z * NormalObj.GetComponent<BoxCollider>().size.z/2;
+        JumpRange = Boss.transform.localScale.z *JumpObj.GetComponent<BoxCollider>().size.z;
+        LongRange = JumpRange*2;
+
+        Debug.Log("근거리" + CloseRange);
+        Debug.Log("점프" + JumpRange);
+        Debug.Log("원거리" + LongRange);
+    }
     //이곳에서 행동 트리 설정
     protected override Node SetupBehaviorTree()
     {
+        Init();
         ///*
         Node Root = new SelectorNode(new List<Node>
         {
@@ -37,20 +48,18 @@ public class BossBehaviorTree : BehaviorTree
                        {
                            new IsPlayInstantKill(Boss),
                            new InstantKilAttack1(Boss)
-                           //new InstantKilAttack2(Boss)
                        })
                    }),
                    new SelectorNode(new List<Node>
                    {
                        new SequenceNode(new List<Node>
                        {
-                            new InCloseRange(Boss, Player, 5.0f),
+                            new InCloseRange(Boss, Player, JumpRange),
                             new SelectorNode(new List<Node>
                             {
                                 new SequenceNode(new List<Node>
                                 {
-                                    new InLongRange(Boss, 4.0f),
-                                    //new NormalAttackCount(Boss, 1),
+                                    new InLongRange(Boss, CloseRange),
                                     new JumpAttackPattern(Boss)
                                 }),
                                 new SequenceNode(new List<Node>
@@ -62,7 +71,7 @@ public class BossBehaviorTree : BehaviorTree
                        }),
                        new SequenceNode(new List<Node>
                        {
-                           new InLongRange(Boss, 10),
+                           new InLongRange(Boss, LongRange),
                            new ProjectileAttackPattern(Boss)
                        })
                    }),
@@ -89,7 +98,7 @@ public class BossBehaviorTree : BehaviorTree
            {
                new SequenceNode(new List<Node>
                {
-                   new InCloseRange(Boss, Player, 1.5f),
+                   new InCloseRange(Boss, Player, CloseRange),
                    new IDLE(Boss)
                }),
                new ChasePlayer(Boss)

@@ -26,7 +26,8 @@ public class MonsterWeapon : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("NormalMonster Hit Player : " + Damage);
-            other.GetComponent<TestPlayer>().TakeDamage(10);
+            //other.GetComponent<TestPlayer>().TakeDamage(10);
+            other.GetComponent<PlayerMove>().TakeDamage(Damage);
             Instantiate(Effect, other.transform.position, Quaternion.identity);
             ControlTrigger(false);
         }

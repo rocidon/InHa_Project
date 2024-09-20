@@ -47,11 +47,10 @@ public class BossSpecialAttack1Obj : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Hit Player on Special Atk Obj");
+            other.GetComponent<PlayerMove>().TakeDamage(20.0f);
             Instantiate(Effect, other.transform.position, Quaternion.identity);
         }
     }
-
-
 
     IEnumerator Pattern()
     {

@@ -19,7 +19,10 @@ public class BossProjectile : MonoBehaviour
         Target = GameObject.FindWithTag("Player");
         if (Target.CompareTag("Player"))
         {
-            transform.LookAt(Target.transform);
+            Debug.Log(Target.name);
+            Debug.Log(Target.transform);
+            
+            transform.LookAt(Target.transform.position + Vector3.up);
         }
     }
 
@@ -31,16 +34,16 @@ public class BossProjectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Play Parent");
-        if (other.gameObject.CompareTag("Player"))
+        if (!other.gameObject.CompareTag("Boss"))
         {
-            Debug.Log(other.name);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Debug.Log(other.name);
+                other.GetComponent<PlayerMove>().TakeDamage(5.0f);
+            }
             Destroy(gameObject);
             Instantiate(Effect, transform.position, Quaternion.identity);
         }
-        if(!other.CompareTag("Boss"))
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

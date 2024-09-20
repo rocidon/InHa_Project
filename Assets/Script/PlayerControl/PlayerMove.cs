@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
-        normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>();
+        normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>(); //
     }
 
     void Update()
@@ -247,7 +247,7 @@ public class PlayerMove : MonoBehaviour
                                                  * onDamage에서 피격 시 밀려나는 이벤트 처리 */
         //normalMonsterDamage = normalMonsterAttack._Atk;
         CurrentHP -= MonsterDamage;
-        Debug.Log("적에게 공격 받았습니다.");
+        Debug.Log("MonsterDamage");
         OnDamage();
         //StartCoroutine(OnDamage());
         //Enermy

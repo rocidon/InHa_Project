@@ -12,7 +12,7 @@ public class PlayerHpBar : MonoBehaviour
 
     private float maxHp;
     private float curHp;
-
+    public Animator anim;
     void Start()
     {
         maxHp = playerMove.MaxHP;
@@ -43,15 +43,20 @@ public class PlayerHpBar : MonoBehaviour
         playerHp.value = curHp;
     }
 
-    // 테스트용
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    // 충돌한 오브젝트 태그가 "Enemy"일 때
-    //    if (collision.gameObject.CompareTag("Enemy"))
-    //    {
-    //        curHp -= 10;
-    //        // 0 이하로 떨어지지 않도록 설정
-    //        curHp = Mathf.Max(curHp, 0);
-    //    }
-    //}
+    // 장애물 맞을 시 체력 감소
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Obstacle") && !playerMove.IsPlayerDead)
+        {
+            playerMove.CurrentHP -= 5;
+            if(playerMove.CurrentHP <= 0)
+            {
+                playerMove.IsPlayerDead = true;
+                anim.SetTrigger("Die");
+                
+            }
+            Debug.Log("맞음");
+        }
+    }
+
 }

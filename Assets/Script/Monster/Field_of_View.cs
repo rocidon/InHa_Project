@@ -24,8 +24,8 @@ public class Field_of_View : MonoBehaviour
         height = height >= 1.0f ? height : 1.0f;
         FindPlayer = false;
         AtkPlayer = false;
-        SeeRadius = SeeRadius > 3.0f ? SeeRadius : 3.0f;
-        AtkRadius = SeeRadius - 2.0f >=  1.0f ? SeeRadius-2.0f : 1.0f;
+        SeeRadius = SeeRadius > 4.0f ? SeeRadius : 4.0f;
+        AtkRadius = SeeRadius - 2.0f >=  2.0f ? SeeRadius-2.0f : 2.0f;
     }
 
     private void OnDrawGizmos()
@@ -89,6 +89,7 @@ public class Field_of_View : MonoBehaviour
             }
             else
             {
+                Debug.Log("??");
                 AtkPlayer = false;
                 FindPlayer = false;
             }

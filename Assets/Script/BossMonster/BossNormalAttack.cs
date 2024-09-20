@@ -24,7 +24,7 @@ public class BossNormalAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
+            other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
             Debug.Log("Player Normal Hit");
             Instantiate(Effect, other.transform.position, Quaternion.identity);
         }

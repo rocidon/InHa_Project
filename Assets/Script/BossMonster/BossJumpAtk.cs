@@ -16,6 +16,7 @@ public class BossJumpAtk : MonoBehaviour
         BossAtk = GetComponentInParent<BossMonster1>()._Atk;
         BossAtk *= 1.5f;
         Range = GetComponent<BoxCollider>();
+        SmashEffect.GetComponent<Transform>().localScale = new Vector3(5, 5, 5);
         /*콜라이더 세팅을 해줘야함*/
 
     }
@@ -30,7 +31,8 @@ public class BossJumpAtk : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
+
+            other.gameObject.GetComponent<PlayerMove>().TakeDamage(BossAtk);
             Debug.Log("Player Jump Hit");
             Instantiate(Effect, other.transform.position, Quaternion.identity);
         }

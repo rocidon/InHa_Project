@@ -7,7 +7,7 @@ public class SpikeDamage : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // 스파이크 장애물 충돌 시 밀리는 코드
-        if (collision.gameObject.tag == "RogueHooded")
+        if (collision.gameObject.tag == "Player")
         {
             //collision.gameObject.GetComponent<PlayerMove>().spike++;
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
