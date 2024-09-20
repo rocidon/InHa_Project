@@ -130,18 +130,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 650845089147766241, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 650845089147766241, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 650845089147766241, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6110291289477397682, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5209417
@@ -186,20 +174,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImprovedPlayerPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 6883696098381587976, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7539848379421311701, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7539848379421311701, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8524872476706577407, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

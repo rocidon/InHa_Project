@@ -10,28 +10,49 @@ public class SlashEffect : MonoBehaviour
 
     public NormalMonster normalMonster;
     public PlayerMove player;
+    public GameObject ParticleObject;
+    [SerializeField]
+    float ParticleLifeTime;
 
     void Start()
     {
-        normalMonster = GameObject.Find("NormalMonster").GetComponent<NormalMonster>();
-        player = GameObject.Find("ImprovedPlayerPrefab").GetComponent<PlayerMove>();
+        ps = ParticleObject.GetComponent<ParticleSystem>();
+        ParticleLifeTime = ps.main.startLifetime.constant;
+        Debug.Log("particle : " + ParticleLifeTime);
     }
 
-    void Awake()
+    private void OnTriggerEnter(Collider other)
     {
-        ps = GetComponent<ParticleSystem>();
+        if (other.CompareTag("Monster") || other.CompareTag("Boss"))
+        {
+            other.GetComponent<Monster>().TakeDamage(player.normalAttackDamage);
+        }
     }
 
-    void OnParticleTrigger()
+    public void onAtk()
     {
-        Debug.Log("normal 공격 파티클이 적에게 닿았다.");
-        ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
-        normalMonster.TakeDamage(player.normalAttackDamage);
-        Debug.Log(normalMonster._Health);
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        ps.Play();
+        StartCoroutine(TurnOffCollsion());
+    }
+
+    //void OnParticleTrigger()
+    //{
+    //    Debug.Log("normal 공격 파티클이 적에게 닿았다.");
+    //    ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
+    //    normalMonster.TakeDamage(player.normalAttackDamage);
+    //    Debug.Log(normalMonster._Health);
         
-        /* foreach (var v in inside)
-         {
-             Debug.Log("Effect Trigger2");
-         }*/
+    //    /* foreach (var v in inside)
+    //     {
+    //         Debug.Log("Effect Trigger2");
+    //     }*/
+    //}
+
+    IEnumerator TurnOffCollsion()
+    {
+        yield return new WaitForSeconds(ParticleLifeTime);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
     }
+
 }
