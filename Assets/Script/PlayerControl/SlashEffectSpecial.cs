@@ -32,7 +32,7 @@ public class SlashEffectSpecial : MonoBehaviour
         normalMonster.TakeDamage(player.specialAttackDamage);
         bossMonster.TakeDamage(player.specialAttackDamage);
         Debug.Log(normalMonster._Health);
-        monster.TakeDamage();
+        //monster.TakeDamage();
         /* foreach (var v in inside)
          {
              Debug.Log("Effect Trigger2");
