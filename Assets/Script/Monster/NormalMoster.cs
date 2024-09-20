@@ -275,10 +275,8 @@ public class NormalMonster : Monster
     public override IEnumerator OnDamage()
     {
         _IsHit = true;
-        yield return new WaitForSeconds(0.1f);
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Hited"));
-        float AnimTime = animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(AnimTime);
+       // float AnimTime = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(1.0f);
         _IsHit = false;
     }
 
