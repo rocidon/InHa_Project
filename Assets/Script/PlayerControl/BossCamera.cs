@@ -7,15 +7,18 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BossCamera : MonoBehaviour
 {
-    Transform playerTransform;
-    [SerializeField] Vector3 offset = new Vector3(0, 5f, -10f);
-
-    private void LateUpdate()
+    [SerializeField] Transform player;
+    [SerializeField] float smoothing = 0.2f;
+    [SerializeField] Vector2 minCameraBoundary;
+    [SerializeField] Vector2 maxCameraBoundary;
+    // Update is called once per frame
+    private void FixedUpdate()
     {
-        Vector3 newPosition = playerTransform.position + offset;
+        Vector3 targetPos = new Vector3(player.position.x, player.position.y, transform.position.z);
 
-        transform.position = newPosition;
+        targetPos.x = Mathf.Clamp(targetPos.x, minCameraBoundary.x, maxCameraBoundary.x);
+        targetPos.y = Mathf.Clamp(targetPos.y, minCameraBoundary.y, maxCameraBoundary.y);
 
-        transform.LookAt(playerTransform);
+        transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
     }
 }
