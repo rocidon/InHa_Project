@@ -630,7 +630,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3955833073416209415}
         m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: GameOverButton
         m_Mode: 1
