@@ -138,7 +138,8 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && specialWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
-                ElectricSlash.Play();
+                //ElectricSlash.Play();
+                ElectricSlash.GetComponent<SlashEffect>().onAtk();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(SpecialAttack, Player);
 
