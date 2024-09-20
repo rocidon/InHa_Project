@@ -65,6 +65,8 @@ public class FadeInOut : MonoBehaviour
             canvas.alpha = alpha;
             yield return null; 
         }
+        canvas.alpha = 0;
     }
+
 }
 
