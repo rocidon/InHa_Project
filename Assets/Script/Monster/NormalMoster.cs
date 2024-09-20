@@ -8,6 +8,9 @@ using UnityEngine.UIElements;
 //https://danpung2.tistory.com/58
 public class NormalMonster : Monster
 {
+    private AudioSource normalMonster;
+    public AudioClip attack;
+
     [SerializeField]
     GameObject Weapon;
     RaycastHit hit;
@@ -24,7 +27,8 @@ public class NormalMonster : Monster
     public float AtkRange;
     float oSpeed;
     float _Timer;
-    Field_of_View fov;
+    //Field_of_View fov;
+    DetectingPlayer fov;
 
     void Start()
     {
@@ -34,12 +38,14 @@ public class NormalMonster : Monster
         animator = GetComponentInChildren<Animator>();
         //Atk = GetComponentInChildren<MonsterAttack>();
         _Timer = 0f;
-        fov = GetComponent<Field_of_View>();
+        //fov = GetComponent<Field_of_View>();
+        fov = GetComponent<DetectingPlayer>();
         _currentState = State.Idle;
         _fsm = new FSM(new IdleState(this));
         speed = speed >= 1.0f ? speed : 3.0f;
         oSpeed = speed;
         AtkRange = AtkRange >= 1.0f ? AtkRange : 3.0f;
+        normalMonster = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -211,7 +217,8 @@ public class NormalMonster : Monster
 
     public override void Attack()
     {
-       Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);        
+       Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);
+        PlaySound(attack, normalMonster);
     }
 
     public override void AttackFail()
@@ -242,6 +249,15 @@ public class NormalMonster : Monster
         //rb.MovePosition(transform.forward * -2);
         ChangeState(State.Hited);
         yield return new WaitForSeconds(1.0f);   
+    }
+
+    public static void PlaySound(AudioClip clip, AudioSource audioPlayer)
+    {
+        audioPlayer.Stop();
+        audioPlayer.clip = clip;
+        audioPlayer.loop = false;
+        audioPlayer.time = 0;
+        audioPlayer.Play();
     }
 }
 
@@ -372,7 +388,8 @@ public class SeeState : BaseState
     }
     public override void onStateUpdate()
     {
-        _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        //_normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        _normalMob.Movement();
         //throw new System.NotImplementedException();
     }
 
@@ -429,4 +446,5 @@ public class HittedState : BaseState
     {
         //throw new System.NotImplementedException();
     }
+
 }

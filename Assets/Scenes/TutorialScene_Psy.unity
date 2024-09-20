@@ -459,6 +459,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4992880288824291806, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1270756237}
+    - target: {fileID: 4992880288824291806, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: normalMonster
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072368247411541397, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6110291289477397682, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -534,8 +546,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6883696098381587976, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1270756235}
   m_SourcePrefab: {fileID: 100100000, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+--- !u!1 &149299608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6883696098381587976, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+  m_PrefabInstance: {fileID: 149299607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &162254153
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +906,14 @@ PrefabInstance:
     - target: {fileID: 5933356327616400180, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
       propertyPath: m_Name
       value: NormalMonster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3109,6 +3137,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8684540012309024792, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
       propertyPath: BaseMonster
       value: 
@@ -3143,7 +3179,7 @@ Transform:
   m_GameObject: {fileID: 1193753611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23902446, y: 4.074156, z: -11.994924}
+  m_LocalPosition: {x: -0.23902446, y: 4.074156, z: -8.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3167,6 +3203,31 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 9023233706569696506, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
   m_PrefabInstance: {fileID: 149299607}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1270756235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149299608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2859948503f6f8342b68d0f38ef065bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 3
+  dashCooldown: 5
+--- !u!114 &1270756237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1215863203573659404, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+  m_PrefabInstance: {fileID: 149299607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149299608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95930bc5455ca74cbe67c69a24fda14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1548009455
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,6 +3985,10 @@ PrefabInstance:
       value: PauseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 573860985094112776, guid: f2c73ee81dc40d44683d330a750bae13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388029114314287321, guid: f2c73ee81dc40d44683d330a750bae13, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
