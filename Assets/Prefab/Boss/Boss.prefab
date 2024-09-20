@@ -549,7 +549,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBCF4\uC2A4\uBCF4\uC2A4"
+  m_text: 'BOSS
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b410d3b3e72df48428ceb043f141a1f9, type: 2}
   m_sharedMaterial: {fileID: 2810547059356612204, guid: b410d3b3e72df48428ceb043f141a1f9, type: 2}
@@ -558,8 +560,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278190258
+  m_fontColor: {r: 0.6981132, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -576,8 +578,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1694,6 +1696,7 @@ MonoBehaviour:
   _Def: 0
   speed: 0
   animator: {fileID: 0}
+  _IsAction: 0
   Player: {fileID: 0}
   throwStone: {fileID: 8300000, guid: 3c9c0bbacf942674583cbbf3431b5c9b, type: 3}
   jumpAttack: {fileID: 8300000, guid: aa2f192199e7f634aa879d94fd6e6270, type: 3}
