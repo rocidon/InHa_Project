@@ -168,23 +168,25 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            TakeDamage(20); 
-
-            if (CurrentHP <= 0)     
-            {
-                IsPlayerDead = true;
-                CurrentHP = 0;
-                anim.SetTrigger("Die");
-                SnowHit.Play();
-                Debug.Log("죽었습니다.");
-                PlaySound(Hit, Player);
-            }
-            else
-            {
-                anim.SetTrigger("GetHit");
-                Debug.Log("공격받았습니다.");
-                /*OnDamage();*/
-                PlaySound(Hit, Player);
+            if (!collision.gameObject.GetComponent<Monster>().IsDeath())
+            { 
+                TakeDamage(5.0f);
+                if (CurrentHP <= 0)
+                {
+                    IsPlayerDead = true;
+                    CurrentHP = 0;
+                    anim.SetTrigger("Die");
+                    SnowHit.Play();
+                    Debug.Log("죽었습니다.");
+                    PlaySound(Hit, Player);
+                }
+                else
+                {
+                    anim.SetTrigger("GetHit");
+                    Debug.Log("공격받았습니다.");
+                    /*OnDamage();*/
+                    PlaySound(Hit, Player);
+                }
             }
         }
 
