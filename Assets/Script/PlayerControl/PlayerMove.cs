@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
-        normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>(); //
+        /*normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>(); //*/
     }
 
     void Update()
@@ -148,6 +148,7 @@ public class PlayerMove : MonoBehaviour
             CurrentHP = 0;
             anim.SetTrigger("Die");
             SnowHit.Play();
+            Debug.Log(CurrentHP);
             Debug.Log("죽었습니다.");
             PlaySound(Hit, Player);
         }
@@ -168,6 +169,7 @@ public class PlayerMove : MonoBehaviour
             if (CurrentHP <= 0)     
             {
                 IsPlayerDead = true;
+                CurrentHP = 0;
                 anim.SetTrigger("Die");
                 SnowHit.Play();
                 Debug.Log("죽었습니다.");
