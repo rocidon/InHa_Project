@@ -64,8 +64,8 @@ public class BossMonster1 : BossBehaviorTree
         _Health = _MaxHealth;
 
         animator = GetComponentInChildren<Animator>();
-        //Value setting Before this Line
         bossMonster = GetComponent<AudioSource>();          // 오디오 소스 받는 BossMonster
+        //Value setting Before this Line
         SetRootNode();
     }
 
@@ -91,13 +91,13 @@ public class BossMonster1 : BossBehaviorTree
     }
     public override void Dying()
     {
-        animator.SetTrigger("IsDying");
         StartCoroutine(WAIT());
         //base.Dying();
     }
     IEnumerator WAIT()
     {
         yield return new WaitForSeconds(0.1f);
+        animator.SetTrigger("IsDying");
         float time = animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(time);
         base.Dying();
