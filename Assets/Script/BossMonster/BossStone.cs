@@ -59,20 +59,22 @@ public class BossStone : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             if (isGround)
-            {
-                
+            {             
 
                 if (FixPositon.y >= transform.position.y +MAXDistanceY)
                 {
                     Debug.Log("떨어진 낙석위에 있음!");
+                    //FixPosX(other, MAXDistanceY, DistanceX, DirX);
+                    FixPositon.y = transform.position.y + MAXDistanceY + 0.1f;
+                    other.transform.position = FixPositon;
                     transform.GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = true;
                 }
-                else
-                {
-                    FixPosX(other, MAXDistanceY, DistanceX, DirX);
-                    Debug.Log("떨어진 낙석에 들어가있음!");
-                    transform.GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = false;
-                }
+                //else
+                //{
+                //    FixPosX(other, MAXDistanceY, DistanceX, DirX);
+                //    Debug.Log("떨어진 낙석에 들어가있음!");
+                //    transform.GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = false;
+                //}
             }
             else //낙석 피격
             {
