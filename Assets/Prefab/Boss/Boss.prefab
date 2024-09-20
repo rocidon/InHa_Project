@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 916058932873560205}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Boss
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Effect: {fileID: 8953796771267719375, guid: 9ba0f047fcf5b4849a265a6499c2db88, type: 3}
   SmashEffect: {fileID: 4975053013700516587, guid: 7f1f7cb512de34f48941bc13e3e1e0b5, type: 3}
+  BossAtk: 0
 --- !u!1001 &4528420195254578837
 PrefabInstance:
   m_ObjectHideFlags: 0

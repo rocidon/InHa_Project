@@ -374,7 +374,8 @@ public class SeeState : BaseState
     }
     public override void onStateUpdate()
     {
-        _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        //_normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        _normalMob.Movement();
         //throw new System.NotImplementedException();
     }
 

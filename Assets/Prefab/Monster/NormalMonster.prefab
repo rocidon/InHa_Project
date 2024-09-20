@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 1132200738175613433}
   m_Layer: 0
   m_Name: NormalMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +260,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &1248491967019639050
 MonoBehaviour:
