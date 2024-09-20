@@ -25,7 +25,6 @@ public class Fire : MonoBehaviour
     private AudioSource Crossbow;
     public AudioClip CrossbowShoot;
 
-
     void Start()
     {
         Crossbow = GetComponent<AudioSource>();
@@ -100,6 +99,8 @@ public class Fire : MonoBehaviour
             crossBowCount++;
         }
     }
+
+
 }   
 
 

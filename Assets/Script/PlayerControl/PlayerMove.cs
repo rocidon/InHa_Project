@@ -56,8 +56,8 @@ public class PlayerMove : MonoBehaviour
     int normalWeaponCount = 0;
     int specialWeaponCount = 0;
 
-    public float normalAttack = 10.0f;          // normal 무기 공격력
-    public float specialAttack = 15.0f;         // special 무기 공격력
+    public float normalAttackDamage = 10.0f;          // normal 무기 공격력
+    public float specialAttackDamage = 15.0f;         // special 무기 공격력
     
 
     void Start()
@@ -142,6 +142,15 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        if (CurrentHP <= 0)     // 플레이어HP가 enemy와 부딪히는 거 상관없이
+        {
+            IsPlayerDead = true;
+            CurrentHP = 0;
+            anim.SetTrigger("Die");
+            SnowHit.Play();
+            Debug.Log("죽었습니다.");
+            PlaySound(Hit, Player);
+        }
 
     }
     private void FixedUpdate()
@@ -154,9 +163,9 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            TakeDamage(20);
+            /*TakeDamage(20);*/
 
-            if (CurrentHP <= 0)
+            if (CurrentHP <= 0)     
             {
                 IsPlayerDead = true;
                 anim.SetTrigger("Die");

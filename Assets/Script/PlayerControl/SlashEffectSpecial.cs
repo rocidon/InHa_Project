@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlashEffect : MonoBehaviour
+public class SlashEffectSpecial : MonoBehaviour
 {
     // Start is called before the first frame update
     ParticleSystem ps;
@@ -23,12 +23,14 @@ public class SlashEffect : MonoBehaviour
     }
 
     void OnParticleTrigger()
+
     {
+
         Debug.Log("normal 공격 파티클이 적에게 닿았다.");
         ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
-        normalMonster._Health -= player.normalAttackDamage;
+        normalMonster._Health -= player.specialAttackDamage;
         Debug.Log(normalMonster._Health);
-        
+
         /* foreach (var v in inside)
          {
              Debug.Log("Effect Trigger2");
