@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 141825073}
   - component: {fileID: 141825072}
   - component: {fileID: 141825071}
+  - component: {fileID: 141825074}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Floor
@@ -291,6 +292,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141825069}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &141825074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141825069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ba41fae2a89b542814aba76cb53003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &152093387
 PrefabInstance:
   m_ObjectHideFlags: 0

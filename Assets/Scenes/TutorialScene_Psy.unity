@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 162254156}
   - component: {fileID: 162254155}
   - component: {fileID: 162254154}
+  - component: {fileID: 162254158}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Floor
@@ -603,12 +604,24 @@ Transform:
   m_GameObject: {fileID: 162254153}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.095596, y: -4.1180077, z: 0}
+  m_LocalPosition: {x: -10.095596, y: -5.46, z: 0}
   m_LocalScale: {x: 1.2, y: 0.2, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 288504812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162254158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162254153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ba41fae2a89b542814aba76cb53003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &187381992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,6 +3223,7 @@ GameObject:
   - component: {fileID: 1568377772}
   - component: {fileID: 1568377771}
   - component: {fileID: 1568377770}
+  - component: {fileID: 1568377774}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Floor
@@ -3303,6 +3317,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 288504812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568377774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568377769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ba41fae2a89b542814aba76cb53003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610212105
 GameObject:
   m_ObjectHideFlags: 0
