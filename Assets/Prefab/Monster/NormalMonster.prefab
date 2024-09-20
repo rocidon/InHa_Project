@@ -145,9 +145,10 @@ GameObject:
   - component: {fileID: 5522909769834044674}
   - component: {fileID: 7198685341538059406}
   - component: {fileID: 7960684729849712213}
-  - component: {fileID: 5103490683873740188}
+  - component: {fileID: 2123455706150801166}
   - component: {fileID: 8128929642732263706}
   - component: {fileID: 1248491967019639050}
+  - component: {fileID: 1132200738175613433}
   m_Layer: 0
   m_Name: NormalMonster
   m_TagString: Untagged
@@ -217,7 +218,7 @@ MonoBehaviour:
   Weapon: {fileID: 4479423981183108441}
   _currentState: 0
   AtkRange: 0
---- !u!114 &5103490683873740188
+--- !u!114 &2123455706150801166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,22 +227,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5933356327616400180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95641b9c77a8d343bc3b49830f6cc44, type: 3}
+  m_Script: {fileID: 11500000, guid: 972786bc0e1e0c644987120322514741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugMode: 1
-  ViewAngle: 65
-  SeeRadius: 1
-  AtkRadius: 1
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  ObstacleMask:
-    serializedVersion: 2
-    m_Bits: 896
+  AtkRange: 0
+  DetectRange: 0
   FindPlayer: 0
   AtkPlayer: 0
-  height: 1
+  Distance: 0
 --- !u!54 &8128929642732263706
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -283,6 +276,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHp: {fileID: 4698731779137763718}
   normalMonster: {fileID: 7960684729849712213}
+--- !u!135 &1132200738175613433
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933356327616400180}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7990355719827652019
 GameObject:
   m_ObjectHideFlags: 0
