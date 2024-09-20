@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour
     public FSM _fsm;
     public float speed;
     public Animator animator;
+    public bool _IsAction;
     protected bool IsDying;
     protected bool Isaction;
     private enum MonsterState

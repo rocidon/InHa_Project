@@ -65,8 +65,9 @@ public class Bullet : MonoBehaviour
         {   
             Debug.Log("화살로 적을 맞춤");
             GreenHit.Play();
-            bossMonster._Health -= shootDamage;     // boss 몬스터 hp가 shootDamage 만큼 깎인다.
-            Debug.Log(bossMonster._Health);
+            //bossMonster._Health -= shootDamage;     // boss 몬스터 hp가 shootDamage 만큼 깎인다.
+            //Debug.Log(bossMonster._Health);
+            other.GetComponent<Monster>().TakeDamage(shootDamage);
             Destroy(gameObject, 0.3f);
             IsShoot = false;
         }

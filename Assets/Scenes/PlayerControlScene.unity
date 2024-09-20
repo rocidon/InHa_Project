@@ -1468,6 +1468,10 @@ PrefabInstance:
       propertyPath: TriggerModule.primitives.Array.data[1]
       value: 
       objectReference: {fileID: 1748660002}
+    - target: {fileID: 8524872476706577407, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4391772824183843988, guid: 58f911d102506c04eb7c8c4f0eaeb56a, type: 3}
     m_RemovedGameObjects:
