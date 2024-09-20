@@ -7,6 +7,7 @@ public class BossNormalAttack : MonoBehaviour
     [SerializeField]
     public GameObject Effect;
     BoxCollider Range;
+    [SerializeField]
     float BossAtk;
     void Start()
     {

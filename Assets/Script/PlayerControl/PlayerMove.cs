@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -56,13 +56,15 @@ public class PlayerMove : MonoBehaviour
     int normalWeaponCount = 0;
     int specialWeaponCount = 0;
 
-    public float normalAttackDamage = 10.0f;          // normal 무기 공격력
+    public float normalAttackDamage = 40.0f;          // normal 무기 공격력
     public float specialAttackDamage = 15.0f;         // special 무기 공격력
 
 
 
     void Start()
     {
+        normalAttackDamage = 40.0f;
+        specialAttackDamage = 15.0f;
         CurrentHP = MaxHP;
         Rigid = GetComponent<Rigidbody>();
         IsJumping = false;      // 점프 유무 변수 초기화
@@ -165,30 +167,29 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      // Collision Enter 판정
     {
-        if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
-        {
-            /*CurrentHP -= EnemyAttackDamage;*/
-            if (!collision.gameObject.GetComponent<Monster>().IsDeath())
-            { 
-                TakeDamage(5.0f);
-                if (CurrentHP <= 0)
-                {
-                    IsPlayerDead = true;
-                    CurrentHP = 0;
-                    anim.SetTrigger("Die");
-                    SnowHit.Play();
-                    Debug.Log("죽었습니다.");
-                    PlaySound(Hit, Player);
-                }
-                else
-                {
-                    anim.SetTrigger("GetHit");
-                    Debug.Log("공격받았습니다.");
-                    /*OnDamage();*/
-                    PlaySound(Hit, Player);
-                }
-            }
-        }
+        //if (/*collision.gameObject.CompareTag("Monster") &&*/ !IsPlayerDead)
+        //{
+        //    /*CurrentHP -= EnemyAttackDamage;*/
+
+        //        //TakeDamage(5.0f);
+        //        if (CurrentHP <= 0)
+        //        {
+        //            IsPlayerDead = true;
+        //            CurrentHP = 0;
+        //            anim.SetTrigger("Die");
+        //            SnowHit.Play();
+        //            Debug.Log("죽었습니다.");
+        //            PlaySound(Hit, Player);
+        //        }
+        //        else
+        //        {
+        //            anim.SetTrigger("GetHit");
+        //            Debug.Log("공격받았습니다.");
+        //            /*OnDamage();*/
+        //            PlaySound(Hit, Player);
+        //        }
+
+        //}
 
         if (collision.gameObject.CompareTag("Floor"))       // Player가 Floor를 밟고 있다면
         {

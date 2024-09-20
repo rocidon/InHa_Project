@@ -39,16 +39,18 @@ public class BossMonster1 : BossBehaviorTree
     int ProjectileAttackCount;
     int SpecialAttackCount;
 
-
+    private void Awake()
+    {
+        _MaxHealth = 1000f;
+        _Atk = 5.0f;
+        _Def = 100f;
+    }
     void Start()
     {
         //Debug.Log("Start BossMonster1");
         //_Health = 1000f;
         currentMotion = StandardMotion.Idle;
         Isaction = false;
-        _MaxHealth = 1000f;
-        _Atk = 5.0f;
-        _Def = 20f;
         Player = GameObject.FindWithTag("Player");
         Boss = this;
         IsDying = false;
@@ -105,7 +107,8 @@ public class BossMonster1 : BossBehaviorTree
     public override void TakeDamage(float damage)
     {
         //Debug.Log("!!!!!!");
-        _Health -= damage;
+        _Health -= damage - (0.2f*_Def);
+        Debug.Log(damage - (0.2f * _Def));
         if(_Health <= 0.0f)
         {
             IsDying = true;

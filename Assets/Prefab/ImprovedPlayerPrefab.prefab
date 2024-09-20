@@ -625,11 +625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.92
+      value: -19.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.33
+      value: -2.65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -841,7 +841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2668605608433959078, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591058207422726641, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_Layer
@@ -1233,8 +1233,8 @@ MonoBehaviour:
   NormalAttack: {fileID: 8300000, guid: d8bf57a57cb4a7e4a97d06ab4b136fca, type: 3}
   SpecialAttack: {fileID: 8300000, guid: 2e3cfd8a4cd1afe40b6ddda869151d13, type: 3}
   normalMonsterAttack: {fileID: 0}
-  normalAttackDamage: 10
-  specialAttackDamage: 15
+  normalAttackDamage: 0
+  specialAttackDamage: 0
 --- !u!114 &2721435077754299446
 MonoBehaviour:
   m_ObjectHideFlags: 0

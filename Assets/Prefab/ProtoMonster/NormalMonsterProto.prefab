@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2206353108126198985}
   - component: {fileID: 6309159899344216723}
   - component: {fileID: 3290685669012273910}
-  - component: {fileID: 4810345555667909818}
   m_Layer: 0
   m_Name: NormalMonsterProto
   m_TagString: Monster
@@ -104,33 +103,11 @@ MonoBehaviour:
   _Def: 0
   speed: 5
   animator: {fileID: 0}
+  _IsAction: 0
+  attack: {fileID: 0}
+  Weapon: {fileID: 0}
   _currentState: 0
   AtkRange: 0
---- !u!114 &4810345555667909818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625900829437314867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95641b9c77a8d343bc3b49830f6cc44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugMode: 1
-  ViewAngle: 65
-  SeeRadius: 1
-  AtkRadius: 1
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  ObstacleMask:
-    serializedVersion: 2
-    m_Bits: 896
-  FindPlayer: 0
-  AtkPlayer: 0
-  height: 1.15
 --- !u!1001 &3533616115092818946
 PrefabInstance:
   m_ObjectHideFlags: 0

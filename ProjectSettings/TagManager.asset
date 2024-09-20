@@ -23,6 +23,7 @@ TagManager:
   - crossBow
   - Boss
   - Monster
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class BossBehaviorTree : BehaviorTree
     {
         Transform NormalObj = Boss.transform.GetChild(2);
         Transform JumpObj = Boss.transform.GetChild(1);
-        CloseRange = Boss.transform.localScale.z * NormalObj.localPosition.z
+        CloseRange = Boss.transform.localScale.z
             + Boss.transform.localScale.z * NormalObj.GetComponent<BoxCollider>().size.z/2;
         JumpRange = Boss.transform.localScale.z *JumpObj.GetComponent<BoxCollider>().size.z;
         LongRange = JumpRange*2;
