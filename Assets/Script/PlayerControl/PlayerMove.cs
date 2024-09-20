@@ -56,8 +56,8 @@ public class PlayerMove : MonoBehaviour
     int normalWeaponCount = 0;
     int specialWeaponCount = 0;
 
-    public float normalAttack = 10.0f;          // normal 무기 공격력
-    public float specialAttack = 15.0f;         // special 무기 공격력
+    public float normalAttackDamage = 10.0f;          // normal 무기 공격력
+    public float specialAttackDamage = 15.0f;         // special 무기 공격력
     
 
     void Start()
@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
-        //normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>();
+        /*normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>(); //*/
     }
 
     void Update()
@@ -142,6 +142,16 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        if (CurrentHP <= 0)     // 플레이어HP가 enemy와 부딪히는 거 상관없이
+        {
+            IsPlayerDead = true;
+            CurrentHP = 0;
+            anim.SetTrigger("Die");
+            SnowHit.Play();
+            Debug.Log(CurrentHP);
+            Debug.Log("죽었습니다.");
+            PlaySound(Hit, Player);
+        }
 
     }
     private void FixedUpdate()
@@ -151,14 +161,15 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      // Collision Enter 판정
     {
-        if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
+        if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            TakeDamage(20);
+            /*TakeDamage(20);*/
 
-            if (CurrentHP <= 0)
+            if (CurrentHP <= 0)     
             {
                 IsPlayerDead = true;
+                CurrentHP = 0;
                 anim.SetTrigger("Die");
                 SnowHit.Play();
                 Debug.Log("죽었습니다.");
@@ -238,7 +249,7 @@ public class PlayerMove : MonoBehaviour
                                                  * onDamage에서 피격 시 밀려나는 이벤트 처리 */
         //normalMonsterDamage = normalMonsterAttack._Atk;
         CurrentHP -= MonsterDamage;
-        Debug.Log("적에게 공격 받았습니다.");
+        Debug.Log("MonsterDamage");
         OnDamage();
         //StartCoroutine(OnDamage());
         //Enermy

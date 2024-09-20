@@ -665,7 +665,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JumpAttack
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2740262479664088878}
@@ -1343,7 +1343,7 @@ AnimatorStateMachine:
     m_Position: {x: -460, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6335995376352369956}
-    m_Position: {x: -460, y: 520, z: 0}
+    m_Position: {x: -460, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8349326734700327143}
     m_Position: {x: -460, y: 590, z: 0}

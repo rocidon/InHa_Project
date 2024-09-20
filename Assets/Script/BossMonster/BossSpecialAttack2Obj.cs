@@ -53,6 +53,9 @@ public class BossSpecialAttack2Obj : MonoBehaviour
         {
             //Take Damage Player
             Debug.Log("Hit Player on Special Atk Obj");
+            float Damage = other.GetComponent<PlayerMove>().MaxHP / 10;
+            other.GetComponent<PlayerMove>().TakeDamage(Damage);
+
             Instantiate(Effect, transform.position, Quaternion.identity);
         }
         else

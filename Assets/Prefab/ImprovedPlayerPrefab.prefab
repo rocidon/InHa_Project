@@ -613,15 +613,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.87
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: -2.65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -753,7 +753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -11099538028194165, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -11099538028194165, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalScale.z
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   SnowHit: {fileID: 8765975935309372712}
   StoneSlash: {fileID: 7828095732787423156}
   ElectricSlash: {fileID: 4381977235242885546}
-  JumpPower: 20
+  JumpPower: 18
   MaxHP: 100
   CurrentHP: 100
   anim: {fileID: 9023233706569696506}
@@ -1228,6 +1228,7 @@ MonoBehaviour:
   playerHp: {fileID: 1712811077430743463}
   healthText: {fileID: 5933253491489307088}
   playerMove: {fileID: 1215863203573659404}
+  anim: {fileID: 0}
 --- !u!1001 &7490346125561982934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1344,6 +1345,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2871289272592498910, guid: 7d84732a15a7e0d449416b202af6ee66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3263689595630659781, guid: 7d84732a15a7e0d449416b202af6ee66, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1359,6 +1364,18 @@ PrefabInstance:
     - target: {fileID: 6274529562342588863, guid: 7d84732a15a7e0d449416b202af6ee66, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997067153153829431, guid: 7d84732a15a7e0d449416b202af6ee66, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997067153153829431, guid: 7d84732a15a7e0d449416b202af6ee66, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997067153153829431, guid: 7d84732a15a7e0d449416b202af6ee66, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

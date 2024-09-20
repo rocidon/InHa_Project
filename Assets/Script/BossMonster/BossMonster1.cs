@@ -38,7 +38,7 @@ public class BossMonster1 : BossBehaviorTree
         currentMotion = StandardMotion.Idle;
         Isaction = false;
         _MaxHealth = 1000f;
-        _Atk = 100f;
+        _Atk = 5.0f;
         _Def = 20f;
         Player = GameObject.FindWithTag("Player");
         Boss = this;
@@ -109,7 +109,7 @@ public class BossMonster1 : BossBehaviorTree
     public void ThrowStone()
     {
         float px = transform.localScale.x;
-        float py = transform.GetComponent<CapsuleCollider>().height;
+        float py = transform.GetComponent<CapsuleCollider>().height * transform.localScale.y;
         Vector3 p = transform.position;
         p += transform.forward;
         p += new Vector3(0, py, 0);

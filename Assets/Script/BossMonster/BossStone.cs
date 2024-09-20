@@ -82,10 +82,13 @@ public class BossStone : MonoBehaviour
                 //PlayerClass player = collsion.gameObject.GetComponent<NormalMonster>();
                 //float playerHP = Get playerHP(); <- MAX HP
                 //player.takeDamage(playerHP);
+                float PlayerHP = other.gameObject.GetComponent<PlayerMove>().MaxHP;
+                other.gameObject.GetComponent<PlayerMove>().TakeDamage(PlayerHP);
+
             }
 
         }
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Round"))
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Round") || other.gameObject.CompareTag("Floor"))
         {
             isGround = true;
             transform.position = new Vector3(transform.position.x, FixPositon.y + ScaleY, transform.position.z);
