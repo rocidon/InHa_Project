@@ -64,7 +64,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         normalAttackDamage = 40.0f;
-        specialAttackDamage = 15.0f;
+        specialAttackDamage = 30.0f;
         CurrentHP = MaxHP;
         Rigid = GetComponent<Rigidbody>();
         IsJumping = false;      // 점프 유무 변수 초기화

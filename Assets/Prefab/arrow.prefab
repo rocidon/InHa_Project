@@ -158,8 +158,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GreenHit: {fileID: 2094564866078800601}
-  damage: 20
+  shootDamage: 0
   force: 1
+  normalMonster: {fileID: 0}
+  bossMonster: {fileID: 0}
 --- !u!54 &2189263244611366120
 Rigidbody:
   m_ObjectHideFlags: 0
