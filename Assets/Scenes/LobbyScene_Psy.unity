@@ -2340,7 +2340,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TITLETITLE
+  m_text: 'Dungeon Escape
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b410d3b3e72df48428ceb043f141a1f9, type: 2}
   m_sharedMaterial: {fileID: 2810547059356612204, guid: b410d3b3e72df48428ceb043f141a1f9, type: 2}
