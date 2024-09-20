@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8522655078797003944, guid: 4aa9f30a28a77224ba84b2a2c334c71b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522655078797003944, guid: 4aa9f30a28a77224ba84b2a2c334c71b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8778242938008402278, guid: 4aa9f30a28a77224ba84b2a2c334c71b, type: 3}
       propertyPath: looping
       value: 0
@@ -205,8 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalMonster: {fileID: 0}
-  player: {fileID: 0}
-  ParticleObject: {fileID: 0}
+  player: {fileID: 1215863203573659404}
+  ParticleObject: {fileID: 299612742390121355}
   ParticleLifeTime: 0
 --- !u!4 &392949822372680254 stripped
 Transform:
@@ -617,11 +625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5209417
+      value: -18.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: -2.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -937,6 +945,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6046705319652883723}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1643015724683026224}
     - targetCorrespondingSourceObject: {fileID: -695009955411471175, guid: ba156a313dd0cfb4f9e58fd047c2051c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6093854849658178432}
@@ -1241,6 +1252,20 @@ MonoBehaviour:
   playerMove: {fileID: 1215863203573659404}
   anim: {fileID: 9023233706569696506}
 --- !u!114 &6046705319652883723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883696098381587976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2859948503f6f8342b68d0f38ef065bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 3
+  dashCooldown: 5
+--- !u!114 &1643015724683026224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
