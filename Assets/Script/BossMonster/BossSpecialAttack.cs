@@ -28,9 +28,9 @@ public class BossSpecialAttack : MonoBehaviour
         {
             Debug.Log("Special Hit Player!!!");
             //单固瘤 贸府 -> 溜荤 贸府
-            //PlayerClass player = collsion.gameObject.GetComponent<NormalMonster>();
-            //float playerHP = Get playerHP(); <- MAX HP
-            //player.takeDamage(playerHP);
+            PlayerMove P = other.gameObject.GetComponent<PlayerMove>();
+            P.TakeDamage(P.MaxHP);
+
         }
         if(other.gameObject.CompareTag("Obstacle"))
         {

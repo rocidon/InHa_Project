@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxHealth: 1000
   _Health: 0
-  _Atk: 100
+  _Atk: 5
   _Def: 0
   speed: 0
   animator: {fileID: 0}
