@@ -26,7 +26,7 @@ public class SlashEffect : MonoBehaviour
     {
         Debug.Log("normal 공격 파티클이 적에게 닿았다.");
         ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
-        normalMonster._Health -= player.normalAttackDamage;
+        normalMonster.TakeDamage(player.normalAttackDamage);
         Debug.Log(normalMonster._Health);
         
         /* foreach (var v in inside)

@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 8128929642732263706}
   m_Layer: 0
   m_Name: NormalMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,11 +207,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxHealth: 0
-  _Health: 0
+  _Health: 200
   _Atk: 0
   _Def: 0
   speed: 0
   animator: {fileID: 0}
+  attack: {fileID: 8300000, guid: a1cb889f6a9f77a49b324abb795bad82, type: 3}
   Weapon: {fileID: 4479423981183108441}
   _currentState: 0
   AtkRange: 0
@@ -233,7 +234,7 @@ MonoBehaviour:
   AtkRadius: 1
   TargetMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 896

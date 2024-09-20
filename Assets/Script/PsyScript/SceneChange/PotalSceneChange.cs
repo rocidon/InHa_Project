@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PotalSceneChange : MonoBehaviour
 {
     // 포탈이 플레이어와 상호작용할 수 있는 범위 정의
@@ -10,6 +11,9 @@ public class PotalSceneChange : MonoBehaviour
     private bool isPlayerInRange = false;
 
     public CurrencyData currencyData;
+
+    
+
     private void Update()
     {
         // 플레이어가 포탈 범위에 있을 때

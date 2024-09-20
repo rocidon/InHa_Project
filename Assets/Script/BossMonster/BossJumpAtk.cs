@@ -10,6 +10,7 @@ public class BossJumpAtk : MonoBehaviour
     [SerializeField]
     public GameObject SmashEffect;
     BoxCollider Range;
+    [SerializeField]
     float BossAtk;
     private void Start()
     {
