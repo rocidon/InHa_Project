@@ -58,7 +58,8 @@ public class PlayerMove : MonoBehaviour
 
     public float normalAttackDamage = 10.0f;          // normal 무기 공격력
     public float specialAttackDamage = 15.0f;         // special 무기 공격력
-    
+
+
 
     void Start()
     {
@@ -119,6 +120,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetTrigger("Jump");
             PlaySound(Jump, Player);
         }
+
 
         if (!DontAttack)
         {
