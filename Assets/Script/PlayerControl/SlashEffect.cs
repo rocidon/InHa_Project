@@ -31,7 +31,7 @@ public class SlashEffect : MonoBehaviour
 
     public void onAtk()
     {
-        gameObject.GetComponent<BoxCollider>().enabled = true;
+        ParticleObject.GetComponent<BoxCollider>().enabled = true;
         ps.Play();
         StartCoroutine(TurnOffCollsion());
     }
@@ -52,7 +52,7 @@ public class SlashEffect : MonoBehaviour
     IEnumerator TurnOffCollsion()
     {
         yield return new WaitForSeconds(ParticleLifeTime);
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        ParticleObject.GetComponent<BoxCollider>().enabled = false;
     }
 
 }

@@ -127,7 +127,8 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown && normalWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
-                StoneSlash.Play();
+                //StoneSlash.Play();
+                StoneSlash.GetComponent<SlashEffect>().onAtk();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(NormalAttack, Player);
                 IsBanControl = true;
@@ -137,7 +138,8 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && specialWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
-                ElectricSlash.Play();
+                //ElectricSlash.Play();
+                ElectricSlash.GetComponent<SlashEffect>().onAtk();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(SpecialAttack, Player);
 
