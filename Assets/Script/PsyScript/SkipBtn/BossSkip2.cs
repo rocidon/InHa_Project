@@ -22,7 +22,6 @@ public class BossSkip2 : MonoBehaviour
         if (boss != null)
         {
             boss._Health = boss._Health * 0.1f;
-            
         }
         Debug.Log("버튼 눌림");
     }
