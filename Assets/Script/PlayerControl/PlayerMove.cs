@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public ParticleSystem StoneSlash;
     public ParticleSystem ElectricSlash;
 
-    float Speed = 7f;       // Player 이동 속도
+    float Speed = 8f;       // Player 이동 속도
     public float JumpPower = 18f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
@@ -163,7 +163,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      // Collision Enter 판정
     {
-        if (/*collision.gameObject.CompareTag("Monster") &&*/ !IsPlayerDead)
+        if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
             /*TakeDamage(20);*/
