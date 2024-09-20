@@ -270,13 +270,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BladePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1720448879715450097, guid: 084998701071dc845bd5687997b58a96, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4119880948743048205, guid: 084998701071dc845bd5687997b58a96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.93
+      value: -3.68
       objectReference: {fileID: 0}
     - target: {fileID: 4119880948743048205, guid: 084998701071dc845bd5687997b58a96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33000004
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4119880948743048205, guid: 084998701071dc845bd5687997b58a96, type: 3}
       propertyPath: m_LocalPosition.z
@@ -675,6 +679,14 @@ PrefabInstance:
     - target: {fileID: 5933356327616400180, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
       propertyPath: m_Name
       value: NormalMonster (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1760,6 +1772,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2161,6 +2181,14 @@ PrefabInstance:
     - target: {fileID: 5933356327616400180, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
       propertyPath: m_Name
       value: NormalMonster (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2864,6 +2892,14 @@ PrefabInstance:
     - target: {fileID: 5933356327616400180, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
       propertyPath: m_Name
       value: NormalMonster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709135639076934943, guid: 5c1a7eebf2c26e34088c91cfd5970ef3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

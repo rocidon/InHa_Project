@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class BossMonster1 : BossBehaviorTree
 {
+    private AudioSource bossMonster;
+    public AudioClip throwStone;
+    public AudioClip jumpAttack;
+    public AudioClip normalAttack;
+    public AudioClip specialAttack1;
+    public AudioClip specialAttack2;
+    /*public AudioClip Walk;*/
+   
+    
     public enum StandardMotion
     {
         Idle,
@@ -56,6 +65,7 @@ public class BossMonster1 : BossBehaviorTree
 
         animator = GetComponentInChildren<Animator>();
         //Value setting Before this Line
+        bossMonster = GetComponent<AudioSource>();          // 오디오 소스 받는 BossMonster
         SetRootNode();
     }
 
@@ -114,6 +124,7 @@ public class BossMonster1 : BossBehaviorTree
         p += transform.forward;
         p += new Vector3(0, py, 0);
         Instantiate(Stone, p , Quaternion.Euler(0, 0, 0));
+        PlaySound(throwStone, bossMonster);
     }
     public int getNormalAtkCount()
     {
@@ -211,6 +222,7 @@ public class BossMonster1 : BossBehaviorTree
         {
             Debug.Log("잘못된 인덱스 접근 : Not " + "JumpAttack");
         }
+        PlaySound(jumpAttack, bossMonster);
     }
 
     public void NormalAttack()
@@ -225,6 +237,7 @@ public class BossMonster1 : BossBehaviorTree
         {
             Debug.Log("잘못된 인덱스 접근 : Not " + "NormalAttack");
         }
+        PlaySound(normalAttack, bossMonster);
     }
 
     public void SpeicalAttack1()
@@ -238,6 +251,7 @@ public class BossMonster1 : BossBehaviorTree
         {
             Debug.Log("No compoenet BossSpecialAttackver1 Add Compoenet");
         }
+        PlaySound(specialAttack1, bossMonster);
     }
 
     public void SpeicalAttack2() 
@@ -251,6 +265,16 @@ public class BossMonster1 : BossBehaviorTree
         {
             Debug.Log("No compoenet BossSpecialAttackver1 Add Compoenet");
         }
+        PlaySound(specialAttack2, bossMonster);
+    }
+
+    public static void PlaySound(AudioClip clip, AudioSource audioPlayer)
+    {
+        audioPlayer.Stop();
+        audioPlayer.clip = clip;
+        audioPlayer.loop = false;
+        audioPlayer.time = 0;
+        audioPlayer.Play();
     }
 }
 
