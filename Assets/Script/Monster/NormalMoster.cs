@@ -27,7 +27,8 @@ public class NormalMonster : Monster
     public float AtkRange;
     float oSpeed;
     float _Timer;
-    Field_of_View fov;
+    //Field_of_View fov;
+    DetectingPlayer fov;
 
     void Start()
     {
@@ -37,7 +38,8 @@ public class NormalMonster : Monster
         animator = GetComponentInChildren<Animator>();
         //Atk = GetComponentInChildren<MonsterAttack>();
         _Timer = 0f;
-        fov = GetComponent<Field_of_View>();
+        //fov = GetComponent<Field_of_View>();
+        fov = GetComponent<DetectingPlayer>();
         _currentState = State.Idle;
         _fsm = new FSM(new IdleState(this));
         speed = speed >= 1.0f ? speed : 3.0f;
@@ -386,7 +388,8 @@ public class SeeState : BaseState
     }
     public override void onStateUpdate()
     {
-        _normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        //_normalMob.transform.Translate(Vector3.forward * _normalMob.speed * Time.deltaTime);
+        _normalMob.Movement();
         //throw new System.NotImplementedException();
     }
 

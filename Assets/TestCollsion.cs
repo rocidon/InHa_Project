@@ -20,7 +20,7 @@ public class TestCollsion : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Monster"))
         {
-            NormalMonster nor = other.gameObject.GetComponent<NormalMonster>();
+            Monster nor = other.gameObject.GetComponent<Monster>();
             nor.TakeDamage(Damage);
         }
         //Debug.Log("on Enter");
