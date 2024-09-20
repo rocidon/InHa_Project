@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public ParticleSystem StoneSlash;
     public ParticleSystem ElectricSlash;
 
-    float Speed = 8f;       // Player 이동 속도
+    float Speed = 7f;       // Player 이동 속도
     public float JumpPower = 18f;     // Player 점프 높이
     bool IsJumping;     // 점프 유무 변수 선언
     float GravityScale = 50f;       // 중력 변수
@@ -127,8 +127,7 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C) && !IsAttackCoolDown && normalWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
-                //StoneSlash.Play();
-                StoneSlash.GetComponent<SlashEffect>().onAtk();
+                StoneSlash.Play();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(NormalAttack, Player);
                 IsBanControl = true;
@@ -138,8 +137,7 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && specialWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
-                //ElectricSlash.Play();
-                ElectricSlash.GetComponent<SlashEffect>().onAtk();
+                ElectricSlash.Play();
                 StartCoroutine(AttackCoolDown());
                 PlaySound(SpecialAttack, Player);
 
@@ -168,7 +166,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            /*TakeDamage(20);*/
+            TakeDamage(20); 
 
             if (CurrentHP <= 0)     
             {
