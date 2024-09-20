@@ -64,13 +64,12 @@ public class LoadingSceneController : MonoBehaviour
     }
 
     [SerializeField] private TMP_Text TipText;
-    private string[] randomTips = {
+    private string[] randomTips = {    
         "포탈앞에서 'Z' 를 누르면 다음 스테이지로 이동합니다.",
-        "게임의 목표를 설정해 보세요!",
-        "방향키로 조작하고 점프를 합니다!",
-    "보스를 잡아서 게임을 끝내자",
-    "아 배고프다 내일 아침 뭐 먹지",
-    "추석때 대구 내려가서 뭐하지"};
+    "게임의 목표를 설정해 보세요!",
+    "방향키로 조작하고, SPACE 로 점프를 합니다!",
+"최종 몬스터를 해치우면 던전에서 탈출할 수 있습니다.",
+"맵내부에 있는 아이템을 얻어 공격할 수 있습니다."};
 
     [SerializeField] private TMP_Text LodingPercentText;
 
