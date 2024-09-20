@@ -32,7 +32,8 @@ public class NormalMonster : Monster
 
     void Start()
     {
-        _Health = 200.0f;
+        _MaxHealth = 200.0f;
+        _Health = _MaxHealth;
         _Atk = 10.0f;
         _Def = 1.0f;
         animator = GetComponentInChildren<Animator>();

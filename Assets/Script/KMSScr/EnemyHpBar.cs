@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class EnemyHpBar : MonoBehaviour
 {
@@ -24,12 +23,12 @@ public class EnemyHpBar : MonoBehaviour
     private Camera playerCamera;
 
     // 체력바 false로 초기화
-    private bool isActive = false;
+    //private bool isActive = false;
 
     void Start()
     {
+        maxHp = normalMonster._MaxHealth;
         curHp = normalMonster._Health;
-        maxHp = curHp;
 
         // Slider 최댓값과 초기값
         enemyHp.maxValue = maxHp;
@@ -43,14 +42,14 @@ public class EnemyHpBar : MonoBehaviour
         // 현재는 "Camera" 라서 이렇게 사용.
         playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
 
-
         // 체력바 활성화 여부
-        enemyHp.gameObject.SetActive(isActive);
+        //enemyHp.gameObject.SetActive(isActive);
 
     }
 
     void Update()
     {
+        curHp = normalMonster._Health;
         UpdateHP();
         UpdateUIPosition();
 
@@ -79,23 +78,23 @@ public class EnemyHpBar : MonoBehaviour
     }
 
     // 테스트용
-    private void OnCollisionEnter(Collision collision)
-    {
+    //private void OnCollisionEnter(Collision collision)
+    //{
 
-        // 충돌한 오브젝트 태그가 "Player" 일때
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 체력바 활성화
-            enemyHp.gameObject.SetActive(isActive = true);
+    //    // 충돌한 오브젝트 태그가 "Player" 일때
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        // 체력바 활성화
+    //       // enemyHp.gameObject.SetActive(isActive = true);
 
-            //curHp -= 100;
+    //        //curHp -= 100;
 
-            // 0이하로 떨어지지 않도록 설정.
-           // curHp = Mathf.Max(curHp, 0);
+    //        // 0이하로 떨어지지 않도록 설정.
+    //       // curHp = Mathf.Max(curHp, 0);
 
-            UpdateHP();
-        }
-    }
+    //        UpdateHP();
+    //    }
+    //}
 }
 
 
