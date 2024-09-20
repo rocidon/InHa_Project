@@ -32,6 +32,7 @@ public class NormalMonster : Monster
 
     void Start()
     {
+        _IsAction = false;
         _MaxHealth = 200.0f;
         _Health = _MaxHealth;
         _Atk = 10.0f;
@@ -52,90 +53,93 @@ public class NormalMonster : Monster
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("currentFindPlayer : " + fov.FindPlayer);
-        switch (_currentState)
-        {            
-            case State.Idle:
-                if (fov.FindPlayer == false)
-                {
-                    if(_Timer > 1.0f)
+        if (!_IsAction)
+        {
+            //Debug.Log("currentFindPlayer : " + fov.FindPlayer);
+            switch (_currentState)
+            {
+                case State.Idle:
+                    if (fov.FindPlayer == false)
                     {
-                        ChangeState(State.Move);
-                        _Timer = 0.0f;
+                        if (_Timer > 1.0f)
+                        {
+                            ChangeState(State.Move);
+                            _Timer = 0.0f;
+                        }
+                        _Timer += Time.deltaTime;
                     }
-                    _Timer += Time.deltaTime;
-                }
-                else
-                {
-                    ChangeState(State.See);
-                    _Timer = 0f;
-                }
-                break;
-            case State.Move:
-                speed = 2.0f;
-                if (fov.FindPlayer)
-                {
-                    ChangeState(State.See);
-                    _Timer = 0f;
-                }
-                else
-                {
-                    if(_Timer > 3.0f)
+                    else
                     {
-                        ChangeState(State.Idle);
-                        _Timer = 0;
+                        ChangeState(State.See);
+                        _Timer = 0f;
                     }
-                    _Timer += Time.deltaTime;
-                }
-                break;
-            case State.Attack:
-                //_Timer += Time.deltaTime;
-                if (fov.AtkPlayer== false)
-                {
-                    ChangeState(State.See);
-                    //Weapon.GetComponent<MonsterWeapon>().ControlTrigger(false);
-                }
-                break;
-            case State.See:                
-                speed = oSpeed;
-                if (fov.FindPlayer)
-                {
-                    if (fov.AtkPlayer)
+                    break;
+                case State.Move:
+                    speed = 2.0f;
+                    if (fov.FindPlayer)
                     {
-                        ChangeState(State.Attack);
-                    }               
-                }
-                else
-                {
-                    ChangeState (State.Idle);
-                }
-                break;
-            case State.Hited:
-                
-                if (_Timer> 0.25f)
-                {
-                    if (IsDeath())
+                        ChangeState(State.See);
+                        _Timer = 0f;
+                    }
+                    else
                     {
-                        ChangeState(State.Death);
+                        if (_Timer > 3.0f)
+                        {
+                            ChangeState(State.Idle);
+                            _Timer = 0;
+                        }
+                        _Timer += Time.deltaTime;
+                    }
+                    break;
+                case State.Attack:
+                    //_Timer += Time.deltaTime;
+                    if (fov.AtkPlayer == false)
+                    {
+                        ChangeState(State.See);
+                        //Weapon.GetComponent<MonsterWeapon>().ControlTrigger(false);
+                    }
+                    break;
+                case State.See:
+                    speed = oSpeed;
+                    if (fov.FindPlayer)
+                    {
+                        if (fov.AtkPlayer)
+                        {
+                            ChangeState(State.Attack);
+                        }
                     }
                     else
                     {
                         ChangeState(State.Idle);
                     }
-                    _Timer = 0f;
-                }
-                _Timer += Time.deltaTime;
-                break;
-            case State.Death:
-                
-                if(_Timer > 10.0f)
-                {
-                    _Timer = 0f;
-                    base.Dying();
-                }
-                _Timer += Time.deltaTime;
-                break;
+                    break;
+                case State.Hited:
 
+                    if (_Timer > 0.25f)
+                    {
+                        if (IsDeath())
+                        {
+                            ChangeState(State.Death);
+                        }
+                        else
+                        {
+                            ChangeState(State.Idle);
+                        }
+                        _Timer = 0f;
+                    }
+                    _Timer += Time.deltaTime;
+                    break;
+                case State.Death:
+
+                    if (_Timer > 10.0f)
+                    {
+                        _Timer = 0f;
+                        base.Dying();
+                    }
+                    _Timer += Time.deltaTime;
+                    break;
+
+            }
         }
         _fsm.UpdateState();
     }
@@ -219,7 +223,14 @@ public class NormalMonster : Monster
     public override void Attack()
     {
        Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);
-        PlaySound(attack, normalMonster);
+        StartCoroutine(OffWeapon());
+       PlaySound(attack, normalMonster);
+    }
+
+    IEnumerator OffWeapon()
+    {
+        yield return new WaitForSeconds(1.04f);
+        Weapon.GetComponent<MonsterWeapon>().ControlTrigger(false);
     }
 
     public override void AttackFail()
@@ -327,6 +338,7 @@ public class AttackState : BaseState
         StartPattern = false;
         AnimTimer = 0f;
         _normalMob.StartCoroutine(Pattern());
+        
         //_normalMob.Attack();
         //throw new System.NotImplementedException();
     }
@@ -334,12 +346,14 @@ public class AttackState : BaseState
     {
         if (StartPattern)
         {
-            AnimTimer += Time.deltaTime;
-            if (AnimTimer >= AnimLength)
-            {
-                AnimTimer = 0;
-                _normalMob.Attack();
-            }
+            //AnimTimer += Time.deltaTime;
+            //if (AnimTimer >= AnimLength)
+            //{
+            //    AnimTimer = 0;
+            //    _normalMob.Attack();
+                
+            //}
+            _normalMob.StartCoroutine(StateUpdate());
         }
         //if (!FirstHit)
         //{
@@ -365,7 +379,13 @@ public class AttackState : BaseState
         Debug.Log("Attack Out");
         //throw new System.NotImplementedException();
     }
-
+    IEnumerator StateUpdate()
+    {
+        _normalMob._IsAction = true;
+        yield return new WaitForSeconds(AnimLength);
+        _normalMob.Attack();
+        _normalMob._IsAction = false;
+    }
     IEnumerator Pattern()
     {
         yield return new WaitForSeconds(0.1f);
@@ -410,7 +430,7 @@ public class DeathState : BaseState
 
     public override void onStateEnter()
     {
-        
+        _normalMob._IsAction = true;
         //throw new System.NotImplementedException();
     }
     public override void onStateUpdate()
