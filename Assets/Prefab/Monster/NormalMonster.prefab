@@ -216,6 +216,7 @@ MonoBehaviour:
   _Def: 0
   speed: 0
   animator: {fileID: 0}
+  _IsAction: 0
   attack: {fileID: 8300000, guid: 005c5c08b73ec2d49b861d83c2c4a95c, type: 3}
   Weapon: {fileID: 4479423981183108441}
   _currentState: 0
