@@ -50,7 +50,8 @@ public class PlayerMove : MonoBehaviour
     public AudioClip NormalAttack;
     public AudioClip SpecialAttack;
 
-    public NormalMonster normalMonsterAttack;
+    public NormalMonster normalMonster;
+
     GameObject nearObject;
 
     int normalWeaponCount = 0;
@@ -68,7 +69,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;      // 점프 유무 변수 초기화
         IsPlayerDead = false;
         Player = GetComponent<AudioSource>();
-        /*normalMonsterAttack = GameObject.Find("NormalMonster").GetComponent<NormalMonster>(); //*/
+        normalMonster = GameObject.Find("NormalMonster").GetComponent<NormalMonster>();
     }
 
     void Update()
@@ -137,7 +138,7 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X) && !IsAttackCoolDown && specialWeaponCount == 1)
             {
                 anim.SetTrigger("Attack");
-                ElectricSlash.Play();
+                ElectricSlash.Play();  
                 StartCoroutine(AttackCoolDown());
                 PlaySound(SpecialAttack, Player);
 
@@ -166,7 +167,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
-            TakeDamage(20); 
+            TakeDamage(normalMonster._Atk);         // 일반 몬스터로부터 받는 데미지
 
             if (CurrentHP <= 0)     
             {
