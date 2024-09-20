@@ -29,8 +29,9 @@ public class SlashEffectSpecial : MonoBehaviour
     {
         Debug.Log("Special 공격 파티클이 적에게 닿았다.");
         ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
-        Debug.Log(monster._Health);
         monster.TakeDamage(player.specialAttackDamage);
+        Debug.Log(monster._Health);
+       
         /* foreach (var v in inside)
          {
              Debug.Log("Effect Trigger2");

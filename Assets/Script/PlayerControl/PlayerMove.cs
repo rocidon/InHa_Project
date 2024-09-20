@@ -163,7 +163,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      // Collision Enter ÆÇÁ¤
     {
-        if (collision.gameObject.CompareTag("Monster") && !IsPlayerDead)
+        if (/*collision.gameObject.CompareTag("Monster") &&*/ !IsPlayerDead)
         {
             /*CurrentHP -= EnemyAttackDamage;*/
             /*TakeDamage(20);*/
