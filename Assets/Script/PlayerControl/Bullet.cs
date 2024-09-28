@@ -34,8 +34,9 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
+        shootDamage = player.GetComponent<PlayerMove>().specialAttackDamage;
         Destroy(gameObject, 3f);        // 3초 뒤 총알 프리팹이 사라지도록
-        bossMonster = GameObject.Find("Boss").GetComponent<BossMonster1>();
+        //bossMonster = GameObject.Find("Boss").GetComponent<BossMonster1>();
         /*renderer = target.GetComponent<Renderer>();*/
         /* Application.targetFrameRate = 60;
          Shoot(new Vector3(0, 0, 100));*/

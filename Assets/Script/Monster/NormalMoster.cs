@@ -25,6 +25,7 @@ public class NormalMonster : Monster
     }
     public State _currentState;
     public float AtkRange;
+    public bool _IsHit;
     float oSpeed;
     float _Timer;
     //Field_of_View fov;
@@ -32,6 +33,7 @@ public class NormalMonster : Monster
 
     void Start()
     {
+        _IsHit = false;
         _IsAction = false;
         _MaxHealth = 200.0f;
         _Health = _MaxHealth;
@@ -130,6 +132,8 @@ public class NormalMonster : Monster
                     _Timer += Time.deltaTime;
                     break;
                 case State.Death:
+                    _IsHit = true;
+                    gameObject.GetComponent<Rigidbody>().isKinematic = true;
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     Debug.Log(gameObject.GetComponent<CapsuleCollider>().enabled);
                     transform.GetChild(1).GetComponent<BoxCollider>().enabled = false;
@@ -179,14 +183,19 @@ public class NormalMonster : Monster
     void RayHit()
     {
         Vector3 ChkPos = transform.up +transform.forward + transform.position;
-        Debug.DrawRay(ChkPos, Vector3.down * 2.0f, Color.green, 0.01f);
-        if (!Physics.Raycast(ChkPos, Vector3.down, out hit, 2.0f))
+        Debug.DrawRay(ChkPos, Vector3.down * 1.5f, Color.green, 0.01f);
+        if (!Physics.Raycast(ChkPos, Vector3.down, out hit, 1.5f))
         {
             Turn();
             //Debug.Log("normalMonster Turn");
         }
+        else
+        {
+            if (hit.transform.CompareTag("Wall")) Turn();
+            Debug.Log(hit.transform.name);
+        }
     }
-    void Turn()
+    public void Turn()
     {
         Vector3 BackVec = transform.forward * -1;
         if(BackVec != Vector3.zero)
@@ -221,7 +230,13 @@ public class NormalMonster : Monster
         }
 
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            Turn();
+        }
+    }
     public override void Attack()
     {
        Weapon.GetComponent<MonsterWeapon>().ControlTrigger(true);
@@ -242,27 +257,27 @@ public class NormalMonster : Monster
     }
     public override void TakeDamage(float damage)
     {
-        _Health -= damage;
-        Debug.Log(_Health);
-        AttackFail();
-        _OnDamage();
+        if (!_IsHit)
+        {
+            _Health -= damage;
+            Debug.Log(_Health);
+            AttackFail();
+            _OnDamage();            
+        }
         //StartCoroutine(OnDamage());
         //수정필요
     }
     void _OnDamage()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        //rb.AddForce(transform.forward * -4, ForceMode.Impulse);
         ChangeState(State.Hited);
+        StartCoroutine(OnDamage());
     }
     public override IEnumerator OnDamage()
     {
-        //수정 필요
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * -4, ForceMode.Impulse);
-        //rb.MovePosition(transform.forward * -2);
-        ChangeState(State.Hited);
-        yield return new WaitForSeconds(1.0f);   
+        _IsHit = true;
+       // float AnimTime = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(1.0f);
+        _IsHit = false;
     }
 
     public static void PlaySound(AudioClip clip, AudioSource audioPlayer)

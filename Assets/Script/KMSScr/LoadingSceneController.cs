@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using TMPro;
-using UnityEditor.VersionControl;
+//using UnityEditor.VersionControl;
 
 
 public class LoadingSceneController : MonoBehaviour
